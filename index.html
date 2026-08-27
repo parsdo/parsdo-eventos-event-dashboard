@@ -7,160 +7,175 @@
 <title>ParsDo EventOS - Live Dashboard</title>
 <style>
 :root{
-  --teal:#18a9a2;
-  --teal-dark:#087b78;
-  --navy:#102a43;
-  --blue:#356ac3;
-  --ink:#173332;
-  --muted:#6d7d7b;
-  --line:#e3eceb;
-  --bg:#f4f8f8;
+  --teal:#18aaa2;
+  --teal-dark:#087c78;
+  --navy:#0b1f33;
+  --navy2:#123b5b;
+  --blue:#3b73d1;
+  --orange:#e99543;
+  --ink:#162f42;
+  --muted:#71818c;
+  --line:#e3ebef;
+  --bg:#f2f6f8;
   --white:#fff;
-  --shadow:0 14px 40px rgba(16,42,67,.08);
+  --shadow:0 16px 42px rgba(13,42,61,.09);
 }
 *{box-sizing:border-box}
-html,body{
-  margin:0;min-height:100%;
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  color:var(--ink);background:var(--bg)
-}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink)}
 body{
-  padding-bottom:30px;position:relative;overflow-x:hidden;
+  padding-bottom:36px;
   background:
-    radial-gradient(circle at 92% 8%,rgba(24,169,162,.08),transparent 25%),
-    radial-gradient(circle at 5% 55%,rgba(53,106,195,.055),transparent 25%),
-    linear-gradient(145deg,#f8fbfb 0%,#f3f8f8 52%,#f7f9fc 100%);
+    radial-gradient(circle at 8% 42%,rgba(24,170,162,.08),transparent 24%),
+    radial-gradient(circle at 94% 62%,rgba(59,115,209,.07),transparent 26%),
+    linear-gradient(145deg,#f8fafb,#eef4f7);
+  overflow-x:hidden;
 }
 body:before{
-  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.55;
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.32;
   background-image:
-    linear-gradient(rgba(16,42,67,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(16,42,67,.025) 1px,transparent 1px);
-  background-size:42px 42px;
-  mask-image:linear-gradient(to bottom,black,transparent 78%);
+    linear-gradient(rgba(11,31,51,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(11,31,51,.035) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom,black,transparent 75%);
 }
 body:after{
-  content:"";position:fixed;right:-150px;bottom:-170px;width:520px;height:520px;
-  z-index:-1;pointer-events:none;border-radius:50%;
-  border:1px solid rgba(24,169,162,.08);
-  box-shadow:0 0 0 45px rgba(24,169,162,.025),0 0 0 90px rgba(53,106,195,.018);
+  content:"";position:fixed;right:-180px;top:280px;width:480px;height:480px;
+  border-radius:50%;border:1px solid rgba(24,170,162,.07);
+  box-shadow:0 0 0 50px rgba(24,170,162,.025),0 0 0 100px rgba(59,115,209,.018);
+  pointer-events:none;z-index:-1;
 }
+
+/* Premium corporate hero */
 .topbar{
   height:5px;
-  background:linear-gradient(90deg,#f28a32,#18a9a2,#356ac3,#18a9a2);
+  background:linear-gradient(90deg,#e99543 0%,#18aaa2 35%,#3b73d1 70%,#18aaa2 100%);
 }
 .header{
-  color:#fff;
+  position:relative;overflow:hidden;color:#fff;
+  padding:26px 20px 28px;
   background:
-    radial-gradient(circle at 82% 18%,rgba(255,255,255,.12),transparent 25%),
-    linear-gradient(135deg,#075f5d 0%,#087b78 48%,#164c78 100%);
-  padding:22px 20px 25px;
-  box-shadow:0 12px 34px rgba(16,42,67,.14);
-  position:relative;overflow:hidden;
+    radial-gradient(circle at 88% 20%,rgba(53,125,190,.34),transparent 30%),
+    radial-gradient(circle at 62% 105%,rgba(24,170,162,.18),transparent 35%),
+    linear-gradient(125deg,#071827 0%,#0b2942 52%,#123e5e 100%);
+  box-shadow:0 18px 45px rgba(7,24,39,.22);
 }
 .header:before{
-  content:"";position:absolute;right:-80px;top:-170px;width:440px;height:440px;
+  content:"";position:absolute;right:-90px;top:-230px;width:560px;height:560px;
   border-radius:50%;border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 0 0 42px rgba(255,255,255,.025),0 0 0 84px rgba(255,255,255,.018);
+  box-shadow:0 0 0 48px rgba(255,255,255,.025),0 0 0 96px rgba(255,255,255,.016);
 }
 .header:after{
-  content:"";position:absolute;right:9%;bottom:-110px;width:300px;height:160px;
-  border-radius:50%;background:rgba(255,255,255,.055);filter:blur(2px);
+  content:"";position:absolute;left:44%;bottom:-120px;width:520px;height:190px;
+  border-radius:50%;background:linear-gradient(90deg,rgba(24,170,162,.11),rgba(59,115,209,.07),transparent);
+  transform:rotate(-8deg);filter:blur(1px);
 }
-.header-inner,.container{max-width:1050px;margin:auto;position:relative;z-index:1}
-.brand-row{display:flex;align-items:center;gap:15px}
+.header-inner,.container{max-width:1080px;margin:auto;position:relative;z-index:1}
+.brand-row{display:flex;align-items:center;gap:17px}
 .logo-wrap{
-  width:82px;height:52px;background:#fff;border-radius:9px;
+  width:84px;height:54px;background:#fff;border-radius:10px;
   display:flex;align-items:center;justify-content:center;overflow:hidden;
-  box-shadow:0 7px 18px rgba(0,0,0,.14)
+  box-shadow:0 9px 24px rgba(0,0,0,.22)
 }
 .logo{width:100%;height:100%;object-fit:contain}
-.eyebrow{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;opacity:.8}
-.title{margin-top:2px;font-size:28px;font-weight:800;letter-spacing:-.5px}
-.subtitle{margin-top:5px;font-size:13px;opacity:.82}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:2.2px;text-transform:uppercase;color:#75d8d3}
+.title{margin-top:2px;font-size:30px;font-weight:800;letter-spacing:-.7px}
+.subtitle{margin-top:5px;font-size:13px;color:rgba(255,255,255,.68)}
 .event-row{
-  margin-top:20px;display:flex;justify-content:space-between;align-items:center;
-  gap:16px;flex-wrap:wrap
+  margin-top:24px;display:flex;justify-content:space-between;align-items:end;
+  gap:20px;flex-wrap:wrap
 }
-.event-name{font-size:20px;font-weight:750}
-.event-id{margin-top:4px;font-size:11px;opacity:.72;letter-spacing:.5px}
+.event-name{font-size:23px;font-weight:760;letter-spacing:-.2px}
+.event-id{margin-top:5px;font-size:11px;color:rgba(255,255,255,.52);letter-spacing:.6px}
 .live{
-  display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17);
-  font-size:11px;font-weight:800;letter-spacing:1px;backdrop-filter:blur(10px)
+  display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;
+  background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13);
+  font-size:10px;font-weight:850;letter-spacing:1.4px;backdrop-filter:blur(12px)
 }
 .live-dot{
-  width:8px;height:8px;border-radius:50%;background:#67e8ba;
-  box-shadow:0 0 0 4px rgba(103,232,186,.12),0 0 10px rgba(103,232,186,.6)
+  width:8px;height:8px;border-radius:50%;background:#69e6b8;
+  box-shadow:0 0 0 4px rgba(105,230,184,.12),0 0 12px rgba(105,230,184,.7)
 }
-.container{padding:0 18px;margin-top:24px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+.container{padding:0 18px;margin-top:25px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
 .card{
-  background:rgba(255,255,255,.94);border:1px solid rgba(218,232,231,.95);
-  border-radius:18px;box-shadow:var(--shadow);
-  backdrop-filter:blur(10px);position:relative;overflow:hidden
+  background:rgba(255,255,255,.96);border:1px solid var(--line);
+  border-radius:20px;box-shadow:var(--shadow);position:relative;overflow:hidden
 }
-.card:before{
-  content:"";position:absolute;left:0;right:0;top:0;height:3px;
-  background:linear-gradient(90deg,var(--teal),var(--blue));opacity:.75
+
+/* KPI cards become stronger visual anchors */
+.stat{padding:23px 23px 22px;min-height:152px}
+.stat:before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--teal)
 }
-.stat{padding:22px;min-height:140px}
+.stat:nth-child(2):before{background:var(--blue)}
+.stat:nth-child(3):before{background:var(--orange)}
 .stat:after{
-  content:"";position:absolute;width:115px;height:115px;border-radius:50%;
-  right:-45px;top:-45px;background:radial-gradient(circle,rgba(24,169,162,.12),transparent 68%)
+  content:"";position:absolute;right:-45px;top:-45px;width:145px;height:145px;border-radius:50%;
+  background:radial-gradient(circle,rgba(24,170,162,.14),transparent 68%)
 }
-.stat:nth-child(2):after{background:radial-gradient(circle,rgba(53,106,195,.12),transparent 68%)}
-.stat:nth-child(3):after{background:radial-gradient(circle,rgba(242,138,50,.12),transparent 68%)}
+.stat:nth-child(2):after{background:radial-gradient(circle,rgba(59,115,209,.13),transparent 68%)}
+.stat:nth-child(3):after{background:radial-gradient(circle,rgba(233,149,67,.14),transparent 68%)}
 .stat-label{
-  position:relative;z-index:1;color:var(--muted);font-size:11px;font-weight:800;
-  letter-spacing:1.2px;text-transform:uppercase
+  position:relative;z-index:1;color:var(--muted);font-size:10px;font-weight:850;
+  letter-spacing:1.45px;text-transform:uppercase
 }
 .stat-value{
-  position:relative;z-index:1;margin-top:9px;font-size:40px;line-height:1;
-  font-weight:800;letter-spacing:-1.5px;color:var(--teal-dark)
+  position:relative;z-index:1;margin-top:10px;font-size:43px;line-height:1;
+  font-weight:820;letter-spacing:-2px;color:var(--teal-dark)
 }
 .stat:nth-child(2) .stat-value{color:var(--blue)}
-.stat:nth-child(3) .stat-value{color:#c87525}
-.stat-note{position:relative;z-index:1;margin-top:9px;color:var(--muted);font-size:12px}
-.progress-card,.activity{margin-top:16px;padding:22px}
-.progress-top,.activity-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
-.section-title{font-size:15px;font-weight:800}
-.percentage{color:var(--teal-dark);font-size:27px;font-weight:800}
+.stat:nth-child(3) .stat-value{color:#c9782d}
+.stat-note{position:relative;z-index:1;margin-top:10px;color:var(--muted);font-size:12px}
+
+/* Attendance */
+.progress-card,.activity{margin-top:17px;padding:23px}
+.progress-top,.activity-head{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.section-title{font-size:15px;font-weight:800;color:var(--navy)}
+.percentage{color:var(--teal-dark);font-size:29px;font-weight:850}
 .progress-track{
-  height:12px;margin-top:15px;background:#e7efee;border-radius:999px;
-  overflow:hidden;box-shadow:inset 0 1px 3px rgba(16,42,67,.07)
+  height:13px;margin-top:16px;background:#e7eef1;border-radius:999px;
+  overflow:hidden;box-shadow:inset 0 1px 3px rgba(11,31,51,.08)
 }
 .progress-fill{
   width:0;height:100%;border-radius:999px;
-  background:linear-gradient(90deg,#0a8f89,#18a9a2,#356ac3);
-  transition:width .6s ease
+  background:linear-gradient(90deg,#087c78,#18aaa2,#3b73d1);
+  box-shadow:0 2px 9px rgba(24,170,162,.25);transition:width .6s ease
 }
-.progress-meta{display:flex;justify-content:space-between;margin-top:9px;color:var(--muted);font-size:11px}
+.progress-meta{display:flex;justify-content:space-between;margin-top:10px;color:var(--muted);font-size:11px}
 .updated{color:var(--muted);font-size:11px}
-.activity-head{margin-bottom:13px}
+
+/* Activity timeline */
+.activity-head{margin-bottom:12px}
 .activity-list{display:flex;flex-direction:column}
 .activity-row{
-  display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;
-  padding:13px 4px;border-bottom:1px solid #edf2f1
+  display:grid;grid-template-columns:38px 1fr auto;gap:13px;align-items:center;
+  padding:14px 4px;border-bottom:1px solid #edf2f4
 }
 .activity-row:last-child{border-bottom:0}
 .check{
-  width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-  border-radius:50%;background:#e9f7f5;color:#087b78;font-weight:900
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;background:#eaf8f6;color:var(--teal-dark);
+  border:1px solid #d5efed;font-weight:900
 }
-.person-name{font-size:13px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.person-name{font-size:13px;font-weight:760;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .person-id{margin-top:3px;color:var(--muted);font-size:10px;letter-spacing:.5px}
 .time{color:var(--muted);font-size:11px;white-space:nowrap}
 .empty{padding:30px 10px;text-align:center;color:var(--muted);font-size:13px}
 .error{
-  margin-top:16px;padding:14px 16px;border-radius:13px;background:#fff3f1;
+  margin-top:17px;padding:14px 16px;border-radius:13px;background:#fff3f1;
   color:#a52d2d;border:1px solid #f0cccc;display:none;font-size:12px
 }
-.footer{margin-top:20px;text-align:center;color:#82908f;font-size:10px;letter-spacing:.6px}
-.footer a{color:var(--teal-dark);text-decoration:none;font-weight:800}
+.footer{margin-top:21px;text-align:center;color:#82909a;font-size:10px;letter-spacing:.7px}
+.footer a{color:var(--teal-dark);text-decoration:none;font-weight:850}
+
 @media(max-width:760px){
-  .grid{grid-template-columns:1fr}.title{font-size:24px}.event-name{font-size:17px}
+  .grid{grid-template-columns:1fr}
+  .title{font-size:25px}
+  .event-name{font-size:18px}
   .container{padding:0 13px}
+  .header{padding-left:17px;padding-right:17px}
 }
 </style>
 </head>
@@ -428,6 +443,89 @@ function renderRecent(items) {
 }
 
 /* ---------------------------------------------------------
+   Load actual Event Name from Events sheet
+   --------------------------------------------------------- */
+function loadEventName() {
+
+  const callbackName =
+    "parsdoEventName_" +
+    Date.now() +
+    "_" +
+    Math.random().toString(36).substring(2, 8);
+
+  const script = document.createElement("script");
+  let finished = false;
+
+  function finish() {
+    if (finished) return;
+    finished = true;
+
+    if (script.parentNode) {
+      script.parentNode.removeChild(script);
+    }
+
+    try {
+      delete window[callbackName];
+    } catch (e) {
+      window[callbackName] = undefined;
+    }
+  }
+
+  window[callbackName] = function(data) {
+
+    if (finished) return;
+
+    finish();
+
+    console.log("ParsDo EventOS staffEvent response:", data);
+
+    if (
+      data &&
+      data.success === true &&
+      data.eventName
+    ) {
+      document.getElementById("eventName").textContent =
+        data.eventName;
+
+      document.getElementById("eventIdDisplay").textContent =
+        "Event ID · " + (data.eventId || eventId);
+
+      return;
+    }
+
+    // If event lookup fails, keep the dashboard usable.
+    document.getElementById("eventName").textContent =
+      eventId;
+  };
+
+  script.onerror = function() {
+    finish();
+
+    document.getElementById("eventName").textContent =
+      eventId;
+  };
+
+  const url =
+    DASHBOARD_BASE +
+    "?action=staffEvent" +
+    "&event=" + encodeURIComponent(eventId) +
+    "&callback=" + callbackName +
+    "&_=" + Date.now();
+
+  script.src = url;
+  document.head.appendChild(script);
+
+  setTimeout(function() {
+    if (finished) return;
+
+    finish();
+
+    document.getElementById("eventName").textContent =
+      eventId;
+  }, 8000);
+}
+
+/* ---------------------------------------------------------
    Initialize
    --------------------------------------------------------- */
 function init() {
@@ -438,7 +536,7 @@ function init() {
     eventId ? "Event ID · " + eventId : "";
 
   document.getElementById("eventName").textContent =
-    eventId || "Event Dashboard";
+    eventId ? "Loading event..." : "Event Dashboard";
 
   if (!eventId) {
     showError(
@@ -446,6 +544,8 @@ function init() {
     );
     return;
   }
+
+  loadEventName();
 
   loadDashboard();
 
