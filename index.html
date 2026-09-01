@@ -1352,6 +1352,8 @@ const EMAIL_API =
 
 const REFRESH_INTERVAL = 5000;
 
+const EVENTOS_SECRET = "ParsDoEventOS_2026_Email_9xK7mQ"; 
+
 
 let eventId = "";
 
@@ -2533,7 +2535,8 @@ async function sendParticipantEmails(){
 
           headers:{
             "Content-Type":
-              "application/json"
+              "application/json",
+              "X-EventOS-Secret": EVENTOS_SECRET
           },
 
           body:
