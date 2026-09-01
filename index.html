@@ -10,1423 +10,976 @@
 <style>
 
 :root{
-    --teal:#18aaa2;
-    --teal-dark:#087c78;
-    --navy:#0b1f33;
-    --navy2:#123b5b;
-    --blue:#3b73d1;
-    --orange:#e99543;
-    --ink:#162f42;
-    --muted:#71818c;
-    --line:#e3ebef;
-    --bg:#f2f6f8;
-    --white:#fff;
-    --success:#087a61;
-    --danger:#a52d2d;
-    --shadow:0 16px 42px rgba(13,42,61,.09);
+--teal:#18aaa2;
+--teal-dark:#087c78;
+--navy:#0b1f33;
+--navy2:#123b5b;
+--blue:#3b73d1;
+--orange:#e99543;
+--ink:#162f42;
+--muted:#71818c;
+--line:#e3ebef;
+--bg:#f2f6f8;
+--white:#fff;
+--success:#087a61;
+--danger:#a52d2d;
+--shadow:0 16px 42px rgba(13,42,61,.09);
 }
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
-html,
-body{
-    margin:0;
-    min-height:100%;
-    font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-    color:var(--ink);
+html,body{
+margin:0;
+min-height:100%;
+font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+color:var(--ink);
 }
 
 body{
-    padding-bottom:36px;
-
-    background:
-        radial-gradient(
-            circle at 8% 42%,
-            rgba(24,170,162,.08),
-            transparent 24%
-        ),
-        radial-gradient(
-            circle at 94% 62%,
-            rgba(59,115,209,.07),
-            transparent 26%
-        ),
-        linear-gradient(
-            145deg,
-            #f8fafb,
-            #eef4f7
-        );
-
-    overflow-x:hidden;
+padding-bottom:36px;
+background:
+radial-gradient(circle at 8% 42%,rgba(24,170,162,.08),transparent 24%),
+radial-gradient(circle at 94% 62%,rgba(59,115,209,.07),transparent 26%),
+linear-gradient(145deg,#f8fafb,#eef4f7);
+overflow-x:hidden;
 }
 
 body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    pointer-events:none;
-    opacity:.32;
-
-    background-image:
-        linear-gradient(
-            rgba(11,31,51,.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(11,31,51,.035) 1px,
-            transparent 1px
-        );
-
-    background-size:44px 44px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 75%
-        );
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+pointer-events:none;
+opacity:.32;
+background-image:
+linear-gradient(rgba(11,31,51,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(11,31,51,.035) 1px,transparent 1px);
+background-size:44px 44px;
+mask-image:linear-gradient(to bottom,black,transparent 75%);
 }
 
 body:after{
-    content:"";
-    position:fixed;
-    right:-180px;
-    top:280px;
-    width:480px;
-    height:480px;
-    border-radius:50%;
-
-    border:1px solid rgba(24,170,162,.07);
-
-    box-shadow:
-        0 0 0 50px rgba(24,170,162,.025),
-        0 0 0 100px rgba(59,115,209,.018);
-
-    pointer-events:none;
-    z-index:-1;
+content:"";
+position:fixed;
+right:-180px;
+top:280px;
+width:480px;
+height:480px;
+border-radius:50%;
+border:1px solid rgba(24,170,162,.07);
+box-shadow:
+0 0 0 50px rgba(24,170,162,.025),
+0 0 0 100px rgba(59,115,209,.018);
+pointer-events:none;
+z-index:-1;
 }
-
-
-/* =========================================================
-   TOPBAR
-   ========================================================= */
 
 .topbar{
-    height:5px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #e99543 0%,
-            #18aaa2 35%,
-            #3b73d1 70%,
-            #18aaa2 100%
-        );
+height:5px;
+background:linear-gradient(
+90deg,
+#e99543 0%,
+#18aaa2 35%,
+#3b73d1 70%,
+#18aaa2 100%
+);
 }
 
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
 .header{
-    position:relative;
-    overflow:hidden;
-
-    color:#fff;
-
-    padding:26px 20px 20px;
-
-    background:
-        radial-gradient(
-            circle at 88% 20%,
-            rgba(53,125,190,.34),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 62% 105%,
-            rgba(24,170,162,.18),
-            transparent 35%
-        ),
-        linear-gradient(
-            125deg,
-            #071827 0%,
-            #0b2942 52%,
-            #123e5e 100%
-        );
-
-    box-shadow:
-        0 18px 45px rgba(7,24,39,.22);
+position:relative;
+overflow:hidden;
+color:#fff;
+padding:26px 20px 20px;
+background:
+radial-gradient(circle at 88% 20%,rgba(53,125,190,.34),transparent 30%),
+radial-gradient(circle at 62% 105%,rgba(24,170,162,.18),transparent 35%),
+linear-gradient(125deg,#071827 0%,#0b2942 52%,#123e5e 100%);
+box-shadow:0 18px 45px rgba(7,24,39,.22);
 }
 
 .header:before{
-    content:"";
-    position:absolute;
-    right:-90px;
-    top:-230px;
-
-    width:560px;
-    height:560px;
-
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.09);
-
-    box-shadow:
-        0 0 0 48px rgba(255,255,255,.025),
-        0 0 0 96px rgba(255,255,255,.016);
+content:"";
+position:absolute;
+right:-90px;
+top:-230px;
+width:560px;
+height:560px;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.09);
+box-shadow:
+0 0 0 48px rgba(255,255,255,.025),
+0 0 0 96px rgba(255,255,255,.016);
 }
 
 .header:after{
-    content:"";
-    position:absolute;
-    left:44%;
-    bottom:-120px;
-
-    width:520px;
-    height:190px;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(24,170,162,.11),
-            rgba(59,115,209,.07),
-            transparent
-        );
-
-    transform:rotate(-8deg);
-    filter:blur(1px);
+content:"";
+position:absolute;
+left:44%;
+bottom:-120px;
+width:520px;
+height:190px;
+border-radius:50%;
+background:linear-gradient(
+90deg,
+rgba(24,170,162,.11),
+rgba(59,115,209,.07),
+transparent
+);
+transform:rotate(-8deg);
+filter:blur(1px);
 }
 
 .header-inner,
 .container{
-    max-width:1080px;
-    margin:auto;
-    position:relative;
-    z-index:1;
+max-width:1080px;
+margin:auto;
+position:relative;
+z-index:1;
 }
 
 .brand-row{
-    display:flex;
-    align-items:center;
-    gap:17px;
+display:flex;
+align-items:center;
+gap:17px;
 }
 
 .logo-wrap{
-    width:84px;
-    height:54px;
-
-    background:#fff;
-
-    border-radius:10px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 9px 24px rgba(0,0,0,.22);
+width:84px;
+height:54px;
+background:#fff;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+box-shadow:0 9px 24px rgba(0,0,0,.22);
 }
 
 .logo{
-    width:100%;
-    height:100%;
-    object-fit:contain;
+width:100%;
+height:100%;
+object-fit:contain;
 }
 
 .eyebrow{
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:2.2px;
-    text-transform:uppercase;
-    color:#75d8d3;
+font-size:10px;
+font-weight:800;
+letter-spacing:2.2px;
+text-transform:uppercase;
+color:#75d8d3;
 }
 
 .title{
-    margin-top:2px;
-
-    font-size:30px;
-    font-weight:800;
-    letter-spacing:-.7px;
+margin-top:2px;
+font-size:30px;
+font-weight:800;
+letter-spacing:-.7px;
 }
 
 .subtitle{
-    margin-top:5px;
-
-    font-size:13px;
-
-    color:
-        rgba(255,255,255,.68);
+margin-top:5px;
+font-size:13px;
+color:rgba(255,255,255,.68);
 }
 
 .event-row{
-    margin-top:20px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-
-    gap:20px;
-    flex-wrap:wrap;
+margin-top:20px;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .event-name{
-    font-size:23px;
-    font-weight:760;
-    letter-spacing:-.2px;
+font-size:23px;
+font-weight:760;
+letter-spacing:-.2px;
 }
 
 .event-id{
-    margin-top:5px;
-
-    font-size:11px;
-
-    color:
-        rgba(255,255,255,.52);
-
-    letter-spacing:.6px;
+margin-top:5px;
+font-size:11px;
+color:rgba(255,255,255,.52);
+letter-spacing:.6px;
 }
 
 .live{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-
-    padding:9px 14px;
-
-    border-radius:999px;
-
-    background:
-        rgba(255,255,255,.075);
-
-    border:
-        1px solid rgba(255,255,255,.13);
-
-    font-size:10px;
-    font-weight:850;
-    letter-spacing:1.4px;
-
-    backdrop-filter:blur(12px);
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:9px 14px;
+border-radius:999px;
+background:rgba(255,255,255,.075);
+border:1px solid rgba(255,255,255,.13);
+font-size:10px;
+font-weight:850;
+letter-spacing:1.4px;
+backdrop-filter:blur(12px);
 }
 
 .live-dot{
-    width:8px;
-    height:8px;
-
-    border-radius:50%;
-
-    background:#69e6b8;
-
-    box-shadow:
-        0 0 0 4px rgba(105,230,184,.12),
-        0 0 12px rgba(105,230,184,.7);
+width:8px;
+height:8px;
+border-radius:50%;
+background:#69e6b8;
+box-shadow:
+0 0 0 4px rgba(105,230,184,.12),
+0 0 12px rgba(105,230,184,.7);
 }
 
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
+/* NAV */
 
 .dashboard-nav{
-    max-width:1080px;
-
-    margin:18px auto 0;
-
-    padding:0 18px;
+max-width:1080px;
+margin:18px auto 0;
+padding:0 18px;
 }
 
 .nav-card{
-    background:
-        rgba(255,255,255,.94);
-
-    border:
-        1px solid var(--line);
-
-    border-radius:16px;
-
-    padding:6px;
-
-    box-shadow:var(--shadow);
-
-    display:flex;
-    gap:6px;
+background:rgba(255,255,255,.94);
+border:1px solid var(--line);
+border-radius:16px;
+padding:6px;
+box-shadow:var(--shadow);
+display:flex;
+gap:6px;
 }
 
 .nav-button{
-    flex:1;
-
-    border:0;
-
-    border-radius:11px;
-
-    padding:12px 16px;
-
-    background:transparent;
-
-    color:var(--muted);
-
-    font-size:12px;
-    font-weight:800;
-
-    cursor:pointer;
+flex:1;
+border:0;
+border-radius:11px;
+padding:12px 16px;
+background:transparent;
+color:var(--muted);
+font-size:12px;
+font-weight:800;
+cursor:pointer;
 }
 
 .nav-button.active{
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0b8a83,
-            #066b67
-        );
-
-    box-shadow:
-        0 7px 16px rgba(8,127,122,.18);
+color:#fff;
+background:linear-gradient(135deg,#0b8a83,#066b67);
+box-shadow:0 7px 16px rgba(8,127,122,.18);
 }
 
-
-/* =========================================================
-   CONTAINER
-   ========================================================= */
+/* MAIN */
 
 .container{
-    padding:0 18px;
-    margin-top:17px;
+padding:0 18px;
+margin-top:17px;
 }
 
 .view{
-    display:none;
+display:none;
 }
 
 .view.active{
-    display:block;
+display:block;
 }
 
-
-/* =========================================================
-   LIVE STATS
-   ========================================================= */
-
 .grid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:17px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:17px;
 }
 
 .card{
-    background:
-        rgba(255,255,255,.96);
-
-    border:
-        1px solid var(--line);
-
-    border-radius:20px;
-
-    box-shadow:var(--shadow);
-
-    position:relative;
-
-    overflow:hidden;
+background:rgba(255,255,255,.96);
+border:1px solid var(--line);
+border-radius:20px;
+box-shadow:var(--shadow);
+position:relative;
+overflow:hidden;
 }
 
+/* STATS */
+
 .stat{
-    padding:23px 23px 22px;
-    min-height:152px;
+padding:23px;
+min-height:152px;
 }
 
 .stat:before{
-    content:"";
-
-    position:absolute;
-    left:0;
-    top:0;
-    bottom:0;
-
-    width:4px;
-
-    background:var(--teal);
+content:"";
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:4px;
+background:var(--teal);
 }
 
 .stat:nth-child(2):before{
-    background:var(--blue);
+background:var(--blue);
 }
 
 .stat:nth-child(3):before{
-    background:var(--orange);
+background:var(--orange);
 }
 
 .stat:after{
-    content:"";
-
-    position:absolute;
-
-    right:-45px;
-    top:-45px;
-
-    width:145px;
-    height:145px;
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(24,170,162,.14),
-            transparent 68%
-        );
+content:"";
+position:absolute;
+right:-45px;
+top:-45px;
+width:145px;
+height:145px;
+border-radius:50%;
+background:radial-gradient(
+circle,
+rgba(24,170,162,.14),
+transparent 68%
+);
 }
 
 .stat:nth-child(2):after{
-    background:
-        radial-gradient(
-            circle,
-            rgba(59,115,209,.13),
-            transparent 68%
-        );
+background:radial-gradient(
+circle,
+rgba(59,115,209,.13),
+transparent 68%
+);
 }
 
 .stat:nth-child(3):after{
-    background:
-        radial-gradient(
-            circle,
-            rgba(233,149,67,.14),
-            transparent 68%
-        );
+background:radial-gradient(
+circle,
+rgba(233,149,67,.14),
+transparent 68%
+);
 }
 
 .stat-label{
-    position:relative;
-    z-index:1;
-
-    color:var(--muted);
-
-    font-size:10px;
-    font-weight:850;
-
-    letter-spacing:1.45px;
-    text-transform:uppercase;
+position:relative;
+z-index:1;
+color:var(--muted);
+font-size:10px;
+font-weight:850;
+letter-spacing:1.45px;
+text-transform:uppercase;
 }
 
 .stat-value{
-    position:relative;
-    z-index:1;
-
-    margin-top:10px;
-
-    font-size:43px;
-    line-height:1;
-
-    font-weight:820;
-
-    letter-spacing:-2px;
-
-    color:var(--teal-dark);
+position:relative;
+z-index:1;
+margin-top:10px;
+font-size:43px;
+line-height:1;
+font-weight:820;
+letter-spacing:-2px;
+color:var(--teal-dark);
 }
 
 .stat:nth-child(2) .stat-value{
-    color:var(--blue);
+color:var(--blue);
 }
 
 .stat:nth-child(3) .stat-value{
-    color:#c9782d;
+color:#c9782d;
 }
 
 .stat-note{
-    position:relative;
-    z-index:1;
-
-    margin-top:10px;
-
-    color:var(--muted);
-
-    font-size:12px;
+position:relative;
+z-index:1;
+margin-top:10px;
+color:var(--muted);
+font-size:12px;
 }
 
-
-/* =========================================================
-   ATTENDANCE
-   ========================================================= */
+/* ATTENDANCE */
 
 .progress-card,
 .activity{
-    margin-top:17px;
-    padding:23px;
+margin-top:17px;
+padding:23px;
 }
 
 .progress-top,
 .activity-head{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:center;
-
-    gap:14px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:14px;
 }
 
 .section-title{
-    font-size:15px;
-    font-weight:800;
-    color:var(--navy);
+font-size:15px;
+font-weight:800;
+color:var(--navy);
 }
 
 .percentage{
-    color:var(--teal-dark);
-
-    font-size:29px;
-    font-weight:850;
+color:var(--teal-dark);
+font-size:29px;
+font-weight:850;
 }
 
 .progress-track{
-    height:13px;
-
-    margin-top:16px;
-
-    background:#e7eef1;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    box-shadow:
-        inset 0 1px 3px rgba(11,31,51,.08);
+height:13px;
+margin-top:16px;
+background:#e7eef1;
+border-radius:999px;
+overflow:hidden;
+box-shadow:inset 0 1px 3px rgba(11,31,51,.08);
 }
 
 .progress-fill{
-    width:0;
-    height:100%;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #087c78,
-            #18aaa2,
-            #3b73d1
-        );
-
-    box-shadow:
-        0 2px 9px rgba(24,170,162,.25);
-
-    transition:
-        width .6s ease;
+width:0;
+height:100%;
+border-radius:999px;
+background:linear-gradient(
+90deg,
+#087c78,
+#18aaa2,
+#3b73d1
+);
+box-shadow:0 2px 9px rgba(24,170,162,.25);
+transition:width .6s ease;
 }
 
 .progress-meta{
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:10px;
-
-    color:var(--muted);
-
-    font-size:11px;
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+color:var(--muted);
+font-size:11px;
 }
 
 .updated{
-    color:var(--muted);
-    font-size:11px;
+color:var(--muted);
+font-size:11px;
 }
 
-
-/* =========================================================
-   ACTIVITY
-   ========================================================= */
+/* ACTIVITY */
 
 .activity-head{
-    margin-bottom:12px;
+margin-bottom:12px;
 }
 
 .activity-list{
-    display:flex;
-    flex-direction:column;
+display:flex;
+flex-direction:column;
 }
 
 .activity-row{
-    display:grid;
-
-    grid-template-columns:
-        38px 1fr auto;
-
-    gap:13px;
-
-    align-items:center;
-
-    padding:14px 4px;
-
-    border-bottom:
-        1px solid #edf2f4;
+display:grid;
+grid-template-columns:38px 1fr auto;
+gap:13px;
+align-items:center;
+padding:14px 4px;
+border-bottom:1px solid #edf2f4;
 }
 
 .activity-row:last-child{
-    border-bottom:0;
+border-bottom:0;
 }
 
 .check{
-    width:34px;
-    height:34px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:#eaf8f6;
-
-    color:var(--teal-dark);
-
-    border:
-        1px solid #d5efed;
-
-    font-weight:900;
+width:34px;
+height:34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#eaf8f6;
+color:var(--teal-dark);
+border:1px solid #d5efed;
+font-weight:900;
 }
 
 .person-name{
-    font-size:13px;
-    font-weight:760;
-
-    color:var(--ink);
-
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+font-size:13px;
+font-weight:760;
+color:var(--ink);
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
 }
 
 .person-id{
-    margin-top:3px;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    letter-spacing:.5px;
+margin-top:3px;
+color:var(--muted);
+font-size:10px;
+letter-spacing:.5px;
 }
 
 .time{
-    color:var(--muted);
-
-    font-size:11px;
-
-    white-space:nowrap;
+color:var(--muted);
+font-size:11px;
+white-space:nowrap;
 }
 
 .empty{
-    padding:30px 10px;
-
-    text-align:center;
-
-    color:var(--muted);
-
-    font-size:13px;
+padding:30px 10px;
+text-align:center;
+color:var(--muted);
+font-size:13px;
 }
 
 .error{
-    margin-top:17px;
-
-    padding:14px 16px;
-
-    border-radius:13px;
-
-    background:#fff3f1;
-
-    color:#a52d2d;
-
-    border:
-        1px solid #f0cccc;
-
-    display:none;
-
-    font-size:12px;
+margin-top:17px;
+padding:14px 16px;
+border-radius:13px;
+background:#fff3f1;
+color:#a52d2d;
+border:1px solid #f0cccc;
+display:none;
+font-size:12px;
 }
 
-
-/* =========================================================
-   EMAIL DASHBOARD
-   ========================================================= */
+/* EMAIL */
 
 .email-toolbar{
-    padding:21px;
+padding:21px;
 }
 
 .email-toolbar-top{
-    display:flex;
-
-    justify-content:space-between;
-    align-items:flex-start;
-
-    gap:15px;
-
-    flex-wrap:wrap;
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:15px;
+flex-wrap:wrap;
 }
 
 .email-heading{
-    font-size:19px;
-
-    font-weight:850;
-
-    color:var(--navy);
+font-size:19px;
+font-weight:850;
+color:var(--navy);
 }
 
 .email-description{
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:11px;
+margin-top:5px;
+color:var(--muted);
+font-size:11px;
 }
 
 .email-actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
 }
 
 .email-actions button{
-    width:auto;
-
-    min-height:40px;
-
-    padding:10px 14px;
+width:auto;
+min-height:40px;
+padding:10px 14px;
 }
 
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
 button{
-    border:0;
-
-    border-radius:12px;
-
-    padding:12px 16px;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    cursor:pointer;
-
-    transition:
-        transform .12s ease,
-        opacity .12s ease,
-        box-shadow .12s ease;
+border:0;
+border-radius:12px;
+padding:12px 16px;
+font-size:12px;
+font-weight:800;
+cursor:pointer;
+transition:
+transform .12s ease,
+opacity .12s ease,
+box-shadow .12s ease;
 }
 
 button:active{
-    transform:scale(.985);
+transform:scale(.985);
 }
 
 button:disabled{
-    opacity:.55;
-
-    cursor:not-allowed;
+opacity:.55;
+cursor:not-allowed;
 }
 
 button.primary{
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0b8a83,
-            #066b67
-        );
-
-    box-shadow:
-        0 9px 20px rgba(8,127,122,.20);
+color:#fff;
+background:linear-gradient(135deg,#0b8a83,#066b67);
+box-shadow:0 9px 20px rgba(8,127,122,.20);
 }
 
 button.secondary{
-    color:var(--ink);
-
-    background:#edf3f2;
+color:var(--ink);
+background:#edf3f2;
 }
 
 button.blue{
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #3b73d1,
-            #285ba9
-        );
+color:#fff;
+background:linear-gradient(135deg,#3b73d1,#285ba9);
 }
 
-
-/* =========================================================
-   EMAIL SUMMARY
-   ========================================================= */
-
 .email-summary{
-    margin-top:17px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    flex-wrap:wrap;
-
-    padding:12px 15px;
-
-    background:#f8fbfb;
-
-    border:
-        1px solid var(--line);
-
-    border-radius:13px;
+margin-top:17px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+padding:12px 15px;
+background:#f8fbfb;
+border:1px solid var(--line);
+border-radius:13px;
 }
 
 .email-count{
-    font-size:11px;
-
-    font-weight:800;
-
-    color:var(--muted);
+font-size:11px;
+font-weight:800;
+color:var(--muted);
 }
 
 .email-count strong{
-    color:var(--teal-dark);
+color:var(--teal-dark);
 }
 
-
-/* =========================================================
-   PARTICIPANT TABLE
-   ========================================================= */
-
 .participant-table-wrap{
-    margin-top:17px;
+margin-top:17px;
+overflow:hidden;
+}
 
-    overflow:auto;
+.participant-table-inner{
+overflow:auto;
 }
 
 .participant-table{
-    width:100%;
-
-    border-collapse:collapse;
-
-    min-width:720px;
+width:100%;
+border-collapse:collapse;
+min-width:720px;
 }
 
 .participant-table th{
-    text-align:left;
-
-    padding:12px 13px;
-
-    background:#f5f9f9;
-
-    color:var(--muted);
-
-    font-size:9px;
-
-    font-weight:850;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-
-    border-bottom:
-        1px solid var(--line);
+text-align:left;
+padding:12px 13px;
+background:#f5f9f9;
+color:var(--muted);
+font-size:9px;
+font-weight:850;
+letter-spacing:1px;
+text-transform:uppercase;
+border-bottom:1px solid var(--line);
 }
 
 .participant-table td{
-    padding:13px;
-
-    border-bottom:
-        1px solid #edf2f4;
-
-    font-size:12px;
-
-    vertical-align:middle;
+padding:13px;
+border-bottom:1px solid #edf2f4;
+font-size:12px;
+vertical-align:middle;
 }
 
 .participant-table tr:last-child td{
-    border-bottom:0;
+border-bottom:0;
 }
 
 .participant-table tbody tr:hover{
-    background:#fbfdfd;
+background:#fbfdfd;
 }
 
 .participant-name{
-    font-weight:780;
-
-    color:var(--ink);
+font-weight:780;
+color:var(--ink);
 }
 
 .participant-id{
-    margin-top:3px;
-
-    font-size:9px;
-
-    color:var(--muted);
-
-    letter-spacing:.5px;
+margin-top:3px;
+font-size:9px;
+color:var(--muted);
+letter-spacing:.5px;
 }
 
 .status-pill{
-    display:inline-flex;
-
-    padding:5px 8px;
-
-    border-radius:999px;
-
-    background:#edf5f4;
-
-    color:var(--muted);
-
-    font-size:8px;
-
-    font-weight:850;
-
-    letter-spacing:.6px;
+display:inline-flex;
+padding:5px 8px;
+border-radius:999px;
+background:#edf5f4;
+color:var(--muted);
+font-size:8px;
+font-weight:850;
+letter-spacing:.6px;
 }
 
 .status-pill.checked{
-    background:#e9faf4;
-
-    color:#087a61;
+background:#e9faf4;
+color:#087a61;
 }
 
-
-/* =========================================================
-   EMAIL LOADING
-   ========================================================= */
-
 .email-loading{
-    padding:40px 20px;
-
-    text-align:center;
-
-    color:var(--muted);
-
-    font-size:12px;
+padding:40px 20px;
+text-align:center;
+color:var(--muted);
+font-size:12px;
 }
 
 .email-spinner{
-    width:28px;
-    height:28px;
-
-    border:
-        3px solid #dcebea;
-
-    border-top-color:
-        var(--teal);
-
-    border-radius:50%;
-
-    margin:0 auto 12px;
-
-    animation:
-        emailSpin .8s linear infinite;
+width:28px;
+height:28px;
+border:3px solid #dcebea;
+border-top-color:var(--teal);
+border-radius:50%;
+margin:0 auto 12px;
+animation:emailSpin .8s linear infinite;
 }
 
 @keyframes emailSpin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
+to{
+transform:rotate(360deg);
+}
 }
 
-
-/* =========================================================
-   EMAIL FORM
-   ========================================================= */
+/* EMAIL FORM */
 
 .email-form{
-    margin-top:17px;
-
-    padding:21px;
+margin-top:17px;
+padding:21px;
 }
 
 .email-form-grid{
-    display:grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap:14px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
 }
 
 .form-group{
-    display:flex;
-
-    flex-direction:column;
-
-    gap:7px;
+display:flex;
+flex-direction:column;
+gap:7px;
 }
 
 .form-group.full{
-    grid-column:1/-1;
+grid-column:1/-1;
 }
 
 .form-label{
-    font-size:9px;
-
-    font-weight:850;
-
-    letter-spacing:1.2px;
-
-    text-transform:uppercase;
-
-    color:var(--muted);
+font-size:9px;
+font-weight:850;
+letter-spacing:1.2px;
+text-transform:uppercase;
+color:var(--muted);
 }
 
 .form-input,
 .form-textarea{
-    width:100%;
-
-    border:
-        1px solid #dce6e5;
-
-    border-radius:12px;
-
-    padding:12px 13px;
-
-    font:inherit;
-
-    font-size:12px;
-
-    color:var(--ink);
-
-    background:#fbfdfd;
-
-    outline:none;
+width:100%;
+border:1px solid #dce6e5;
+border-radius:12px;
+padding:12px 13px;
+font:inherit;
+font-size:12px;
+color:var(--ink);
+background:#fbfdfd;
+outline:none;
 }
 
 .form-textarea{
-    min-height:170px;
-
-    resize:vertical;
-
-    line-height:1.55;
+min-height:170px;
+resize:vertical;
+line-height:1.55;
 }
 
 .form-input:focus,
 .form-textarea:focus{
-    border-color:#72bdb9;
-
-    box-shadow:
-        0 0 0 3px rgba(8,127,122,.08);
+border-color:#72bdb9;
+box-shadow:0 0 0 3px rgba(8,127,122,.08);
 }
 
-.email-send-row{
-    margin-top:15px;
+/* BATCH */
 
-    display:flex;
-
-    justify-content:flex-end;
-
-    gap:9px;
-
-    flex-wrap:wrap;
+.batch-panel{
+margin-top:18px;
+padding:15px;
+border:1px solid var(--line);
+border-radius:13px;
+background:#f8fbfb;
 }
 
-.email-result{
-    margin-top:14px;
-
-    padding:13px 15px;
-
-    border-radius:12px;
-
-    font-size:11px;
-
-    display:none;
-}
-
-.email-result.success{
-    display:block;
-
-    background:#e9faf4;
-
-    color:#087a61;
-
-    border:
-        1px solid #c9eee0;
-}
-
-.email-result.error{
-    display:block;
-
-    background:#fff3f1;
-
-    color:#a52d2d;
-
-    border:
-        1px solid #f0cccc;
-}
-
-.email-result.warning{
-    display:block;
-
-    background:#fff8e6;
-
-    color:#8a5a00;
-
-    border:
-        1px solid #f0dfad;
-}
-
-
-/* =========================================================
-   BATCH CONTROLS
-   ========================================================= */
-
-.batch-controls{
-    margin-top:18px;
-
-    padding:15px;
-
-    border:
-        1px solid var(--line);
-
-    border-radius:13px;
-
-    background:#f8fbfb;
-}
-
-.batch-controls-row{
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    flex-wrap:wrap;
+.batch-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
 }
 
 .control-label{
-    font-size:9px;
-
-    font-weight:850;
-
-    letter-spacing:1.2px;
-
-    text-transform:uppercase;
-
-    color:var(--muted);
+font-size:9px;
+font-weight:850;
+letter-spacing:1.2px;
+text-transform:uppercase;
+color:var(--muted);
 }
 
 .batch-buttons{
-    margin-top:8px;
-
-    display:flex;
-
-    gap:7px;
-}
-
-.batch-button{
-    min-width:52px;
+margin-top:8px;
+display:flex;
+gap:7px;
 }
 
 .batch-button.active{
-    color:#fff;
-
-    background:
-        var(--teal-dark);
-
-    box-shadow:
-        0 6px 14px rgba(8,127,122,.18);
+background:var(--teal-dark);
+color:#fff;
 }
 
-.skip-control{
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    margin-top:9px;
-
-    cursor:pointer;
-
-    font-size:11px;
-
-    font-weight:800;
-
-    color:var(--ink);
+.skip-label{
+display:flex;
+align-items:center;
+gap:9px;
+margin-top:9px;
+cursor:pointer;
+font-size:11px;
+font-weight:800;
+color:var(--ink);
 }
 
-.skip-control input{
-    width:17px;
-    height:17px;
-
-    accent-color:
-        var(--teal-dark);
-
-    cursor:pointer;
+.skip-label input{
+width:17px;
+height:17px;
+accent-color:var(--teal-dark);
+cursor:pointer;
 }
 
 .batch-bottom{
-    margin-top:15px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:12px;
-
-    flex-wrap:wrap;
+margin-top:15px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
 }
 
 .batch-info{
-    font-size:11px;
-
-    color:var(--muted);
+font-size:11px;
+color:var(--muted);
 }
 
+.email-result{
+margin-top:14px;
+padding:13px 15px;
+border-radius:12px;
+font-size:11px;
+display:none;
+}
 
-/* =========================================================
-   PAGINATION
-   ========================================================= */
+.email-result.success{
+display:block;
+background:#e9faf4;
+color:#087a61;
+border:1px solid #c9eee0;
+}
+
+.email-result.error{
+display:block;
+background:#fff3f1;
+color:#a52d2d;
+border:1px solid #f0cccc;
+}
+
+.email-result.warning{
+display:block;
+background:#fff8e6;
+color:#8a5a00;
+border:1px solid #f0dfad;
+}
+
+/* PAGINATION */
 
 .pagination{
-    padding:13px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:10px;
-
-    border-top:
-        1px solid var(--line);
-
-    background:#fbfdfd;
-}
-
-.pagination-info{
-    font-size:10px;
-
-    color:var(--muted);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:14px 15px;
+border-top:1px solid var(--line);
+background:#fbfdfd;
 }
 
 .pagination-buttons{
-    display:flex;
-
-    gap:6px;
+display:flex;
+gap:6px;
 }
 
-.pagination-buttons button{
-    min-width:38px;
-
-    padding:8px 11px;
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* FOOTER */
 
 .footer{
-    margin-top:21px;
-
-    text-align:center;
-
-    color:#82909a;
-
-    font-size:10px;
-
-    letter-spacing:.7px;
+margin-top:21px;
+text-align:center;
+color:#82909a;
+font-size:10px;
+letter-spacing:.7px;
 }
 
 .footer a{
-    color:var(--teal-dark);
-
-    text-decoration:none;
-
-    font-weight:850;
+color:var(--teal-dark);
+text-decoration:none;
+font-weight:850;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* RESPONSIVE */
 
 @media(max-width:760px){
 
-    .grid{
-        grid-template-columns:1fr;
-    }
+.grid{
+grid-template-columns:1fr;
+}
 
-    .title{
-        font-size:25px;
-    }
+.title{
+font-size:25px;
+}
 
-    .event-name{
-        font-size:18px;
-    }
+.event-name{
+font-size:18px;
+}
 
-    .container{
-        padding:0 13px;
-    }
+.container{
+padding:0 13px;
+}
 
-    .header{
-        padding-left:17px;
-        padding-right:17px;
-    }
+.header{
+padding-left:17px;
+padding-right:17px;
+}
 
-    .dashboard-nav{
-        padding:0 13px;
-    }
+.dashboard-nav{
+padding:0 13px;
+}
 
-    .email-form-grid{
-        grid-template-columns:1fr;
-    }
+.email-form-grid{
+grid-template-columns:1fr;
+}
 
-    .form-group.full{
-        grid-column:auto;
-    }
+.form-group.full{
+grid-column:auto;
+}
 
-    .email-actions{
-        width:100%;
-    }
+.email-actions{
+width:100%;
+}
 
-    .email-actions button{
-        flex:1;
-    }
+.email-actions button{
+flex:1;
+}
 
-    .batch-controls-row{
-        align-items:flex-start;
-        flex-direction:column;
-    }
+.batch-top{
+align-items:flex-start;
+flex-direction:column;
+}
 
-    .batch-bottom{
-        align-items:stretch;
-        flex-direction:column;
-    }
+.batch-bottom{
+align-items:stretch;
+flex-direction:column;
+}
 
-    .batch-bottom button{
-        width:100%;
-    }
+.batch-bottom button{
+width:100%;
+}
 
-    .pagination{
-        flex-direction:column;
-        align-items:flex-start;
-    }
+.pagination{
+align-items:stretch;
+flex-direction:column;
+}
+
+.pagination-buttons{
+width:100%;
+}
+
+.pagination-buttons button{
+flex:1;
+}
 
 }
 
@@ -1439,109 +992,102 @@ button.blue{
 <div class="topbar"></div>
 
 
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
-
 <header class="header">
 
-    <div class="header-inner">
+<div class="header-inner">
 
-        <div class="brand-row">
+<div class="brand-row">
 
-            <div class="logo-wrap">
+<div class="logo-wrap">
 
-                <img
-                    class="logo"
-                    src="parsdo_logo.jpeg"
-                    alt="ParsDo">
+<img
+class="logo"
+src="parsdo_logo.jpeg"
+alt="ParsDo">
 
-            </div>
-
-            <div>
-
-                <div class="eyebrow">
-                    ParsDo EventOS
-                </div>
-
-                <div class="title">
-                    Organizer Dashboard
-                </div>
-
-                <div class="subtitle">
-                    Live attendance, check-in & participant communication
-                </div>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="event-row">
+<div>
 
-            <div>
+<div class="eyebrow">
+ParsDo EventOS
+</div>
 
-                <div
-                    id="eventName"
-                    class="event-name">
+<div class="title">
+Organizer Dashboard
+</div>
 
-                    Loading event...
+<div class="subtitle">
+Live attendance, check-in & participant communication
+</div>
 
-                </div>
+</div>
 
-                <div
-                    id="eventIdDisplay"
-                    class="event-id">
-                </div>
-
-            </div>
+</div>
 
 
-            <div class="live">
+<div class="event-row">
 
-                <span class="live-dot"></span>
+<div>
 
-                EVENTOS
+<div
+id="eventName"
+class="event-name">
+Loading event...
+</div>
 
-            </div>
+<div
+id="eventIdDisplay"
+class="event-id">
+</div>
 
-        </div>
+</div>
 
-    </div>
+
+<div class="live">
+
+<span class="live-dot"></span>
+
+EVENTOS
+
+</div>
+
+</div>
+
+</div>
 
 </header>
 
 
-<!-- =========================================================
-     NAVIGATION
-     ========================================================= -->
+<!-- NAVIGATION -->
 
 <div class="dashboard-nav">
 
-    <div class="nav-card">
+<div class="nav-card">
 
-        <button
-            id="liveNav"
-            class="nav-button active"
-            type="button"
-            onclick="showView('live')">
+<button
+id="liveNav"
+class="nav-button active"
+type="button"
+onclick="showView('live')">
 
-            📊 Live Dashboard
+📊 Live Dashboard
 
-        </button>
+</button>
 
 
-        <button
-            id="emailNav"
-            class="nav-button"
-            type="button"
-            onclick="showView('email')">
+<button
+id="emailNav"
+class="nav-button"
+type="button"
+onclick="showView('email')">
 
-            ✉ Email Participants
+✉ Email Participants
 
-        </button>
+</button>
 
-    </div>
+</div>
 
 </div>
 
@@ -1549,307 +1095,294 @@ button.blue{
 <main class="container">
 
 
-<!-- =========================================================
-     LIVE DASHBOARD
-     ========================================================= -->
+<!-- LIVE VIEW -->
 
 <section
-    id="liveView"
-    class="view active">
+id="liveView"
+class="view active">
 
 
-    <section class="grid">
+<section class="grid">
 
 
-        <div class="card stat">
+<div class="card stat">
 
-            <div class="stat-label">
-                Total Registrations
-            </div>
+<div class="stat-label">
+Total Registrations
+</div>
 
-            <div
-                id="total"
-                class="stat-value">
+<div
+id="total"
+class="stat-value">
+—
+</div>
 
-                —
+<div class="stat-note">
+Registered attendees
+</div>
 
-            </div>
-
-            <div class="stat-note">
-                Registered attendees
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="card stat">
+<div class="card stat">
 
-            <div class="stat-label">
-                Checked In
-            </div>
+<div class="stat-label">
+Checked In
+</div>
 
-            <div
-                id="checkedIn"
-                class="stat-value">
+<div
+id="checkedIn"
+class="stat-value">
+—
+</div>
 
-                —
+<div class="stat-note">
+Attendance recorded
+</div>
 
-            </div>
-
-            <div class="stat-note">
-                Attendance recorded
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="card stat">
+<div class="card stat">
 
-            <div class="stat-label">
-                Yet to Check In
-            </div>
+<div class="stat-label">
+Yet to Check In
+</div>
 
-            <div
-                id="pending"
-                class="stat-value">
+<div
+id="pending"
+class="stat-value">
+—
+</div>
 
-                —
+<div class="stat-note">
+Remaining attendees
+</div>
 
-            </div>
+</div>
 
-            <div class="stat-note">
-                Remaining attendees
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="card progress-card">
-
-        <div class="progress-top">
-
-            <div class="section-title">
-                Attendance Progress
-            </div>
-
-            <div
-                id="attendance"
-                class="percentage">
-
-                0%
-
-            </div>
-
-        </div>
-
-
-        <div class="progress-track">
-
-            <div
-                id="progressFill"
-                class="progress-fill">
-            </div>
-
-        </div>
-
-
-        <div class="progress-meta">
-
-            <span id="progressLeft">
-                0 checked in
-            </span>
-
-            <span id="progressRight">
-                0 registered
-            </span>
-
-        </div>
-
-    </section>
-
-
-    <section class="card activity">
-
-        <div class="activity-head">
-
-            <div class="section-title">
-                Live Check-in Activity
-            </div>
-
-            <div
-                id="updated"
-                class="updated">
-
-                Waiting for data...
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="activityList"
-            class="activity-list">
-
-            <div class="empty">
-                Loading live activity...
-            </div>
-
-        </div>
-
-    </section>
 
 </section>
 
 
-<!-- =========================================================
-     EMAIL VIEW
-     ========================================================= -->
+<section class="card progress-card">
+
+<div class="progress-top">
+
+<div class="section-title">
+Attendance Progress
+</div>
+
+<div
+id="attendance"
+class="percentage">
+0%
+</div>
+
+</div>
+
+
+<div class="progress-track">
+
+<div
+id="progressFill"
+class="progress-fill">
+</div>
+
+</div>
+
+
+<div class="progress-meta">
+
+<span id="progressLeft">
+0 checked in
+</span>
+
+<span id="progressRight">
+0 registered
+</span>
+
+</div>
+
+</section>
+
+
+<section class="card activity">
+
+<div class="activity-head">
+
+<div class="section-title">
+Live Check-in Activity
+</div>
+
+<div
+id="updated"
+class="updated">
+Waiting for data...
+</div>
+
+</div>
+
+
+<div
+id="activityList"
+class="activity-list">
+
+<div class="empty">
+Loading live activity...
+</div>
+
+</div>
+
+</section>
+
+</section>
+
+
+<!-- EMAIL VIEW -->
 
 <section
-    id="emailView"
-    class="view">
+id="emailView"
+class="view">
 
 
-    <!-- EMAIL TOOLBAR -->
-
-    <section class="card email-toolbar">
-
-        <div class="email-toolbar-top">
-
-            <div>
-
-                <div class="email-heading">
-                    Email Participants
-                </div>
-
-                <div class="email-description">
-                    Send EventOS check-in QR codes to participants in batches.
-                </div>
-
-            </div>
+<section class="card email-toolbar">
 
 
-            <div class="email-actions">
+<div class="email-toolbar-top">
 
-                <button
-                    class="secondary"
-                    type="button"
-                    onclick="loadEmailParticipants()">
+<div>
 
-                    ↻ Refresh
+<div class="email-heading">
+Email Participants
+</div>
 
-                </button>
+<div class="email-description">
+Send EventOS check-in QR codes automatically in batches.
+</div>
 
-            </div>
-
-        </div>
-
-
-        <div class="email-summary">
-
-            <div class="email-count">
-
-                Total:
-                <strong id="emailParticipantCount">
-                    0
-                </strong>
-
-            </div>
+</div>
 
 
-            <div class="email-count">
+<div class="email-actions">
 
-                Sent:
-                <strong id="emailSentCount">
-                    0
-                </strong>
+<button
+class="secondary"
+type="button"
+onclick="loadEmailParticipants()">
 
-            </div>
+↻ Refresh
 
+</button>
 
-            <div class="email-count">
+</div>
 
-                Remaining:
-                <strong id="emailRemainingCount">
-                    0
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
+</div>
 
 
-    <!-- PARTICIPANT TABLE -->
+<div class="email-summary">
 
-    <section class="card participant-table-wrap">
+<div class="email-count">
 
-        <div id="emailParticipantArea">
+Total:
+<strong id="emailParticipantCount">
+0
+</strong>
 
-            <div class="email-loading">
-
-                <div class="email-spinner"></div>
-
-                Loading participants...
-
-            </div>
-
-        </div>
-
-    </section>
+</div>
 
 
-    <!-- EMAIL FORM -->
+<div class="email-count">
 
-    <section class="card email-form">
+Sent:
+<strong id="emailSentCount">
+0
+</strong>
 
-        <div class="section-title">
-            Email Message
-        </div>
-
-
-        <div
-            class="email-description"
-            style="margin-bottom:17px">
-
-            The email is sent automatically to the next eligible batch of participants.
-
-        </div>
+</div>
 
 
-        <div class="email-form-grid">
+<div class="email-count">
+
+Remaining:
+<strong id="emailRemainingCount">
+0
+</strong>
+
+</div>
+
+</div>
+
+</section>
 
 
-            <div class="form-group full">
+<!-- PARTICIPANTS -->
 
-                <label class="form-label">
-                    Subject
-                </label>
+<section class="card participant-table-wrap">
 
-                <input
-                    id="emailSubject"
-                    class="form-input"
-                    type="text"
-                    value="You're registered for our event"
-                    placeholder="Email subject">
+<div id="emailParticipantArea">
 
-            </div>
+<div class="email-loading">
+
+<div class="email-spinner"></div>
+
+Loading participants...
+
+</div>
+
+</div>
+
+</section>
 
 
-            <div class="form-group full">
+<!-- EMAIL FORM -->
 
-                <label class="form-label">
-                    Message
-                </label>
+<section class="card email-form">
 
-                <textarea
-                    id="emailMessage"
-                    class="form-textarea"
-                    placeholder="Write your email message here...">Hello {{name}},
+
+<div class="section-title">
+Email Message
+</div>
+
+
+<div
+class="email-description"
+style="margin-bottom:17px">
+
+The system automatically selects the next eligible participants.
+
+</div>
+
+
+<div class="email-form-grid">
+
+
+<div class="form-group full">
+
+<label class="form-label">
+Subject
+</label>
+
+<input
+id="emailSubject"
+class="form-input"
+type="text"
+value="You're registered for our event"
+placeholder="Email subject">
+
+</div>
+
+
+<div class="form-group full">
+
+<label class="form-label">
+Message
+</label>
+
+<textarea
+id="emailMessage"
+class="form-textarea"
+placeholder="Write your email message here...">Hello {{name}},
 
 Thank you for registering for our event.
 
@@ -1864,150 +1397,153 @@ We look forward to seeing you.
 Regards,
 ParsDo EventOS</textarea>
 
-            </div>
+</div>
 
-        </div>
-
-
-        <!-- BATCH CONTROLS -->
-
-        <div class="batch-controls">
+</div>
 
 
-            <div class="batch-controls-row">
+<!-- BATCH CONTROLS -->
+
+<div class="batch-panel">
 
 
-                <div>
-
-                    <div class="control-label">
-                        Batch Size
-                    </div>
+<div class="batch-top">
 
 
-                    <div class="batch-buttons">
+<div>
 
-                        <button
-                            type="button"
-                            class="secondary batch-button"
-                            data-batch="25"
-                            onclick="setEmailBatchSize(25)">
-
-                            25
-
-                        </button>
+<div class="control-label">
+Batch Size
+</div>
 
 
-                        <button
-                            type="button"
-                            class="secondary batch-button"
-                            data-batch="50"
-                            onclick="setEmailBatchSize(50)">
-
-                            50
-
-                        </button>
+<div class="batch-buttons">
 
 
-                        <button
-                            type="button"
-                            class="secondary batch-button"
-                            data-batch="100"
-                            onclick="setEmailBatchSize(100)">
+<button
+type="button"
+class="secondary batch-button"
+data-batch="25"
+onclick="setEmailBatchSize(25)">
 
-                            100
+25
 
-                        </button>
-
-                    </div>
-
-                </div>
+</button>
 
 
-                <div>
+<button
+type="button"
+class="secondary batch-button"
+data-batch="50"
+onclick="setEmailBatchSize(50)">
 
-                    <div class="control-label">
-                        Email Status
-                    </div>
+50
 
-
-                    <label class="skip-control">
-
-                        <input
-                            id="skipSent"
-                            type="checkbox"
-                            checked
-                            onchange="setSkipSent(this.checked)">
-
-                        Skip participants already marked SENT
-
-                    </label>
-
-                </div>
-
-            </div>
+</button>
 
 
-            <div class="batch-bottom">
+<button
+type="button"
+class="secondary batch-button"
+data-batch="100"
+onclick="setEmailBatchSize(100)">
+
+100
+
+</button>
 
 
-                <div
-                    id="batchInfo"
-                    class="batch-info">
+</div>
 
-                    Ready to send
-
-                </div>
+</div>
 
 
-                <button
-                    class="primary"
-                    id="sendEmailButton"
-                    type="button"
-                    onclick="sendParticipantEmails()">
+<div>
 
-                    ✉ Send Next 100
-
-                </button>
-
-            </div>
-
-        </div>
+<div class="control-label">
+Email Sending
+</div>
 
 
-        <div
-            id="emailResult"
-            class="email-result">
-        </div>
+<label class="skip-label">
 
-    </section>
+<input
+id="skipSent"
+type="checkbox"
+checked
+onchange="setSkipSent(this.checked)">
+
+Skip participants already marked SENT
+
+</label>
+
+</div>
+
+
+</div>
+
+
+<div class="batch-bottom">
+
+
+<div
+id="batchInfo"
+class="batch-info">
+
+Ready to send
+
+</div>
+
+
+<button
+class="primary"
+id="sendEmailButton"
+type="button"
+onclick="sendParticipantEmails()">
+
+✉ Send Next 100
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div
+id="emailResult"
+class="email-result">
+</div>
+
 
 </section>
 
 
-<!-- ERROR -->
+</section>
+
 
 <div
-    id="errorBox"
-    class="error">
+id="errorBox"
+class="error">
 </div>
 
 
-<!-- FOOTER -->
-
 <div class="footer">
 
-    <div>
-        BEHIND BETTER COMPANIES · Powered by ParsDo EventOS
-    </div>
+<div>
+BEHIND BETTER COMPANIES · Powered by ParsDo EventOS
+</div>
 
-    <a
-        href="https://www.parsdo.in"
-        target="_blank"
-        rel="noopener">
 
-        www.parsdo.in
+<a
+href="https://www.parsdo.in"
+target="_blank"
+rel="noopener">
 
-    </a>
+www.parsdo.in
+
+</a>
 
 </div>
 
@@ -2016,7 +1552,6 @@ ParsDo EventOS</textarea>
 
 
 <script>
-
 
 /* =========================================================
    PARSDO EVENTOS ORGANIZER DASHBOARD
@@ -2028,26 +1563,25 @@ ParsDo EventOS</textarea>
    ========================================================= */
 
 const DASHBOARD_BASE =
-    "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
+"https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
 
 
 const EMAIL_API =
-    "https://vhe4vhw7262km6z7gbqnkwjutu0ekiov.lambda-url.ap-south-1.on.aws/";
+"https://vhe4vhw7262km6z7gbqnkwjutu0ekiov.lambda-url.ap-south-1.on.aws/";
+
+
+const EVENTOS_SECRET =
+"ParsDoEventOS_2026_Email_9xK7mQ";
 
 
 const REFRESH_INTERVAL = 5000;
 
 
-const EVENTOS_SECRET =
-    "ParsDoEventOS_2026_Email_9xK7mQ";
-
+/* =========================================================
+   GLOBAL STATE
+   ========================================================= */
 
 let eventId = "";
-
-
-/* =========================================================
-   EMAIL STATE
-   ========================================================= */
 
 let emailParticipants = [];
 
@@ -2063,16 +1597,19 @@ let emailSending = false;
 
 
 /* =========================================================
-   EVENT ID
+   GET EVENT ID
    ========================================================= */
 
 function getEventIdFromUrl(){
 
-    return String(
-        new URLSearchParams(
-            window.location.search
-        ).get("event") || ""
-    ).trim();
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+return String(
+params.get("event") || ""
+).trim();
 
 }
 
@@ -2083,12 +1620,12 @@ function getEventIdFromUrl(){
 
 function escapeHtml(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
@@ -2099,33 +1636,31 @@ function escapeHtml(value){
 
 function showError(message){
 
-    const box =
-        document.getElementById("errorBox");
+const box =
+document.getElementById("errorBox");
 
-    if(!box){
-        return;
-    }
+if(!box){
+return;
+}
 
-    box.textContent =
-        message;
+box.textContent =
+String(message || "");
 
-    box.style.display =
-        "block";
+box.style.display =
+"block";
 
 }
 
 
 function hideError(){
 
-    const box =
-        document.getElementById("errorBox");
+const box =
+document.getElementById("errorBox");
 
-    if(!box){
-        return;
-    }
-
-    box.style.display =
-        "none";
+if(box){
+box.style.display =
+"none";
+}
 
 }
 
@@ -2136,30 +1671,31 @@ function hideError(){
 
 function showEmailResult(type,message){
 
-    const box =
-        document.getElementById("emailResult");
+const box =
+document.getElementById("emailResult");
 
-    if(!box){
-        return;
-    }
+if(!box){
+return;
+}
 
-    if(!message){
+if(!message){
 
-        box.className =
-            "email-result";
+box.className =
+"email-result";
 
-        box.textContent =
-            "";
+box.textContent =
+"";
 
-        return;
-    }
+return;
 
-    box.className =
-        "email-result " +
-        type;
+}
 
-    box.textContent =
-        message;
+box.className =
+"email-result " +
+type;
+
+box.textContent =
+message;
 
 }
 
@@ -2170,234 +1706,192 @@ function showEmailResult(type,message){
 
 function showView(view){
 
-    const liveView =
-        document.getElementById("liveView");
+const liveView =
+document.getElementById("liveView");
 
-    const emailView =
-        document.getElementById("emailView");
+const emailView =
+document.getElementById("emailView");
 
-    const liveNav =
-        document.getElementById("liveNav");
+const liveNav =
+document.getElementById("liveNav");
 
-    const emailNav =
-        document.getElementById("emailNav");
-
-
-    if(!liveView ||
-       !emailView ||
-       !liveNav ||
-       !emailNav){
-
-        return;
-
-    }
+const emailNav =
+document.getElementById("emailNav");
 
 
-    liveView.classList.remove("active");
+liveView.classList.remove("active");
+emailView.classList.remove("active");
 
-    emailView.classList.remove("active");
-
-    liveNav.classList.remove("active");
-
-    emailNav.classList.remove("active");
+liveNav.classList.remove("active");
+emailNav.classList.remove("active");
 
 
-    if(view === "email"){
+if(view === "email"){
 
-        emailView.classList.add("active");
+emailView.classList.add("active");
 
-        emailNav.classList.add("active");
-
-
-        if(
-            !emailParticipants.length
-        ){
-
-            loadEmailParticipants();
-
-        }
+emailNav.classList.add("active");
 
 
-        updateUrlView("email");
+if(eventId){
+
+loadEmailParticipants();
+
+}
 
 
-    }else{
+history.replaceState(
+null,
+"",
+window.location.pathname +
+"?event=" +
+encodeURIComponent(eventId) +
+"&view=email"
+);
 
-        liveView.classList.add("active");
 
-        liveNav.classList.add("active");
+}else{
 
-        updateUrlView("live");
+liveView.classList.add("active");
 
-    }
+liveNav.classList.add("active");
+
+
+history.replaceState(
+null,
+"",
+window.location.pathname +
+"?event=" +
+encodeURIComponent(eventId)
+);
+
+}
 
 }
 
 
 /* =========================================================
-   UPDATE URL WITHOUT RELOADING
+   JSONP GENERATOR
    ========================================================= */
 
-function updateUrlView(view){
-
-    if(!eventId){
-        return;
-    }
-
-    const url =
-        window.location.pathname +
-        "?event=" +
-        encodeURIComponent(eventId) +
-        (
-            view === "email"
-            ? "&view=email"
-            : ""
-        );
-
-    window.history.replaceState(
-        null,
-        "",
-        url
-    );
-
-}
-
-
-/* =========================================================
-   JSONP REQUEST
-   ========================================================= */
-
-function jsonpRequest(
-    url,
-    timeoutMs
+function createJsonpRequest(
+url,
+timeout,
+onSuccess,
+onError
 ){
 
-    return new Promise(
-        function(resolve,reject){
-
-            const callbackName =
-                "parsdoJSONP_" +
-                Date.now() +
-                "_" +
-                Math.random()
-                    .toString(36)
-                    .substring(2,8);
+const callbackName =
+"parsdoCallback_" +
+Date.now() +
+"_" +
+Math.random()
+.toString(36)
+.substring(2,10);
 
 
-            const script =
-                document.createElement("script");
+const script =
+document.createElement("script");
 
 
-            let finished =
-                false;
+let finished = false;
 
 
-            function cleanup(){
+function cleanup(){
 
-                if(script.parentNode){
+if(finished){
+return;
+}
 
-                    script.parentNode.removeChild(
-                        script
-                    );
-
-                }
+finished = true;
 
 
-                try{
+if(script.parentNode){
 
-                    delete window[callbackName];
+script.parentNode.removeChild(
+script
+);
 
-                }catch(e){
-
-                    window[callbackName] =
-                        undefined;
-
-                }
-
-            }
+}
 
 
-            function finishSuccess(data){
+try{
 
-                if(finished){
-                    return;
-                }
+delete window[callbackName];
 
-                finished = true;
+}catch(error){
 
-                cleanup();
+window[callbackName] =
+undefined;
 
-                resolve(data);
+}
 
-            }
-
-
-            function finishError(error){
-
-                if(finished){
-                    return;
-                }
-
-                finished = true;
-
-                cleanup();
-
-                reject(error);
-
-            }
+}
 
 
-            window[callbackName] =
-                finishSuccess;
+window[callbackName] =
+function(data){
+
+if(finished){
+return;
+}
+
+cleanup();
+
+onSuccess(data);
+
+};
 
 
-            script.onerror =
-                function(){
+script.onerror =
+function(){
 
-                    finishError(
-                        new Error(
-                            "Unable to connect to EventOS."
-                        )
-                    );
+if(finished){
+return;
+}
 
-                };
+cleanup();
 
+onError(
+new Error(
+"Unable to connect to EventOS."
+)
+);
 
-            const separator =
-                url.indexOf("?") >= 0
-                ? "&"
-                : "?";
-
-
-            script.src =
-                url +
-                separator +
-                "callback=" +
-                encodeURIComponent(callbackName) +
-                "&_=" +
-                Date.now();
+};
 
 
-            document.head.appendChild(
-                script
-            );
+script.src =
+url +
+"&callback=" +
+encodeURIComponent(callbackName) +
+"&_=" +
+Date.now();
 
 
-            setTimeout(
-                function(){
+document.head.appendChild(
+script
+);
 
-                    finishError(
-                        new Error(
-                            "EventOS request timed out."
-                        )
-                    );
 
-                },
-                timeoutMs || 12000
-            );
+setTimeout(
+function(){
 
-        }
-    );
+if(finished){
+return;
+}
+
+cleanup();
+
+onError(
+new Error(
+"EventOS request timed out."
+)
+);
+
+},
+timeout || 12000
+);
 
 }
 
@@ -2406,129 +1900,125 @@ function jsonpRequest(
    LOAD EVENT NAME
    ========================================================= */
 
-async function loadEventName(){
+function loadEventName(){
 
-    if(!eventId){
-        return;
-    }
-
-
-    try{
-
-        const data =
-            await jsonpRequest(
-                DASHBOARD_BASE +
-                "?action=staffEvent" +
-                "&event=" +
-                encodeURIComponent(eventId),
-                8000
-            );
+if(!eventId){
+return;
+}
 
 
-        if(
-            data &&
-            data.success === true &&
-            data.eventName
-        ){
-
-            document.getElementById(
-                "eventName"
-            ).textContent =
-                data.eventName;
+const url =
+DASHBOARD_BASE +
+"?action=staffEvent" +
+"&event=" +
+encodeURIComponent(eventId);
 
 
-            document.getElementById(
-                "eventIdDisplay"
-            ).textContent =
-                "Event ID · " +
-                (
-                    data.eventId ||
-                    eventId
-                );
+createJsonpRequest(
+url,
+10000,
 
-        }else{
+function(data){
 
-            document.getElementById(
-                "eventName"
-            ).textContent =
-                eventId;
+if(
+data &&
+data.success === true &&
+data.eventName
+){
 
-        }
-
-    }catch(error){
-
-        console.error(
-            "Event name error:",
-            error
-        );
+document.getElementById(
+"eventName"
+).textContent =
+data.eventName;
 
 
-        document.getElementById(
-            "eventName"
-        ).textContent =
-            eventId;
+document.getElementById(
+"eventIdDisplay"
+).textContent =
+"Event ID · " +
+(data.eventId || eventId);
 
-    }
+}else{
+
+document.getElementById(
+"eventName"
+).textContent =
+eventId;
+
+}
+
+},
+
+function(){
+
+document.getElementById(
+"eventName"
+).textContent =
+eventId;
+
+}
+
+);
 
 }
 
 
 /* =========================================================
-   LOAD LIVE DASHBOARD
+   LIVE DASHBOARD
    ========================================================= */
 
-async function loadDashboard(){
+function loadDashboard(){
 
-    if(!eventId){
+if(!eventId){
 
-        showError(
-            "Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
-        );
+showError(
+"Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
+);
 
-        return;
+return;
 
-    }
-
-
-    try{
-
-        const data =
-            await jsonpRequest(
-                DASHBOARD_BASE +
-                "?action=dashboard" +
-                "&event=" +
-                encodeURIComponent(eventId),
-                12000
-            );
+}
 
 
-        if(!data){
-
-            throw new Error(
-                "Empty dashboard response."
-            );
-
-        }
+const url =
+DASHBOARD_BASE +
+"?action=dashboard" +
+"&event=" +
+encodeURIComponent(eventId);
 
 
-        hideError();
+createJsonpRequest(
+url,
+12000,
 
-        updateDashboard(data);
+function(data){
 
-    }catch(error){
+if(!data){
 
-        console.error(
-            "Dashboard error:",
-            error
-        );
+showError(
+"EventOS returned an empty dashboard response."
+);
 
+return;
 
-        showError(
-            error.message ||
-            "Unable to load dashboard."
-        );
+}
 
-    }
+hideError();
+
+updateDashboard(data);
+
+},
+
+function(error){
+
+showError(
+error.message ||
+"Unable to connect to EventOS."
+);
+
+}
+
+);
 
 }
 
@@ -2539,153 +2029,150 @@ async function loadDashboard(){
 
 function updateDashboard(data){
 
-    const total =
-        Number(data.total || 0);
+const total =
+Number(data.total || 0);
+
+const checkedIn =
+Number(data.checkedIn || 0);
+
+const pending =
+Number(data.pending || 0);
+
+const attendance =
+Number(data.attendance || 0);
 
 
-    const checkedIn =
-        Number(data.checkedIn || 0);
+document.getElementById(
+"total"
+).textContent =
+total;
 
 
-    const pending =
-        Number(data.pending || 0);
+document.getElementById(
+"checkedIn"
+).textContent =
+checkedIn;
 
 
-    const attendance =
-        Number(data.attendance || 0);
+document.getElementById(
+"pending"
+).textContent =
+pending;
 
 
-    document.getElementById(
-        "total"
-    ).textContent =
-        total;
+document.getElementById(
+"attendance"
+).textContent =
+attendance.toFixed(1) +
+"%";
 
 
-    document.getElementById(
-        "checkedIn"
-    ).textContent =
-        checkedIn;
+document.getElementById(
+"progressFill"
+).style.width =
+Math.min(
+100,
+Math.max(
+0,
+attendance
+)
+) +
+"%";
 
 
-    document.getElementById(
-        "pending"
-    ).textContent =
-        pending;
+document.getElementById(
+"progressLeft"
+).textContent =
+checkedIn +
+" checked in";
 
 
-    document.getElementById(
-        "attendance"
-    ).textContent =
-        attendance.toFixed(1) +
-        "%";
+document.getElementById(
+"progressRight"
+).textContent =
+total +
+" registered";
 
 
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-        Math.min(
-            100,
-            Math.max(
-                0,
-                attendance
-            )
-        ) +
-        "%";
+renderRecent(
+Array.isArray(data.recent)
+? data.recent
+: []
+);
 
 
-    document.getElementById(
-        "progressLeft"
-    ).textContent =
-        checkedIn +
-        " checked in";
-
-
-    document.getElementById(
-        "progressRight"
-    ).textContent =
-        total +
-        " registered";
-
-
-    renderRecent(
-        Array.isArray(data.recent)
-            ? data.recent
-            : []
-    );
-
-
-    document.getElementById(
-        "updated"
-    ).textContent =
-        "Updated " +
-        new Date().toLocaleTimeString(
-            "en-IN",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                second:"2-digit"
-            }
-        );
+document.getElementById(
+"updated"
+).textContent =
+"Updated " +
+new Date().toLocaleTimeString(
+"en-IN",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+}
+);
 
 }
 
 
 /* =========================================================
-   RECENT CHECK-INS
+   RECENT ACTIVITY
    ========================================================= */
 
 function renderRecent(items){
 
-    const container =
-        document.getElementById(
-            "activityList"
-        );
+const container =
+document.getElementById(
+"activityList"
+);
 
 
-    if(!items.length){
+if(!items.length){
 
-        container.innerHTML =
-            '<div class="empty">No check-ins yet.</div>';
+container.innerHTML =
+'<div class="empty">No check-ins yet.</div>';
 
-        return;
+return;
 
-    }
+}
 
 
-    container.innerHTML =
-        items.map(
-            function(item){
+container.innerHTML =
+items.map(
+function(item){
 
-                return `
+return `
 
-                    <div class="activity-row">
+<div class="activity-row">
 
-                        <div class="check">
-                            ✓
-                        </div>
+<div class="check">
+✓
+</div>
 
-                        <div class="person">
+<div>
 
-                            <div class="person-name">
-                                ${escapeHtml(item.name)}
-                            </div>
+<div class="person-name">
+${escapeHtml(item.name)}
+</div>
 
-                            <div class="person-id">
-                                ${escapeHtml(item.id)}
-                            </div>
+<div class="person-id">
+${escapeHtml(item.id)}
+</div>
 
-                        </div>
+</div>
 
-                        <div class="time">
-                            ${escapeHtml(item.time)}
-                        </div>
+<div class="time">
+${escapeHtml(item.time)}
+</div>
 
-                    </div>
+</div>
 
-                `;
+`;
 
-            }
-        ).join("");
+}
+).join("");
 
 }
 
@@ -2694,122 +2181,122 @@ function renderRecent(items){
    LOAD EMAIL PARTICIPANTS
    ========================================================= */
 
-async function loadEmailParticipants(){
+function loadEmailParticipants(){
 
-    if(!eventId){
+if(!eventId){
 
-        showEmailResult(
-            "error",
-            "Event ID is missing."
-        );
+showEmailResult(
+"error",
+"Event ID is missing."
+);
 
-        return;
+return;
 
-    }
-
-
-    hideError();
+}
 
 
-    const area =
-        document.getElementById(
-            "emailParticipantArea"
-        );
+const area =
+document.getElementById(
+"emailParticipantArea"
+);
 
 
-    area.innerHTML = `
+area.innerHTML = `
 
-        <div class="email-loading">
+<div class="email-loading">
 
-            <div class="email-spinner"></div>
+<div class="email-spinner"></div>
 
-            Loading participants...
+Loading participants...
 
-        </div>
+</div>
 
-    `;
-
-
-    showEmailResult(
-        "",
-        ""
-    );
+`;
 
 
-    try{
-
-        const data =
-            await jsonpRequest(
-                DASHBOARD_BASE +
-                "?action=emailParticipants" +
-                "&event=" +
-                encodeURIComponent(eventId),
-                12000
-            );
+const url =
+DASHBOARD_BASE +
+"?action=emailParticipants" +
+"&event=" +
+encodeURIComponent(eventId);
 
 
-        if(
-            !data ||
-            data.success !== true
-        ){
+createJsonpRequest(
+url,
+12000,
 
-            throw new Error(
-                data &&
-                data.message
-                    ? data.message
-                    : "Unable to load participants."
-            );
+function(data){
 
-        }
+if(
+!data ||
+data.success !== true
+){
 
+area.innerHTML = `
 
-        emailParticipants =
-            Array.isArray(
-                data.participants
-            )
-            ? data.participants.map(
-                normalizeParticipant
-            )
-            : [];
+<div class="empty">
+Unable to load participants.
+</div>
 
+`;
 
-        emailCurrentPage =
-            1;
+showEmailResult(
+"error",
+data &&
+data.message
+? data.message
+: "Unable to load participants."
+);
 
+return;
 
-        updateEmailSummary();
-
-        renderEmailParticipants();
-
-        updateBatchInfo();
+}
 
 
-    }catch(error){
-
-        console.error(
-            "Email participant error:",
-            error
-        );
-
-
-        area.innerHTML = `
-
-            <div class="empty">
-
-                Unable to load participants.
-
-            </div>
-
-        `;
+emailParticipants =
+Array.isArray(
+data.participants
+)
+? data.participants.map(
+normalizeParticipant
+)
+: [];
 
 
-        showEmailResult(
-            "error",
-            error.message ||
-            "Unable to load participants."
-        );
+emailCurrentPage =
+1;
 
-    }
+
+updateEmailSummary();
+
+renderEmailParticipants();
+
+showEmailResult(
+"",
+""
+);
+
+},
+
+function(error){
+
+area.innerHTML = `
+
+<div class="empty">
+Unable to connect to EventOS.
+</div>
+
+`;
+
+showEmailResult(
+"error",
+error.message ||
+"Unable to connect to EventOS."
+);
+
+}
+
+);
 
 }
 
@@ -2820,61 +2307,52 @@ async function loadEmailParticipants(){
 
 function normalizeParticipant(participant){
 
-    return {
+return {
 
-        participantId:
-            String(
-                participant.participantId || ""
-            ).trim(),
+participantId:
+String(
+participant.participantId || ""
+).trim(),
 
+eventId:
+String(
+participant.eventId ||
+eventId
+).trim(),
 
-        eventId:
-            String(
-                participant.eventId ||
-                eventId
-            ).trim(),
+name:
+String(
+participant.name || ""
+).trim(),
 
+email:
+String(
+participant.email || ""
+).trim(),
 
-        name:
-            String(
-                participant.name || ""
-            ).trim(),
+status:
+String(
+participant.status || ""
+).trim(),
 
+checkInCode:
+String(
+participant.checkInCode || ""
+).trim()
+.toUpperCase(),
 
-        email:
-            String(
-                participant.email || ""
-            ).trim(),
+qrEmailStatus:
+String(
+participant.qrEmailStatus || ""
+).trim()
+.toUpperCase(),
 
+qrEmailSentAt:
+String(
+participant.qrEmailSentAt || ""
+).trim()
 
-        status:
-            String(
-                participant.status || ""
-            ).trim(),
-
-
-        checkInCode:
-            String(
-                participant.checkInCode || ""
-            )
-            .trim()
-            .toUpperCase(),
-
-
-        qrEmailStatus:
-            String(
-                participant.qrEmailStatus || ""
-            )
-            .trim()
-            .toUpperCase(),
-
-
-        qrEmailSentAt:
-            String(
-                participant.qrEmailSentAt || ""
-            ).trim()
-
-    };
+};
 
 }
 
@@ -2885,65 +2363,63 @@ function normalizeParticipant(participant){
 
 function updateEmailSummary(){
 
-    const total =
-        emailParticipants.length;
+const total =
+emailParticipants.length;
 
 
-    const sent =
-        emailParticipants.filter(
-            function(participant){
+const sent =
+emailParticipants.filter(
+function(participant){
 
-                return (
-                    String(
-                        participant.qrEmailStatus || ""
-                    )
-                    .trim()
-                    .toUpperCase()
-                    ===
-                    "SENT"
-                );
+return (
+String(
+participant.qrEmailStatus || ""
+).trim()
+.toUpperCase()
+===
+"SENT"
+);
 
-            }
-        ).length;
-
-
-    const remaining =
-        emailParticipants.filter(
-            function(participant){
-
-                return (
-                    String(
-                        participant.qrEmailStatus || ""
-                    )
-                    .trim()
-                    .toUpperCase()
-                    !==
-                    "SENT"
-                );
-
-            }
-        ).length;
+}
+).length;
 
 
-    document.getElementById(
-        "emailParticipantCount"
-    ).textContent =
-        total;
+const remaining =
+emailParticipants.filter(
+function(participant){
+
+return (
+String(
+participant.qrEmailStatus || ""
+).trim()
+.toUpperCase()
+!==
+"SENT"
+);
+
+}
+).length;
 
 
-    document.getElementById(
-        "emailSentCount"
-    ).textContent =
-        sent;
+document.getElementById(
+"emailParticipantCount"
+).textContent =
+total;
 
 
-    document.getElementById(
-        "emailRemainingCount"
-    ).textContent =
-        remaining;
+document.getElementById(
+"emailSentCount"
+).textContent =
+sent;
 
 
-    updateBatchInfo();
+document.getElementById(
+"emailRemainingCount"
+).textContent =
+remaining;
+
+
+updateBatchInfo();
 
 }
 
@@ -2954,60 +2430,41 @@ function updateEmailSummary(){
 
 function setEmailBatchSize(size){
 
-    const allowed =
-        [25,50,100];
+emailBatchSize =
+Number(size);
 
 
-    size =
-        Number(size);
+document
+.querySelectorAll(".batch-button")
+.forEach(
+function(button){
+
+button.classList.remove(
+"active"
+);
+
+}
+);
 
 
-    if(
-        !allowed.includes(size)
-    ){
-
-        size = 100;
-
-    }
-
-
-    emailBatchSize =
-        size;
+const active =
+document.querySelector(
+'.batch-button[data-batch="' +
+emailBatchSize +
+'"]'
+);
 
 
-    document
-        .querySelectorAll(
-            ".batch-button"
-        )
-        .forEach(
-            function(button){
+if(active){
 
-                button.classList.remove(
-                    "active"
-                );
+active.classList.add(
+"active"
+);
 
-            }
-        );
+}
 
 
-    const active =
-        document.querySelector(
-            '.batch-button[data-batch="' +
-            emailBatchSize +
-            '"]'
-        );
-
-
-    if(active){
-
-        active.classList.add(
-            "active"
-        );
-
-    }
-
-
-    updateBatchInfo();
+updateBatchInfo();
 
 }
 
@@ -3018,11 +2475,13 @@ function setEmailBatchSize(size){
 
 function setSkipSent(value){
 
-    emailSkipSent =
-        Boolean(value);
+emailSkipSent =
+Boolean(value);
 
 
-    updateBatchInfo();
+updateBatchInfo();
+
+renderEmailParticipants();
 
 }
 
@@ -3033,46 +2492,45 @@ function setSkipSent(value){
 
 function getEligibleEmailParticipants(){
 
-    return emailParticipants.filter(
-        function(participant){
+return emailParticipants.filter(
+function(participant){
 
-            if(
-                !participant.participantId ||
-                !participant.eventId ||
-                !participant.name ||
-                !participant.email ||
-                !participant.checkInCode
-            ){
+if(
+!participant.participantId ||
+!participant.eventId ||
+!participant.name ||
+!participant.email ||
+!participant.checkInCode
+){
 
-                return false;
+return false;
 
-            }
-
-
-            const sent =
-                String(
-                    participant.qrEmailStatus || ""
-                )
-                .trim()
-                .toUpperCase()
-                ===
-                "SENT";
+}
 
 
-            if(
-                emailSkipSent &&
-                sent
-            ){
+const sent =
+String(
+participant.qrEmailStatus || ""
+).trim()
+.toUpperCase()
+===
+"SENT";
 
-                return false;
 
-            }
+if(
+emailSkipSent &&
+sent
+){
+
+return false;
+
+}
 
 
-            return true;
+return true;
 
-        }
-    );
+}
+);
 
 }
 
@@ -3083,107 +2541,92 @@ function getEligibleEmailParticipants(){
 
 function getNextEmailBatch(){
 
-    const eligible =
-        getEligibleEmailParticipants();
-
-
-    return eligible.slice(
-        0,
-        emailBatchSize
-    );
+return getEligibleEmailParticipants()
+.slice(
+0,
+emailBatchSize
+);
 
 }
 
 
 /* =========================================================
-   UPDATE BATCH INFO
+   BATCH INFO
    ========================================================= */
 
 function updateBatchInfo(){
 
-    const info =
-        document.getElementById(
-            "batchInfo"
-        );
+const info =
+document.getElementById(
+"batchInfo"
+);
+
+const button =
+document.getElementById(
+"sendEmailButton"
+);
 
 
-    const button =
-        document.getElementById(
-            "sendEmailButton"
-        );
+if(!info || !button){
+return;
+}
 
 
-    if(
-        !info ||
-        !button
-    ){
-
-        return;
-
-    }
+const eligible =
+getEligibleEmailParticipants();
 
 
-    const eligible =
-        getEligibleEmailParticipants();
+const count =
+Math.min(
+emailBatchSize,
+eligible.length
+);
 
 
-    const count =
-        Math.min(
-            emailBatchSize,
-            eligible.length
-        );
+if(emailSending){
+
+info.textContent =
+"Sending emails...";
+
+button.disabled =
+true;
+
+button.textContent =
+"Sending...";
+
+return;
+
+}
 
 
-    if(emailSending){
+if(!eligible.length){
 
-        info.textContent =
-            "Sending emails...";
+info.textContent =
+"No eligible participants remaining.";
 
-        button.disabled =
-            true;
+button.disabled =
+true;
 
-        button.textContent =
-            "Sending…";
+button.textContent =
+"All Emails Sent";
 
-        return;
+return;
 
-    }
-
-
-    if(!eligible.length){
-
-        info.textContent =
-            emailSkipSent
-                ? "No unsent participants remaining."
-                : "No eligible participants available.";
+}
 
 
-        button.disabled =
-            true;
+info.textContent =
+count +
+" participant(s) ready for the next batch.";
 
 
-        button.textContent =
-            emailSkipSent
-                ? "All Emails Sent"
-                : "No Participants";
-
-        return;
-
-    }
+button.disabled =
+false;
 
 
-    info.textContent =
-        count +
-        " participant(s) ready for the next batch.";
-
-
-    button.disabled =
-        false;
-
-
-    button.textContent =
-        "✉ Send Next " +
-        emailBatchSize;
+button.textContent =
+"✉ Send Next " +
+emailBatchSize;
 
 }
 
@@ -3194,156 +2637,61 @@ function updateBatchInfo(){
 
 function markQREmailSent(participant){
 
-    return new Promise(
-        function(resolve,reject){
+return new Promise(
+function(resolve,reject){
 
-            const callbackName =
-                "parsdoMarkEmailSent_" +
-                Date.now() +
-                "_" +
-                Math.random()
-                    .toString(36)
-                    .substring(2,8);
-
-
-            const script =
-                document.createElement("script");
-
-
-            let finished =
-                false;
+const url =
+DASHBOARD_BASE +
+"?action=markQREmailSent" +
+"&event=" +
+encodeURIComponent(
+participant.eventId ||
+eventId
+) +
+"&participantId=" +
+encodeURIComponent(
+participant.participantId
+);
 
 
-            function finish(){
+createJsonpRequest(
+url,
+10000,
 
-                if(finished){
-                    return;
-                }
+function(data){
 
-                finished =
-                    true;
+if(
+data &&
+data.success === true
+){
 
+resolve(data);
 
-                if(script.parentNode){
+}else{
 
-                    script.parentNode.removeChild(
-                        script
-                    );
+reject(
+new Error(
+data &&
+data.message
+? data.message
+: "Unable to save email status."
+)
+);
 
-                }
+}
 
+},
 
-                try{
+function(error){
 
-                    delete window[callbackName];
+reject(error);
 
-                }catch(e){
+}
 
-                    window[callbackName] =
-                        undefined;
+);
 
-                }
-
-            }
-
-
-            window[callbackName] =
-                function(data){
-
-                    if(finished){
-                        return;
-                    }
-
-
-                    finish();
-
-
-                    if(
-                        data &&
-                        data.success === true
-                    ){
-
-                        resolve(data);
-
-                    }else{
-
-                        reject(
-                            new Error(
-                                data &&
-                                data.message
-                                    ? data.message
-                                    : "Unable to save email status."
-                            )
-                        );
-
-                    }
-
-                };
-
-
-            script.onerror =
-                function(){
-
-                    finish();
-
-
-                    reject(
-                        new Error(
-                            "Unable to connect to email status service."
-                        )
-                    );
-
-                };
-
-
-            script.src =
-                DASHBOARD_BASE +
-                "?action=markQREmailSent" +
-                "&event=" +
-                encodeURIComponent(
-                    participant.eventId ||
-                    eventId
-                ) +
-                "&participantId=" +
-                encodeURIComponent(
-                    participant.participantId
-                ) +
-                "&callback=" +
-                encodeURIComponent(
-                    callbackName
-                ) +
-                "&_=" +
-                Date.now();
-
-
-            document.head.appendChild(
-                script
-            );
-
-
-            setTimeout(
-                function(){
-
-                    if(finished){
-                        return;
-                    }
-
-
-                    finish();
-
-
-                    reject(
-                        new Error(
-                            "Email status update timed out."
-                        )
-                    );
-
-                },
-                10000
-            );
-
-        }
-    );
+}
+);
 
 }
 
@@ -3354,762 +2702,741 @@ function markQREmailSent(participant){
 
 async function sendParticipantEmails(){
 
-    if(emailSending){
+if(emailSending){
 
-        return;
+return;
 
-    }
+}
 
 
-    const batch =
-        getNextEmailBatch();
+const batch =
+getNextEmailBatch();
 
 
-    if(!batch.length){
+if(!batch.length){
 
-        showEmailResult(
-            "warning",
-            "No eligible participants are available."
-        );
+showEmailResult(
+"warning",
+"No eligible participants are available."
+);
 
-        updateBatchInfo();
+updateBatchInfo();
 
-        return;
+return;
 
-    }
+}
 
 
-    const subject =
-        String(
-            document.getElementById(
-                "emailSubject"
-            ).value || ""
-        ).trim();
+const subject =
+String(
+document.getElementById(
+"emailSubject"
+).value || ""
+).trim();
 
 
-    const message =
-        String(
-            document.getElementById(
-                "emailMessage"
-            ).value || ""
-        );
+const message =
+String(
+document.getElementById(
+"emailMessage"
+).value || ""
+);
 
 
-    if(!subject){
+if(!subject){
 
-        showEmailResult(
-            "warning",
-            "Please enter an email subject."
-        );
+showEmailResult(
+"warning",
+"Please enter an email subject."
+);
 
-        return;
+return;
 
-    }
+}
 
 
-    if(!message.trim()){
+if(!message.trim()){
 
-        showEmailResult(
-            "warning",
-            "Please enter an email message."
-        );
+showEmailResult(
+"warning",
+"Please enter an email message."
+);
 
-        return;
+return;
 
-    }
+}
 
 
-    emailSending =
-        true;
+emailSending =
+true;
 
 
-    updateBatchInfo();
+updateBatchInfo();
 
 
-    showEmailResult(
-        "warning",
-        "Sending QR emails to " +
-        batch.length +
-        " participant(s)…"
-    );
+showEmailResult(
+"warning",
+"Sending QR emails to " +
+batch.length +
+" participant(s)..."
+);
 
 
-    const payload = {
+/* =========================================================
+   LAMBDA PAYLOAD
+   ========================================================= */
 
-        eventId:
-            eventId,
+const payload = {
 
+eventId:
+eventId,
 
-        subject:
-            subject,
+subject:
+subject,
 
+message:
+message,
 
-        message:
-            message,
+participants:
+batch.map(
+function(participant){
 
+return {
 
-        participants:
-            batch.map(
-                function(participant){
+participantId:
+participant.participantId,
 
-                    return {
+eventId:
+participant.eventId ||
+eventId,
 
-                        participantId:
-                            participant.participantId,
+name:
+participant.name,
 
+email:
+participant.email,
 
-                        eventId:
-                            participant.eventId ||
-                            eventId,
+checkInCode:
+participant.checkInCode
 
+};
 
-                        name:
-                            participant.name,
+}
+)
 
+};
 
-                        email:
-                            participant.email,
 
+try{
 
-                        checkInCode:
-                            participant.checkInCode
+/* =========================================================
+   CALL AWS LAMBDA
+   ========================================================= */
 
-                    };
+const response =
+await fetch(
+EMAIL_API,
+{
+method:"POST",
 
-                }
-            )
+headers:{
+"Content-Type":"application/json",
+"X-EventOS-Secret":EVENTOS_SECRET
+},
 
-    };
+body:
+JSON.stringify(
+payload
+)
 
+}
+);
 
-    try{
 
-        /* =====================================================
-           SEND TO AWS LAMBDA
-           ===================================================== */
+let result;
 
-        const response =
-            await fetch(
-                EMAIL_API,
-                {
-                    method:"POST",
+try{
 
-                    headers:{
-                        "Content-Type":
-                            "application/json",
+result =
+await response.json();
 
-                        "X-EventOS-Secret":
-                            EVENTOS_SECRET
-                    },
+}catch(jsonError){
 
-                    body:
-                        JSON.stringify(
-                            payload
-                        )
-                }
-            );
+throw new Error(
+"Email service returned an invalid response."
+);
 
+}
 
-        let result = null;
 
+if(!response.ok){
 
-        try{
+throw new Error(
+result &&
+result.message
+? result.message
+: "Email service returned an error."
+);
 
-            result =
-                await response.json();
+}
 
-        }catch(parseError){
 
-            throw new Error(
-                "Email service returned an invalid response."
-            );
+if(
+!result ||
+result.success !== true
+){
 
-        }
-
-
-        if(!response.ok){
-
-            throw new Error(
-                result &&
-                result.message
-                    ? result.message
-                    : "Email service returned an error."
-            );
-
-        }
-
-
-        if(
-            !result ||
-            result.success !== true
-        ){
-
-            throw new Error(
-                result &&
-                result.message
-                    ? result.message
-                    : "Unable to send emails."
-            );
-
-        }
-
-
-        const results =
-            Array.isArray(
-                result.results
-            )
-            ? result.results
-            : [];
-
-
-        /*
-         * Lambda is expected to return one result
-         * for every participant.
-         */
-
-        if(!results.length){
-
-            throw new Error(
-                "Email service did not return individual send results."
-            );
-
-        }
-
-
-        let sentCount =
-            0;
-
-
-        let failedCount =
-            0;
-
-
-        let statusSaveFailures =
-            0;
-
-
-        for(
-            const sendResult
-            of results
-        ){
-
-            const participant =
-                emailParticipants.find(
-                    function(item){
-
-                        return (
-                            item.participantId ===
-                            sendResult.participantId
-                        );
-
-                    }
-                );
-
-
-            if(
-                sendResult.success === true
-            ){
-
-                sentCount++;
-
-
-                if(participant){
-
-                    try{
-
-                        /*
-                         * Persist SENT to Google Sheet.
-                         */
-
-                        await markQREmailSent(
-                            participant
-                        );
-
-
-                        participant.qrEmailStatus =
-                            "SENT";
-
-
-                        participant.qrEmailSentAt =
-                            new Date().toLocaleString(
-                                "en-IN"
-                            );
-
-
-                    }catch(statusError){
-
-                        console.error(
-                            "Status save error:",
-                            statusError
-                        );
-
-
-                        statusSaveFailures++;
-
-
-                        /*
-                         * Email was successfully sent.
-                         *
-                         * Keep local status as SENT
-                         * so the user cannot accidentally
-                         * resend it during this session.
-                         */
-
-                        participant.qrEmailStatus =
-                            "SENT";
-
-
-                        participant.qrEmailSentAt =
-                            new Date().toLocaleString(
-                                "en-IN"
-                            );
-
-                    }
-
-                }
-
-            }else{
-
-                failedCount++;
-
-            }
-
-        }
-
-
-        updateEmailSummary();
-
-        renderEmailParticipants();
-
-
-        let resultMessage =
-            "Batch complete: " +
-            sentCount +
-            " email(s) sent.";
-
-
-        if(failedCount > 0){
-
-            resultMessage +=
-                " " +
-                failedCount +
-                " failed and remain available for retry.";
-
-        }
-
-
-        if(statusSaveFailures > 0){
-
-            resultMessage +=
-                " " +
-                statusSaveFailures +
-                " status update(s) could not be saved.";
-
-        }
-
-
-        showEmailResult(
-            failedCount === 0
-                ? "success"
-                : "warning",
-            resultMessage
-        );
-
-
-    }catch(error){
-
-        console.error(
-            "Email API error:",
-            error
-        );
-
-
-        showEmailResult(
-            "error",
-            error.message ||
-            "Unable to connect to the email service."
-        );
-
-    }finally{
-
-        emailSending =
-            false;
-
-
-        updateEmailSummary();
-
-        renderEmailParticipants();
-
-        updateBatchInfo();
-
-    }
+throw new Error(
+result &&
+result.message
+? result.message
+: "Unable to send emails."
+);
 
 }
 
 
 /* =========================================================
-   RENDER EMAIL PARTICIPANTS
+   PROCESS RESULTS
+   ========================================================= */
+
+const results =
+Array.isArray(
+result.results
+)
+? result.results
+: [];
+
+
+let sentCount =
+0;
+
+let failedCount =
+0;
+
+let statusSaveFailures =
+0;
+
+
+for(
+const sendResult of results
+){
+
+const participant =
+emailParticipants.find(
+function(item){
+
+return (
+String(item.participantId) ===
+String(sendResult.participantId)
+);
+
+}
+);
+
+
+if(
+sendResult.success === true
+){
+
+sentCount++;
+
+
+if(participant){
+
+try{
+
+await markQREmailSent(
+participant
+);
+
+
+participant.qrEmailStatus =
+"SENT";
+
+
+participant.qrEmailSentAt =
+new Date().toLocaleString(
+"en-IN"
+);
+
+
+}catch(statusError){
+
+console.error(
+"Unable to save SENT status:",
+statusError
+);
+
+
+statusSaveFailures++;
+
+
+/*
+  Email was successfully sent.
+  Mark locally as SENT so the same
+  browser session does not resend it.
+*/
+
+participant.qrEmailStatus =
+"SENT";
+
+
+participant.qrEmailSentAt =
+new Date().toLocaleString(
+"en-IN"
+);
+
+}
+
+}
+
+}else{
+
+failedCount++;
+
+}
+
+}
+
+
+/* =========================================================
+   HANDLE UNREPORTED RESULTS
+   ========================================================= */
+
+if(
+results.length === 0 &&
+batch.length > 0
+){
+
+throw new Error(
+"Email service did not return individual send results."
+);
+
+}
+
+
+/* =========================================================
+   UPDATE UI
+   ========================================================= */
+
+updateEmailSummary();
+
+renderEmailParticipants();
+
+
+let messageText =
+"Batch complete: " +
+sentCount +
+" email(s) sent.";
+
+
+if(failedCount > 0){
+
+messageText +=
+" " +
+failedCount +
+" failed and remain available for retry.";
+
+}
+
+
+if(statusSaveFailures > 0){
+
+messageText +=
+" " +
+statusSaveFailures +
+" status update(s) could not be saved.";
+
+}
+
+
+showEmailResult(
+failedCount === 0
+? "success"
+: "warning",
+messageText
+);
+
+
+}catch(error){
+
+console.error(
+"Email API error:",
+error
+);
+
+
+showEmailResult(
+"error",
+error.message ||
+"Unable to connect to the email service."
+);
+
+
+}finally{
+
+emailSending =
+false;
+
+updateEmailSummary();
+
+renderEmailParticipants();
+
+}
+
+}
+
+
+/* =========================================================
+   RENDER PARTICIPANTS
    ========================================================= */
 
 function renderEmailParticipants(){
 
-    const area =
-        document.getElementById(
-            "emailParticipantArea"
-        );
+const area =
+document.getElementById(
+"emailParticipantArea"
+);
 
 
-    if(!emailParticipants.length){
+if(!emailParticipants.length){
 
-        area.innerHTML =
-            `
-            <div class="empty">
-                No participants found for this event.
-            </div>
-            `;
+area.innerHTML =
+`
+<div class="empty">
+No participants found for this event.
+</div>
+`;
 
-        return;
+return;
 
-    }
+}
 
 
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                emailParticipants.length /
-                EMAIL_PAGE_SIZE
-            )
-        );
+const totalPages =
+Math.max(
+1,
+Math.ceil(
+emailParticipants.length /
+EMAIL_PAGE_SIZE
+)
+);
 
 
-    if(
-        emailCurrentPage >
-        totalPages
-    ){
+if(
+emailCurrentPage > totalPages
+){
 
-        emailCurrentPage =
-            totalPages;
+emailCurrentPage =
+totalPages;
 
-    }
+}
 
 
-    if(
-        emailCurrentPage <
-        1
-    ){
+if(
+emailCurrentPage < 1
+){
 
-        emailCurrentPage =
-            1;
+emailCurrentPage =
+1;
 
-    }
+}
 
 
-    const start =
-        (
-            emailCurrentPage - 1
-        ) *
-        EMAIL_PAGE_SIZE;
+const start =
+(emailCurrentPage - 1) *
+EMAIL_PAGE_SIZE;
 
 
-    const end =
-        start +
-        EMAIL_PAGE_SIZE;
+const end =
+start +
+EMAIL_PAGE_SIZE;
 
 
-    const pageItems =
-        emailParticipants.slice(
-            start,
-            end
-        );
+const pageItems =
+emailParticipants.slice(
+start,
+end
+);
 
 
-    area.innerHTML = `
+area.innerHTML = `
 
-        <table class="participant-table">
+<div class="participant-table-inner">
 
-            <thead>
+<table class="participant-table">
 
-                <tr>
+<thead>
 
-                    <th>
-                        Participant
-                    </th>
+<tr>
 
-                    <th>
-                        Email
-                    </th>
+<th>
+Participant
+</th>
 
-                    <th>
-                        Check-in Code
-                    </th>
+<th>
+Email
+</th>
 
-                    <th>
-                        Check-in Status
-                    </th>
+<th>
+Check-in Code
+</th>
 
-                    <th>
-                        QR Email
-                    </th>
+<th>
+Check-in Status
+</th>
 
-                </tr>
+<th>
+QR Email
+</th>
 
-            </thead>
+</tr>
 
+</thead>
 
-            <tbody>
 
-                ${pageItems.map(
-                    function(participant){
+<tbody>
 
-                        const status =
-                            String(
-                                participant.status || ""
-                            ).trim();
+${pageItems.map(
+function(participant){
 
+const status =
+String(
+participant.status || ""
+).trim();
 
-                        const checkedClass =
-                            status.toUpperCase() ===
-                            "CHECKED IN"
-                                ? "checked"
-                                : "";
 
+const checkedClass =
+status.toUpperCase() ===
+"CHECKED IN"
+? "checked"
+: "";
 
-                        const emailStatus =
-                            String(
-                                participant.qrEmailStatus || ""
-                            )
-                            .trim()
-                            .toUpperCase();
 
+const emailStatus =
+String(
+participant.qrEmailStatus || ""
+).trim()
+.toUpperCase();
 
-                        const emailSent =
-                            emailStatus ===
-                            "SENT";
 
+const emailSent =
+emailStatus ===
+"SENT";
 
-                        return `
 
-                            <tr>
+return `
 
-                                <td>
+<tr>
 
-                                    <div class="participant-name">
+<td>
 
-                                        ${escapeHtml(
-                                            participant.name
-                                        )}
+<div class="participant-name">
+${escapeHtml(
+participant.name
+)}
+</div>
 
-                                    </div>
+<div class="participant-id">
+${escapeHtml(
+participant.participantId
+)}
+</div>
 
-                                    <div class="participant-id">
+</td>
 
-                                        ${escapeHtml(
-                                            participant.participantId
-                                        )}
 
-                                    </div>
+<td>
+${escapeHtml(
+participant.email
+)}
+</td>
 
-                                </td>
 
+<td>
 
-                                <td>
+<strong>
+${escapeHtml(
+participant.checkInCode ||
+"—"
+)}
+</strong>
 
-                                    ${escapeHtml(
-                                        participant.email
-                                    )}
+</td>
 
-                                </td>
 
+<td>
 
-                                <td>
+<span
+class="status-pill ${checkedClass}">
 
-                                    <strong>
+${escapeHtml(
+status ||
+"REGISTERED"
+)}
 
-                                        ${escapeHtml(
-                                            participant.checkInCode ||
-                                            "—"
-                                        )}
+</span>
 
-                                    </strong>
+</td>
 
-                                </td>
 
+<td>
 
-                                <td>
+<span
+class="status-pill ${
+emailSent
+? "checked"
+: ""
+}">
 
-                                    <span
-                                        class="status-pill ${checkedClass}">
+${
+emailSent
+? "SENT"
+: "NOT SENT"
+}
 
-                                        ${escapeHtml(
-                                            status ||
-                                            "REGISTERED"
-                                        )}
+</span>
 
-                                    </span>
 
-                                </td>
+${
+participant.qrEmailSentAt
+?
+`
+<div
+style="
+margin-top:4px;
+font-size:9px;
+color:var(--muted);
+">
 
+${escapeHtml(
+participant.qrEmailSentAt
+)}
 
-                                <td>
+</div>
+`
+:
+""
+}
 
-                                    <span
-                                        class="status-pill ${
-                                            emailSent
-                                                ? "checked"
-                                                : ""
-                                        }">
+</td>
 
-                                        ${
-                                            emailSent
-                                                ? "SENT"
-                                                : "NOT SENT"
-                                        }
+</tr>
 
-                                    </span>
+`;
 
+}
+).join("")}
 
-                                    ${
-                                        participant.qrEmailSentAt
-                                            ? `
+</tbody>
 
-                                                <div
-                                                    style="
-                                                        margin-top:4px;
-                                                        font-size:9px;
-                                                        color:var(--muted);
-                                                    ">
+</table>
 
-                                                    ${escapeHtml(
-                                                        participant.qrEmailSentAt
-                                                    )}
+</div>
 
-                                                </div>
 
-                                              `
-                                            : ""
-                                    }
+<div class="pagination">
 
-                                </td>
+<div
+style="
+font-size:10px;
+color:var(--muted);
+">
 
-                            </tr>
+Page
+${emailCurrentPage}
+of
+${totalPages}
 
-                        `;
+·
 
-                    }
-                ).join("")}
+Showing
+${start + 1}
+-
+${Math.min(
+end,
+emailParticipants.length
+)}
+of
+${emailParticipants.length}
 
-            </tbody>
+</div>
 
-        </table>
 
+<div class="pagination-buttons">
 
-        <div class="pagination">
+<button
+class="secondary"
+type="button"
+onclick="changeEmailPage(-1)"
+${emailCurrentPage <= 1 ? "disabled" : ""}>
 
-            <div class="pagination-info">
+‹
 
-                Page
-                ${emailCurrentPage}
-                of
-                ${totalPages}
+</button>
 
-                ·
 
-                Showing
-                ${start + 1}
-                -
-                ${Math.min(
-                    end,
-                    emailParticipants.length
-                )}
-                of
-                ${emailParticipants.length}
+<button
+class="secondary"
+type="button"
+onclick="changeEmailPage(1)"
+${emailCurrentPage >= totalPages ? "disabled" : ""}>
 
-            </div>
+›
 
+</button>
 
-            <div class="pagination-buttons">
+</div>
 
-                <button
-                    class="secondary"
-                    type="button"
-                    onclick="changeEmailPage(-1)"
-                    ${
-                        emailCurrentPage <= 1
-                            ? "disabled"
-                            : ""
-                    }>
+</div>
 
-                    ‹
-
-                </button>
-
-
-                <button
-                    class="secondary"
-                    type="button"
-                    onclick="changeEmailPage(1)"
-                    ${
-                        emailCurrentPage >= totalPages
-                            ? "disabled"
-                            : ""
-                    }>
-
-                    ›
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
+`;
 
 }
 
 
 /* =========================================================
-   PAGINATION
+   CHANGE PAGE
    ========================================================= */
 
 function changeEmailPage(direction){
 
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                emailParticipants.length /
-                EMAIL_PAGE_SIZE
-            )
-        );
+const totalPages =
+Math.max(
+1,
+Math.ceil(
+emailParticipants.length /
+EMAIL_PAGE_SIZE
+)
+);
 
 
-    emailCurrentPage +=
-        Number(direction);
+emailCurrentPage +=
+Number(direction);
 
 
-    if(
-        emailCurrentPage < 1
-    ){
+if(
+emailCurrentPage < 1
+){
 
-        emailCurrentPage =
-            1;
+emailCurrentPage =
+1;
 
-    }
-
-
-    if(
-        emailCurrentPage >
-        totalPages
-    ){
-
-        emailCurrentPage =
-            totalPages;
-
-    }
+}
 
 
-    renderEmailParticipants();
+if(
+emailCurrentPage > totalPages
+){
+
+emailCurrentPage =
+totalPages;
+
+}
+
+
+renderEmailParticipants();
 
 }
 
@@ -4120,144 +3447,81 @@ function changeEmailPage(direction){
 
 function init(){
 
-    try{
-
-        eventId =
-            getEventIdFromUrl();
+eventId =
+getEventIdFromUrl();
 
 
-        document.getElementById(
-            "eventIdDisplay"
-        ).textContent =
-            eventId
-                ? "Event ID · " +
-                  eventId
-                : "";
+const eventIdDisplay =
+document.getElementById(
+"eventIdDisplay"
+);
 
 
-        document.getElementById(
-            "eventName"
-        ).textContent =
-            eventId
-                ? "Loading event..."
-                : "Event Dashboard";
+const eventName =
+document.getElementById(
+"eventName"
+);
 
 
-        if(!eventId){
+if(eventId){
 
-            showError(
-                "Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
-            );
+eventIdDisplay.textContent =
+"Event ID · " +
+eventId;
 
-            return;
+eventName.textContent =
+"Loading event...";
 
-        }
+}else{
 
+eventName.textContent =
+"Event Dashboard";
 
-        /*
-         * Default batch size.
-         */
+showError(
+"Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
+);
 
-        setEmailBatchSize(
-            100
-        );
+return;
 
-
-        /*
-         * Load event information.
-         */
-
-        loadEventName();
+}
 
 
-        /*
-         * Load live dashboard.
-         */
+/* DEFAULT BATCH */
 
-        loadDashboard();
+setEmailBatchSize(100);
 
 
-        /*
-         * Refresh live dashboard every 5 seconds.
-         */
+/* EVENT */
 
-        setInterval(
-            loadDashboard,
-            REFRESH_INTERVAL
-        );
+loadEventName();
 
 
-        /*
-         * Open requested view.
-         */
+/* LIVE */
 
-        const requestedView =
-            new URLSearchParams(
-                window.location.search
-            ).get("view");
+loadDashboard();
 
 
-        if(
-            requestedView ===
-            "email"
-        ){
+/* LIVE REFRESH */
 
-            /*
-             * Do not call showView()
-             * here because showView()
-             * modifies the URL.
-             */
-
-            document.getElementById(
-                "liveView"
-            ).classList.remove(
-                "active"
-            );
+setInterval(
+loadDashboard,
+REFRESH_INTERVAL
+);
 
 
-            document.getElementById(
-                "liveNav"
-            ).classList.remove(
-                "active"
-            );
+/* URL VIEW */
+
+const view =
+new URLSearchParams(
+window.location.search
+).get("view");
 
 
-            document.getElementById(
-                "emailView"
-            ).classList.add(
-                "active"
-            );
+if(view === "email"){
 
+showView("email");
 
-            document.getElementById(
-                "emailNav"
-            ).classList.add(
-                "active"
-            );
-
-
-            loadEmailParticipants();
-
-        }
-
-
-    }catch(error){
-
-        console.error(
-            "Initialization error:",
-            error
-        );
-
-
-        showError(
-            "Dashboard initialization failed: " +
-            (
-                error.message ||
-                "Unknown error"
-            )
-        );
-
-    }
+}
 
 }
 
@@ -4266,10 +3530,21 @@ function init(){
    START
    ========================================================= */
 
+if(
+document.readyState ===
+"loading"
+){
+
 document.addEventListener(
-    "DOMContentLoaded",
-    init
+"DOMContentLoaded",
+init
 );
+
+}else{
+
+init();
+
+}
 
 </script>
 
