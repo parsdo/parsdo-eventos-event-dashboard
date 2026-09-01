@@ -7,6 +7,7 @@
 <title>ParsDo EventOS - Organizer Dashboard</title>
 
 <style>
+
 :root{
   --teal:#18aaa2;
   --teal-dark:#087c78;
@@ -28,7 +29,8 @@
   box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
   margin:0;
   min-height:100%;
   font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
@@ -73,6 +75,11 @@ body:after{
   pointer-events:none;
   z-index:-1;
 }
+
+
+/* =========================================================
+   TOP / HEADER
+   ========================================================= */
 
 .topbar{
   height:5px;
@@ -228,6 +235,7 @@ body:after{
     0 0 12px rgba(105,230,184,.7);
 }
 
+
 /* =========================================================
    MAIN NAV
    ========================================================= */
@@ -265,6 +273,7 @@ body:after{
   background:linear-gradient(135deg,#0b8a83,#066b67);
   box-shadow:0 7px 16px rgba(8,127,122,.18);
 }
+
 
 /* =========================================================
    CONTAINER / CARDS
@@ -389,6 +398,7 @@ body:after{
   font-size:12px;
 }
 
+
 /* =========================================================
    ATTENDANCE
    ========================================================= */
@@ -454,6 +464,7 @@ body:after{
   color:var(--muted);
   font-size:11px;
 }
+
 
 /* =========================================================
    ACTIVITY
@@ -534,6 +545,7 @@ body:after{
   font-size:12px;
 }
 
+
 /* =========================================================
    EMAIL DASHBOARD
    ========================================================= */
@@ -612,6 +624,11 @@ button.blue{
   background:linear-gradient(135deg,#3b73d1,#285ba9);
 }
 
+
+/* =========================================================
+   EMAIL SUMMARY
+   ========================================================= */
+
 .email-summary{
   margin-top:17px;
   display:flex;
@@ -635,6 +652,158 @@ button.blue{
   color:var(--teal-dark);
 }
 
+
+/* =========================================================
+   EMAIL BATCH CONTROLS
+   ========================================================= */
+
+.email-batch-controls{
+  margin-top:17px;
+  padding:15px;
+  background:#f8fbfb;
+  border:1px solid var(--line);
+  border-radius:14px;
+}
+
+.batch-controls-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.batch-control-group{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+.batch-label{
+  color:var(--muted);
+  font-size:9px;
+  font-weight:850;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.batch-select{
+  height:36px;
+  padding:7px 30px 7px 10px;
+  border:1px solid #dce6e5;
+  border-radius:9px;
+  background:#fff;
+  color:var(--ink);
+  font-size:11px;
+  font-weight:800;
+  outline:none;
+}
+
+.batch-select:focus{
+  border-color:#72bdb9;
+  box-shadow:0 0 0 3px rgba(8,127,122,.08);
+}
+
+
+/* =========================================================
+   TOGGLE
+   ========================================================= */
+
+.toggle-wrap{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.toggle{
+  position:relative;
+  width:42px;
+  height:23px;
+  flex:0 0 auto;
+}
+
+.toggle input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.toggle-slider{
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+  background:#cbd6da;
+  transition:.2s ease;
+}
+
+.toggle-slider:before{
+  content:"";
+  position:absolute;
+  width:17px;
+  height:17px;
+  left:3px;
+  top:3px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 2px 5px rgba(0,0,0,.18);
+  transition:.2s ease;
+}
+
+.toggle input:checked + .toggle-slider{
+  background:var(--teal-dark);
+}
+
+.toggle input:checked + .toggle-slider:before{
+  transform:translateX(19px);
+}
+
+.toggle-text{
+  color:var(--ink);
+  font-size:10px;
+  font-weight:800;
+}
+
+
+/* =========================================================
+   BATCH READY
+   ========================================================= */
+
+.batch-ready{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid #e7eeee;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.batch-ready-text{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:750;
+}
+
+.batch-ready-text strong{
+  color:var(--teal-dark);
+}
+
+.batch-warning{
+  margin-top:10px;
+  color:#8a5a00;
+  font-size:9px;
+  font-weight:700;
+}
+
+
+/* =========================================================
+   PARTICIPANT TABLE
+   ========================================================= */
+
 .participant-table-wrap{
   margin-top:17px;
   overflow:auto;
@@ -643,7 +812,7 @@ button.blue{
 .participant-table{
   width:100%;
   border-collapse:collapse;
-  min-width:720px;
+  min-width:850px;
 }
 
 .participant-table th{
@@ -712,6 +881,106 @@ button.blue{
   cursor:pointer;
 }
 
+
+/* =========================================================
+   QR EMAIL STATUS
+   ========================================================= */
+
+.qr-email-status{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.5px;
+  white-space:nowrap;
+}
+
+.qr-email-status.sent{
+  background:#e9faf4;
+  color:#087a61;
+  border:1px solid #c9eee0;
+}
+
+.qr-email-status.not-sent{
+  background:#f0f4f5;
+  color:#71818c;
+  border:1px solid #e1e8eb;
+}
+
+.qr-email-status.failed{
+  background:#fff3f1;
+  color:#a52d2d;
+  border:1px solid #f0cccc;
+}
+
+.qr-email-time{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.3;
+  white-space:nowrap;
+}
+
+
+/* =========================================================
+   EMAIL PAGINATION
+   ========================================================= */
+
+.email-pagination{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:13px 15px;
+  border-top:1px solid var(--line);
+  background:#fbfdfd;
+}
+
+.pagination-info{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:750;
+}
+
+.pagination-buttons{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.page-button{
+  min-width:34px;
+  height:34px;
+  padding:7px 10px;
+  border-radius:9px;
+  border:1px solid #dce6e5;
+  background:#fff;
+  color:var(--ink);
+  font-size:10px;
+  font-weight:800;
+  box-shadow:none;
+}
+
+.page-button.active{
+  color:#fff;
+  background:var(--teal-dark);
+  border-color:var(--teal-dark);
+}
+
+.page-button:disabled{
+  opacity:.45;
+}
+
+
+/* =========================================================
+   EMAIL LOADING
+   ========================================================= */
+
 .email-loading{
   padding:40px 20px;
   text-align:center;
@@ -730,8 +999,15 @@ button.blue{
 }
 
 @keyframes emailSpin{
-  to{transform:rotate(360deg)}
+  to{
+    transform:rotate(360deg)
+  }
 }
+
+
+/* =========================================================
+   EMAIL FORM
+   ========================================================= */
 
 .email-form{
   margin-top:17px;
@@ -824,6 +1100,7 @@ button.blue{
   border:1px solid #f0dfad;
 }
 
+
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -841,6 +1118,7 @@ button.blue{
   text-decoration:none;
   font-weight:850;
 }
+
 
 /* =========================================================
    RESPONSIVE
@@ -888,39 +1166,79 @@ button.blue{
   .email-actions button{
     flex:1;
   }
+
+  .batch-controls-row{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .batch-control-group{
+    width:100%;
+  }
+
+  .batch-select{
+    flex:1;
+  }
+
+  .email-send-row{
+    justify-content:stretch;
+  }
+
+  .email-send-row button{
+    width:100%;
+  }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <div class="topbar"></div>
 
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
 <header class="header">
+
   <div class="header-inner">
 
     <div class="brand-row">
 
       <div class="logo-wrap">
+
         <img
           class="logo"
           src="parsdo_logo.jpeg"
           alt="ParsDo">
+
       </div>
 
+
       <div>
-        <div class="eyebrow">ParsDo EventOS</div>
+
+        <div class="eyebrow">
+          ParsDo EventOS
+        </div>
+
 
         <div class="title">
           Organizer Dashboard
         </div>
 
+
         <div class="subtitle">
           Live attendance, check-in & participant communication
         </div>
+
       </div>
 
     </div>
+
 
     <div class="event-row">
 
@@ -932,6 +1250,7 @@ button.blue{
           Loading event...
         </div>
 
+
         <div
           id="eventIdDisplay"
           class="event-id">
@@ -939,14 +1258,19 @@ button.blue{
 
       </div>
 
+
       <div class="live">
+
         <span class="live-dot"></span>
+
         EVENTOS
+
       </div>
 
     </div>
 
   </div>
+
 </header>
 
 
@@ -963,15 +1287,20 @@ button.blue{
       class="nav-button active"
       type="button"
       onclick="showView('live')">
+
       📊 Live Dashboard
+
     </button>
+
 
     <button
       id="emailNav"
       class="nav-button"
       type="button"
       onclick="showView('email')">
+
       ✉ Email Participants
+
     </button>
 
   </div>
@@ -990,7 +1319,9 @@ button.blue{
   id="liveView"
   class="view active">
 
+
   <section class="grid">
+
 
     <div class="card stat">
 
@@ -998,11 +1329,15 @@ button.blue{
         Total Registrations
       </div>
 
+
       <div
         id="total"
         class="stat-value">
+
         —
+
       </div>
+
 
       <div class="stat-note">
         Registered attendees
@@ -1017,11 +1352,15 @@ button.blue{
         Checked In
       </div>
 
+
       <div
         id="checkedIn"
         class="stat-value">
+
         —
+
       </div>
+
 
       <div class="stat-note">
         Attendance recorded
@@ -1036,11 +1375,15 @@ button.blue{
         Yet to Check In
       </div>
 
+
       <div
         id="pending"
         class="stat-value">
+
         —
+
       </div>
+
 
       <div class="stat-note">
         Remaining attendees
@@ -1048,10 +1391,12 @@ button.blue{
 
     </div>
 
+
   </section>
 
 
   <section class="card progress-card">
+
 
     <div class="progress-top">
 
@@ -1059,13 +1404,17 @@ button.blue{
         Attendance Progress
       </div>
 
+
       <div
         id="attendance"
         class="percentage">
+
         0%
+
       </div>
 
     </div>
+
 
     <div class="progress-track">
 
@@ -1076,11 +1425,13 @@ button.blue{
 
     </div>
 
+
     <div class="progress-meta">
 
       <span id="progressLeft">
         0 checked in
       </span>
+
 
       <span id="progressRight">
         0 registered
@@ -1093,19 +1444,24 @@ button.blue{
 
   <section class="card activity">
 
+
     <div class="activity-head">
 
       <div class="section-title">
         Live Check-in Activity
       </div>
 
+
       <div
         id="updated"
         class="updated">
+
         Waiting for data...
+
       </div>
 
     </div>
+
 
     <div
       id="activityList"
@@ -1133,7 +1489,9 @@ button.blue{
 
   <section class="card email-toolbar">
 
+
     <div class="email-toolbar-top">
+
 
       <div>
 
@@ -1141,8 +1499,12 @@ button.blue{
           Email Participants
         </div>
 
+
         <div class="email-description">
-          Select registered participants and send their EventOS invitation.
+
+          Select participants and send their EventOS QR invitation
+          in controlled batches.
+
         </div>
 
       </div>
@@ -1150,25 +1512,34 @@ button.blue{
 
       <div class="email-actions">
 
+
         <button
           class="secondary"
           type="button"
           onclick="loadEmailParticipants()">
+
           ↻ Refresh
+
         </button>
+
 
         <button
           class="secondary"
           type="button"
           onclick="selectAllParticipants()">
+
           Select All
+
         </button>
+
 
         <button
           class="secondary"
           type="button"
           onclick="clearParticipantSelection()">
+
           Clear
+
         </button>
 
       </div>
@@ -1176,7 +1547,12 @@ button.blue{
     </div>
 
 
+    <!-- =====================================================
+         EMAIL SUMMARY
+         ===================================================== -->
+
     <div class="email-summary">
+
 
       <div class="email-count">
 
@@ -1187,6 +1563,7 @@ button.blue{
 
       </div>
 
+
       <div class="email-count">
 
         Selected:
@@ -1196,12 +1573,145 @@ button.blue{
 
       </div>
 
+
+      <div class="email-count">
+
+        Sent:
+        <strong id="emailSentCount">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="email-count">
+
+        Pending:
+        <strong id="emailPendingCount">
+          0
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         BATCH CONTROLS
+         ===================================================== -->
+
+    <div class="email-batch-controls">
+
+
+      <div class="batch-controls-row">
+
+
+        <div class="batch-control-group">
+
+
+          <span class="batch-label">
+            Batch Size
+          </span>
+
+
+          <select
+            id="emailBatchSize"
+            class="batch-select"
+            onchange="updateBatchInfo()">
+
+            <option value="25">
+              25
+            </option>
+
+            <option value="50">
+              50
+            </option>
+
+            <option value="100" selected>
+              100
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="batch-control-group">
+
+
+          <label class="toggle-wrap">
+
+
+            <span class="toggle">
+
+              <input
+                type="checkbox"
+                id="skipSentToggle"
+                checked
+                onchange="updateBatchInfo()">
+
+              <span class="toggle-slider"></span>
+
+            </span>
+
+
+            <span class="toggle-text">
+              Skip SENT emails
+            </span>
+
+
+          </label>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="batch-ready">
+
+
+        <div class="batch-ready-text">
+
+          Ready to send:
+          <strong id="emailReadyCount">
+            0
+          </strong>
+
+
+          &nbsp;·&nbsp;
+
+
+          Next batch:
+          <strong id="emailNextBatchCount">
+            0
+          </strong>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        id="batchWarning"
+        class="batch-warning"
+        style="display:none">
+      </div>
+
+
     </div>
 
   </section>
 
 
+  <!-- =======================================================
+       PARTICIPANT TABLE
+       ======================================================= -->
+
   <section class="card participant-table-wrap">
+
 
     <div
       id="emailParticipantArea">
@@ -1216,10 +1726,16 @@ button.blue{
 
     </div>
 
+
   </section>
 
 
+  <!-- =======================================================
+       EMAIL FORM
+       ======================================================= -->
+
   <section class="card email-form">
+
 
     <div class="section-title">
       Email Message
@@ -1231,6 +1747,7 @@ button.blue{
       style="margin-bottom:17px">
 
       This message will be sent to the selected participants.
+      Each email includes the participant's QR code.
 
     </div>
 
@@ -1240,9 +1757,11 @@ button.blue{
 
       <div class="form-group full">
 
+
         <label class="form-label">
           Subject
         </label>
+
 
         <input
           id="emailSubject"
@@ -1251,14 +1770,17 @@ button.blue{
           value="You're registered for our event"
           placeholder="Email subject">
 
+
       </div>
 
 
       <div class="form-group full">
 
+
         <label class="form-label">
           Message
         </label>
+
 
         <textarea
           id="emailMessage"
@@ -1278,20 +1800,26 @@ We look forward to seeing you.
 Regards,
 ParsDo EventOS</textarea>
 
+
       </div>
+
 
     </div>
 
 
     <div class="email-send-row">
 
+
       <button
         class="primary"
         id="sendEmailButton"
         type="button"
         onclick="sendParticipantEmails()">
-        ✉ Send Email
+
+        ✉ Send QR Emails
+
       </button>
+
 
     </div>
 
@@ -1301,10 +1829,16 @@ ParsDo EventOS</textarea>
       class="email-result">
     </div>
 
+
   </section>
+
 
 </section>
 
+
+<!-- =========================================================
+     GLOBAL ERROR
+     ========================================================= -->
 
 <div
   id="errorBox"
@@ -1312,29 +1846,47 @@ ParsDo EventOS</textarea>
 </div>
 
 
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
 <div class="footer">
+
 
   <div>
     BEHIND BETTER COMPANIES · Powered by ParsDo EventOS
   </div>
 
+
   <a
     href="https://www.parsdo.in"
     target="_blank"
     rel="noopener">
+
     www.parsdo.in
+
   </a>
 
+
 </div>
+
 
 </main>
 
 
 <script>
 
+
 /* =========================================================
    PARSDO EVENTOS - ORGANIZER DASHBOARD
-   Live Dashboard + Email Participants
+
+   Live Dashboard
+   +
+   Email Participants
+   +
+   Batch QR Email Sending
+   +
+   Persistent QR Email Status
    ========================================================= */
 
 
@@ -1343,7 +1895,7 @@ ParsDo EventOS</textarea>
    ========================================================= */
 
 const DASHBOARD_BASE =
-  "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9ftaI1Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
+  "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
 
 
 const EMAIL_API =
@@ -1352,7 +1904,15 @@ const EMAIL_API =
 
 const REFRESH_INTERVAL = 5000;
 
-const EVENTOS_SECRET = "ParsDoEventOS_2026_Email_9xK7mQ"; 
+
+/*
+ * Existing working EventOS email secret.
+ * Keep unchanged because the Lambda currently
+ * validates this value.
+ */
+
+const EVENTOS_SECRET =
+  "ParsDoEventOS_2026_Email_9xK7mQ";
 
 
 let eventId = "";
@@ -1363,6 +1923,34 @@ let eventId = "";
    ========================================================= */
 
 let emailParticipants = [];
+
+
+/*
+ * Pagination
+ */
+
+let emailCurrentPage = 1;
+
+const EMAIL_PAGE_SIZE = 10;
+
+
+/*
+ * Global selection.
+ *
+ * Stores participant indexes from the complete
+ * emailParticipants array, not just the current page.
+ */
+
+let emailSelectedIndexes = new Set();
+
+
+/*
+ * Batch settings
+ */
+
+let emailBatchSize = 100;
+
+let skipSentEmails = true;
 
 
 /* =========================================================
@@ -1405,9 +1993,13 @@ function showError(message){
   const box =
     document.getElementById("errorBox");
 
-  box.textContent = message;
 
-  box.style.display = "block";
+  box.textContent =
+    message;
+
+
+  box.style.display =
+    "block";
 
 }
 
@@ -1416,7 +2008,8 @@ function hideError(){
 
   document.getElementById(
     "errorBox"
-  ).style.display = "none";
+  ).style.display =
+    "none";
 
 }
 
@@ -1428,31 +2021,63 @@ function hideError(){
 function showView(view){
 
   const liveView =
-    document.getElementById("liveView");
+    document.getElementById(
+      "liveView"
+    );
+
 
   const emailView =
-    document.getElementById("emailView");
+    document.getElementById(
+      "emailView"
+    );
+
 
   const liveNav =
-    document.getElementById("liveNav");
+    document.getElementById(
+      "liveNav"
+    );
+
 
   const emailNav =
-    document.getElementById("emailNav");
+    document.getElementById(
+      "emailNav"
+    );
 
 
-  liveView.classList.remove("active");
-  emailView.classList.remove("active");
+  liveView.classList.remove(
+    "active"
+  );
 
-  liveNav.classList.remove("active");
-  emailNav.classList.remove("active");
+
+  emailView.classList.remove(
+    "active"
+  );
+
+
+  liveNav.classList.remove(
+    "active"
+  );
+
+
+  emailNav.classList.remove(
+    "active"
+  );
 
 
   if(view === "email"){
 
-    emailView.classList.add("active");
-    emailNav.classList.add("active");
+    emailView.classList.add(
+      "active"
+    );
+
+
+    emailNav.classList.add(
+      "active"
+    );
+
 
     loadEmailParticipants();
+
 
     history.replaceState(
       null,
@@ -1463,10 +2088,18 @@ function showView(view){
       "&view=email"
     );
 
+
   }else{
 
-    liveView.classList.add("active");
-    liveNav.classList.add("active");
+    liveView.classList.add(
+      "active"
+    );
+
+
+    liveNav.classList.add(
+      "active"
+    );
+
 
     history.replaceState(
       null,
@@ -1508,7 +2141,9 @@ function loadDashboard(){
 
 
   const script =
-    document.createElement("script");
+    document.createElement(
+      "script"
+    );
 
 
   let finished = false;
@@ -1517,6 +2152,7 @@ function loadDashboard(){
   function finish(){
 
     if(finished) return;
+
 
     finished = true;
 
@@ -1532,22 +2168,28 @@ function loadDashboard(){
 
     try{
 
-      delete window[callbackName];
+      delete window[
+        callbackName
+      ];
 
     }catch(e){
 
-      window[callbackName] =
-        undefined;
+      window[
+        callbackName
+      ] = undefined;
 
     }
 
   }
 
 
-  window[callbackName] =
+  window[
+    callbackName
+  ] =
     function(data){
 
       if(finished) return;
+
 
       finish();
 
@@ -1565,7 +2207,10 @@ function loadDashboard(){
 
       hideError();
 
-      updateDashboard(data);
+
+      updateDashboard(
+        data
+      );
 
     };
 
@@ -1574,6 +2219,7 @@ function loadDashboard(){
     function(){
 
       finish();
+
 
       showError(
         "Unable to connect to ParsDo EventOS."
@@ -1593,9 +2239,13 @@ function loadDashboard(){
     Date.now();
 
 
-  script.src = url;
+  script.src =
+    url;
 
-  document.head.appendChild(script);
+
+  document.head.appendChild(
+    script
+  );
 
 
   setTimeout(
@@ -1603,7 +2253,9 @@ function loadDashboard(){
 
       if(finished) return;
 
+
       finish();
+
 
       showError(
         "ParsDo EventOS did not return a valid dashboard response."
@@ -1623,37 +2275,52 @@ function loadDashboard(){
 function updateDashboard(data){
 
   const total =
-    Number(data.total || 0);
+    Number(
+      data.total || 0
+    );
+
 
   const checkedIn =
-    Number(data.checkedIn || 0);
+    Number(
+      data.checkedIn || 0
+    );
+
 
   const pending =
-    Number(data.pending || 0);
+    Number(
+      data.pending || 0
+    );
+
 
   const attendance =
-    Number(data.attendance || 0);
+    Number(
+      data.attendance || 0
+    );
 
 
   document.getElementById(
     "total"
-  ).textContent = total;
+  ).textContent =
+    total;
 
 
   document.getElementById(
     "checkedIn"
-  ).textContent = checkedIn;
+  ).textContent =
+    checkedIn;
 
 
   document.getElementById(
     "pending"
-  ).textContent = pending;
+  ).textContent =
+    pending;
 
 
   document.getElementById(
     "attendance"
   ).textContent =
-    attendance.toFixed(1) + "%";
+    attendance.toFixed(1) +
+    "%";
 
 
   document.getElementById(
@@ -1665,23 +2332,28 @@ function updateDashboard(data){
         0,
         attendance
       )
-    ) + "%";
+    ) +
+    "%";
 
 
   document.getElementById(
     "progressLeft"
   ).textContent =
-    checkedIn + " checked in";
+    checkedIn +
+    " checked in";
 
 
   document.getElementById(
     "progressRight"
   ).textContent =
-    total + " registered";
+    total +
+    " registered";
 
 
   renderRecent(
-    Array.isArray(data.recent)
+    Array.isArray(
+      data.recent
+    )
       ? data.recent
       : []
   );
@@ -1730,6 +2402,7 @@ function renderRecent(items){
       function(item){
 
         return `
+
           <div class="activity-row">
 
             <div class="check">
@@ -1753,6 +2426,7 @@ function renderRecent(items){
             </div>
 
           </div>
+
         `;
 
       }
@@ -1777,7 +2451,9 @@ function loadEventName(){
 
 
   const script =
-    document.createElement("script");
+    document.createElement(
+      "script"
+    );
 
 
   let finished = false;
@@ -1786,6 +2462,7 @@ function loadEventName(){
   function finish(){
 
     if(finished) return;
+
 
     finished = true;
 
@@ -1801,22 +2478,28 @@ function loadEventName(){
 
     try{
 
-      delete window[callbackName];
+      delete window[
+        callbackName
+      ];
 
     }catch(e){
 
-      window[callbackName] =
-        undefined;
+      window[
+        callbackName
+      ] = undefined;
 
     }
 
   }
 
 
-  window[callbackName] =
+  window[
+    callbackName
+  ] =
     function(data){
 
       if(finished) return;
+
 
       finish();
 
@@ -1837,7 +2520,10 @@ function loadEventName(){
           "eventIdDisplay"
         ).textContent =
           "Event ID · " +
-          (data.eventId || eventId);
+          (
+            data.eventId ||
+            eventId
+          );
 
 
         return;
@@ -1858,6 +2544,7 @@ function loadEventName(){
 
       finish();
 
+
       document.getElementById(
         "eventName"
       ).textContent =
@@ -1877,9 +2564,13 @@ function loadEventName(){
     Date.now();
 
 
-  script.src = url;
+  script.src =
+    url;
 
-  document.head.appendChild(script);
+
+  document.head.appendChild(
+    script
+  );
 
 
   setTimeout(
@@ -1887,7 +2578,9 @@ function loadEventName(){
 
       if(finished) return;
 
+
       finish();
+
 
       document.getElementById(
         "eventName"
@@ -1926,6 +2619,7 @@ function loadEmailParticipants(){
 
 
   area.innerHTML = `
+
     <div class="email-loading">
 
       <div class="email-spinner"></div>
@@ -1933,6 +2627,7 @@ function loadEmailParticipants(){
       Loading participants...
 
     </div>
+
   `;
 
 
@@ -1946,7 +2641,9 @@ function loadEmailParticipants(){
 
 
   const script =
-    document.createElement("script");
+    document.createElement(
+      "script"
+    );
 
 
   let finished = false;
@@ -1955,6 +2652,7 @@ function loadEmailParticipants(){
   function finish(){
 
     if(finished) return;
+
 
     finished = true;
 
@@ -1970,22 +2668,28 @@ function loadEmailParticipants(){
 
     try{
 
-      delete window[callbackName];
+      delete window[
+        callbackName
+      ];
 
     }catch(e){
 
-      window[callbackName] =
-        undefined;
+      window[
+        callbackName
+      ] = undefined;
 
     }
 
   }
 
 
-  window[callbackName] =
+  window[
+    callbackName
+  ] =
     function(data){
 
       if(finished) return;
+
 
       finish();
 
@@ -1996,10 +2700,13 @@ function loadEmailParticipants(){
       ){
 
         area.innerHTML = `
+
           <div class="empty">
             Unable to load participants.
           </div>
+
         `;
+
 
         showEmailResult(
           "error",
@@ -2008,6 +2715,7 @@ function loadEmailParticipants(){
             ? data.message
             : "Unable to load participants."
         );
+
 
         return;
 
@@ -2022,6 +2730,21 @@ function loadEmailParticipants(){
           : [];
 
 
+      /*
+       * Fresh load.
+       *
+       * Reset pagination and selections
+       * because the Google Sheet may have
+       * changed since the last load.
+       */
+
+      emailCurrentPage =
+        1;
+
+
+      emailSelectedIndexes.clear();
+
+
       renderEmailParticipants();
 
     };
@@ -2034,9 +2757,11 @@ function loadEmailParticipants(){
 
 
       area.innerHTML = `
+
         <div class="empty">
           Unable to connect to EventOS.
         </div>
+
       `;
 
 
@@ -2059,9 +2784,13 @@ function loadEmailParticipants(){
     Date.now();
 
 
-  script.src = url;
+  script.src =
+    url;
 
-  document.head.appendChild(script);
+
+  document.head.appendChild(
+    script
+  );
 
 
   setTimeout(
@@ -2069,13 +2798,16 @@ function loadEmailParticipants(){
 
       if(finished) return;
 
+
       finish();
 
 
       area.innerHTML = `
+
         <div class="empty">
           Participant request timed out.
         </div>
+
       `;
 
 
@@ -2109,16 +2841,72 @@ function renderEmailParticipants(){
     emailParticipants.length;
 
 
+  updateEmailSummary();
+
+
   if(!emailParticipants.length){
 
     area.innerHTML =
       '<div class="empty">No participants found for this event.</div>';
 
+
     updateSelectedCount();
+
 
     return;
 
   }
+
+
+  const totalPages =
+    Math.ceil(
+      emailParticipants.length /
+      EMAIL_PAGE_SIZE
+    );
+
+
+  if(
+    emailCurrentPage >
+    totalPages
+  ){
+
+    emailCurrentPage =
+      totalPages;
+
+  }
+
+
+  if(
+    emailCurrentPage < 1
+  ){
+
+    emailCurrentPage =
+      1;
+
+  }
+
+
+  const startIndex =
+    (
+      emailCurrentPage -
+      1
+    ) *
+    EMAIL_PAGE_SIZE;
+
+
+  const endIndex =
+    Math.min(
+      startIndex +
+      EMAIL_PAGE_SIZE,
+      emailParticipants.length
+    );
+
+
+  const pageParticipants =
+    emailParticipants.slice(
+      startIndex,
+      endIndex
+    );
 
 
   area.innerHTML = `
@@ -2130,40 +2918,61 @@ function renderEmailParticipants(){
         <tr>
 
           <th class="check-cell">
+
             <input
               type="checkbox"
               id="emailSelectAll"
-              onchange="toggleAllParticipants(this.checked)">
+              onchange="toggleCurrentPage(this.checked)">
+
           </th>
+
 
           <th>
             Participant
           </th>
 
+
           <th>
             Email
           </th>
+
 
           <th>
             Check-in Code
           </th>
 
+
           <th>
             Status
+          </th>
+
+
+          <th>
+            QR Email
           </th>
 
         </tr>
 
       </thead>
 
+
       <tbody>
 
-        ${emailParticipants.map(
-          function(participant,index){
+        ${pageParticipants.map(
+          function(
+            participant,
+            pageIndex
+          ){
+
+            const globalIndex =
+              startIndex +
+              pageIndex;
+
 
             const status =
               String(
-                participant.status || ""
+                participant.status ||
+                ""
               ).trim();
 
 
@@ -2174,17 +2983,56 @@ function renderEmailParticipants(){
                 : "";
 
 
+            const qrStatus =
+              String(
+                participant.qrEmailStatus ||
+                "NOT SENT"
+              )
+              .trim()
+              .toUpperCase();
+
+
+            const qrClass =
+              qrStatus === "SENT"
+                ? "sent"
+                : qrStatus === "FAILED"
+                  ? "failed"
+                  : "not-sent";
+
+
+            const qrLabel =
+              qrStatus === "SENT"
+                ? "✓ SENT"
+                : qrStatus === "FAILED"
+                  ? "FAILED"
+                  : "NOT SENT";
+
+
+            const qrTime =
+              formatEmailSentAt(
+                participant.qrEmailSentAt
+              );
+
+
+            const isSelected =
+              emailSelectedIndexes.has(
+                globalIndex
+              );
+
+
             return `
 
               <tr>
+
 
                 <td class="check-cell">
 
                   <input
                     type="checkbox"
                     class="participant-check"
-                    data-index="${index}"
-                    onchange="updateSelectedCount()">
+                    data-index="${globalIndex}"
+                    ${isSelected ? "checked" : ""}
+                    onchange="handleParticipantCheckbox(this)">
 
                 </td>
 
@@ -2198,6 +3046,7 @@ function renderEmailParticipants(){
                     )}
 
                   </div>
+
 
                   <div class="participant-id">
 
@@ -2224,7 +3073,8 @@ function renderEmailParticipants(){
                   <strong>
 
                     ${escapeHtml(
-                      participant.checkInCode || "—"
+                      participant.checkInCode ||
+                      "—"
                     )}
 
                   </strong>
@@ -2238,12 +3088,41 @@ function renderEmailParticipants(){
                     class="status-pill ${checkedClass}">
 
                     ${escapeHtml(
-                      status || "REGISTERED"
+                      status ||
+                      "REGISTERED"
                     )}
 
                   </span>
 
                 </td>
+
+
+                <td>
+
+                  <span
+                    class="qr-email-status ${qrClass}">
+
+                    ${qrLabel}
+
+                  </span>
+
+
+                  ${
+                    qrTime
+                      ? `
+                        <div class="qr-email-time">
+
+                          ${escapeHtml(
+                            qrTime
+                          )}
+
+                        </div>
+                      `
+                      : ""
+                  }
+
+                </td>
+
 
               </tr>
 
@@ -2256,10 +3135,349 @@ function renderEmailParticipants(){
 
     </table>
 
+
+    <div class="email-pagination">
+
+
+      <div class="pagination-info">
+
+        Showing
+        ${startIndex + 1}–${endIndex}
+        of
+        ${emailParticipants.length}
+
+      </div>
+
+
+      <div class="pagination-buttons">
+
+
+        <button
+          type="button"
+          class="page-button"
+          onclick="changeEmailPage(${emailCurrentPage - 1})"
+          ${emailCurrentPage === 1 ? "disabled" : ""}>
+
+          ‹
+
+        </button>
+
+
+        ${renderPageButtons(
+          totalPages
+        )}
+
+
+        <button
+          type="button"
+          class="page-button"
+          onclick="changeEmailPage(${emailCurrentPage + 1})"
+          ${emailCurrentPage === totalPages ? "disabled" : ""}>
+
+          ›
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
   `;
 
 
+  updateCurrentPageCheckbox();
+
   updateSelectedCount();
+
+}
+
+
+/* =========================================================
+   EMAIL STATUS HELPERS
+   ========================================================= */
+
+function normalizeQRStatus(
+  participant
+){
+
+  return String(
+    participant.qrEmailStatus ||
+    ""
+  )
+  .trim()
+  .toUpperCase();
+
+}
+
+
+function isQREmailSent(
+  participant
+){
+
+  return normalizeQRStatus(
+    participant
+  ) === "SENT";
+
+}
+
+
+function formatEmailSentAt(
+  value
+){
+
+  if(!value){
+
+    return "";
+
+  }
+
+
+  const date =
+    new Date(value);
+
+
+  if(
+    isNaN(
+      date.getTime()
+    )
+  ){
+
+    return "";
+
+  }
+
+
+  return date.toLocaleString(
+    "en-IN",
+    {
+      day:"2-digit",
+      month:"short",
+      year:"numeric",
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+/* =========================================================
+   EMAIL SUMMARY
+   ========================================================= */
+
+function updateEmailSummary(){
+
+  let sent = 0;
+
+
+  emailParticipants.forEach(
+    function(participant){
+
+      if(
+        isQREmailSent(
+          participant
+        )
+      ){
+
+        sent++;
+
+      }
+
+    }
+  );
+
+
+  const total =
+    emailParticipants.length;
+
+
+  const pending =
+    Math.max(
+      0,
+      total -
+      sent
+    );
+
+
+  const sentElement =
+    document.getElementById(
+      "emailSentCount"
+    );
+
+
+  const pendingElement =
+    document.getElementById(
+      "emailPendingCount"
+    );
+
+
+  if(sentElement){
+
+    sentElement.textContent =
+      sent;
+
+  }
+
+
+  if(pendingElement){
+
+    pendingElement.textContent =
+      pending;
+
+  }
+
+
+  updateBatchInfo();
+
+}
+
+
+/* =========================================================
+   BATCH INFORMATION
+   ========================================================= */
+
+function updateBatchInfo(){
+
+  const selectedIndexes =
+    getSelectedParticipantIndexes();
+
+
+  const batchSelect =
+    document.getElementById(
+      "emailBatchSize"
+    );
+
+
+  const skipToggle =
+    document.getElementById(
+      "skipSentToggle"
+    );
+
+
+  const batchSize =
+    Number(
+      batchSelect
+        ? batchSelect.value
+        : 100
+    );
+
+
+  const skipSent =
+    skipToggle
+      ? skipToggle.checked
+      : true;
+
+
+  emailBatchSize =
+    batchSize;
+
+
+  skipSentEmails =
+    skipSent;
+
+
+  const eligible =
+    selectedIndexes.filter(
+      function(index){
+
+        const participant =
+          emailParticipants[index];
+
+
+        if(!participant){
+
+          return false;
+
+        }
+
+
+        if(
+          skipSent &&
+          isQREmailSent(
+            participant
+          )
+        ){
+
+          return false;
+
+        }
+
+
+        return true;
+
+      }
+    );
+
+
+  const nextBatch =
+    Math.min(
+      batchSize,
+      eligible.length
+    );
+
+
+  const readyElement =
+    document.getElementById(
+      "emailReadyCount"
+    );
+
+
+  const nextElement =
+    document.getElementById(
+      "emailNextBatchCount"
+    );
+
+
+  if(readyElement){
+
+    readyElement.textContent =
+      eligible.length;
+
+  }
+
+
+  if(nextElement){
+
+    nextElement.textContent =
+      nextBatch;
+
+  }
+
+
+  const warning =
+    document.getElementById(
+      "batchWarning"
+    );
+
+
+  if(warning){
+
+    if(
+      !skipSent &&
+      eligible.length
+    ){
+
+      warning.style.display =
+        "block";
+
+
+      warning.textContent =
+        "⚠ Skip SENT is OFF. Participants who already received a QR email may receive it again.";
+
+    }else{
+
+      warning.style.display =
+        "none";
+
+
+      warning.textContent =
+        "";
+
+    }
+
+  }
 
 }
 
@@ -2271,89 +3489,574 @@ function renderEmailParticipants(){
 function getSelectedParticipantIndexes(){
 
   return Array.from(
-    document.querySelectorAll(
-      ".participant-check:checked"
-    )
-  ).map(
-    function(box){
-
-      return Number(
-        box.dataset.index
-      );
-
-    }
+    emailSelectedIndexes
   );
 
 }
 
 
+/* =========================================================
+   CHECKBOX CHANGE
+   ========================================================= */
+
+function handleParticipantCheckbox(
+  box
+){
+
+  const index =
+    Number(
+      box.dataset.index
+    );
+
+
+  if(box.checked){
+
+    emailSelectedIndexes.add(
+      index
+    );
+
+  }else{
+
+    emailSelectedIndexes.delete(
+      index
+    );
+
+  }
+
+
+  updateSelectedCount();
+
+}
+
+
+/* =========================================================
+   CURRENT PAGE SELECT ALL
+   ========================================================= */
+
+function toggleCurrentPage(
+  checked
+){
+
+  const startIndex =
+    (
+      emailCurrentPage -
+      1
+    ) *
+    EMAIL_PAGE_SIZE;
+
+
+  const endIndex =
+    Math.min(
+      startIndex +
+      EMAIL_PAGE_SIZE,
+      emailParticipants.length
+    );
+
+
+  for(
+    let i = startIndex;
+    i < endIndex;
+    i++
+  ){
+
+    if(checked){
+
+      emailSelectedIndexes.add(
+        i
+      );
+
+    }else{
+
+      emailSelectedIndexes.delete(
+        i
+      );
+
+    }
+
+  }
+
+
+  renderEmailParticipants();
+
+}
+
+
+/* =========================================================
+   GLOBAL SELECT ALL
+   ========================================================= */
+
+function selectAllParticipants(){
+
+  emailParticipants.forEach(
+    function(
+      participant,
+      index
+    ){
+
+      emailSelectedIndexes.add(
+        index
+      );
+
+    }
+  );
+
+
+  renderEmailParticipants();
+
+}
+
+
+/* =========================================================
+   CLEAR ALL
+   ========================================================= */
+
+function clearParticipantSelection(){
+
+  emailSelectedIndexes.clear();
+
+
+  renderEmailParticipants();
+
+}
+
+
+/* =========================================================
+   SELECTED COUNT
+   ========================================================= */
+
 function updateSelectedCount(){
 
   const selected =
-    getSelectedParticipantIndexes();
+    emailSelectedIndexes.size;
 
 
   document.getElementById(
     "emailSelectedCount"
   ).textContent =
-    selected.length;
+    selected;
 
 
-  const selectAll =
+  updateCurrentPageCheckbox();
+
+  updateBatchInfo();
+
+}
+
+
+/* =========================================================
+   CURRENT PAGE HEADER CHECKBOX
+   ========================================================= */
+
+function updateCurrentPageCheckbox(){
+
+  const checkbox =
     document.getElementById(
       "emailSelectAll"
     );
 
 
-  if(selectAll){
+  if(!checkbox){
 
-    selectAll.checked =
-      emailParticipants.length > 0 &&
-      selected.length ===
-        emailParticipants.length;
+    return;
 
   }
 
-}
+
+  const startIndex =
+    (
+      emailCurrentPage -
+      1
+    ) *
+    EMAIL_PAGE_SIZE;
 
 
-function updateSelectedCountAlias(){
-
-  updateSelectedCount();
-
-}
-
-
-function toggleAllParticipants(checked){
-
-  document
-    .querySelectorAll(
-      ".participant-check"
-    )
-    .forEach(
-      function(box){
-
-        box.checked = checked;
-
-      }
+  const endIndex =
+    Math.min(
+      startIndex +
+      EMAIL_PAGE_SIZE,
+      emailParticipants.length
     );
 
 
-  updateSelectedCount();
+  const pageCount =
+    Math.max(
+      0,
+      endIndex -
+      startIndex
+    );
+
+
+  let selectedCount = 0;
+
+
+  for(
+    let i = startIndex;
+    i < endIndex;
+    i++
+  ){
+
+    if(
+      emailSelectedIndexes.has(i)
+    ){
+
+      selectedCount++;
+
+    }
+
+  }
+
+
+  checkbox.checked =
+    pageCount > 0 &&
+    selectedCount ===
+      pageCount;
+
+
+  checkbox.indeterminate =
+    selectedCount > 0 &&
+    selectedCount < pageCount;
 
 }
 
 
-function selectAllParticipants(){
+/* =========================================================
+   PAGINATION
+   ========================================================= */
 
-  toggleAllParticipants(true);
+function changeEmailPage(
+  page
+){
+
+  const totalPages =
+    Math.max(
+      1,
+      Math.ceil(
+        emailParticipants.length /
+        EMAIL_PAGE_SIZE
+      )
+    );
+
+
+  if(page < 1){
+
+    page = 1;
+
+  }
+
+
+  if(
+    page > totalPages
+  ){
+
+    page =
+      totalPages;
+
+  }
+
+
+  emailCurrentPage =
+    page;
+
+
+  renderEmailParticipants();
 
 }
 
 
-function clearParticipantSelection(){
+/* =========================================================
+   PAGE BUTTONS
+   ========================================================= */
 
-  toggleAllParticipants(false);
+function renderPageButtons(
+  totalPages
+){
+
+  let html = "";
+
+
+  let startPage =
+    Math.max(
+      1,
+      emailCurrentPage -
+      2
+    );
+
+
+  let endPage =
+    Math.min(
+      totalPages,
+      emailCurrentPage +
+      2
+    );
+
+
+  if(startPage > 1){
+
+    html += `
+
+      <button
+        type="button"
+        class="page-button"
+        onclick="changeEmailPage(1)">
+
+        1
+
+      </button>
+
+    `;
+
+
+    if(startPage > 2){
+
+      html += `
+
+        <span class="pagination-info">
+          …
+        </span>
+
+      `;
+
+    }
+
+  }
+
+
+  for(
+    let page = startPage;
+    page <= endPage;
+    page++
+  ){
+
+    html += `
+
+      <button
+        type="button"
+        class="page-button ${
+          page === emailCurrentPage
+            ? "active"
+            : ""
+        }"
+        onclick="changeEmailPage(${page})">
+
+        ${page}
+
+      </button>
+
+    `;
+
+  }
+
+
+  if(
+    endPage <
+    totalPages
+  ){
+
+    if(
+      endPage <
+      totalPages -
+      1
+    ){
+
+      html += `
+
+        <span class="pagination-info">
+          …
+        </span>
+
+      `;
+
+    }
+
+
+    html += `
+
+      <button
+        type="button"
+        class="page-button"
+        onclick="changeEmailPage(${totalPages})">
+
+        ${totalPages}
+
+      </button>
+
+    `;
+
+  }
+
+
+  return html;
+
+}
+
+
+/* =========================================================
+   MARK QR EMAIL SENT
+   ========================================================= */
+
+function markQREmailSent(
+  participant
+){
+
+  return new Promise(
+    function(
+      resolve,
+      reject
+    ){
+
+      const callbackName =
+        "parsdoMarkEmailSent_" +
+        Date.now() +
+        "_" +
+        Math.random()
+          .toString(36)
+          .substring(2,8);
+
+
+      const script =
+        document.createElement(
+          "script"
+        );
+
+
+      let finished = false;
+
+
+      function finish(){
+
+        if(finished) return;
+
+
+        finished = true;
+
+
+        if(script.parentNode){
+
+          script.parentNode.removeChild(
+            script
+          );
+
+        }
+
+
+        try{
+
+          delete window[
+            callbackName
+          ];
+
+        }catch(e){
+
+          window[
+            callbackName
+          ] = undefined;
+
+        }
+
+      }
+
+
+      window[
+        callbackName
+      ] =
+        function(data){
+
+          if(finished) return;
+
+
+          finish();
+
+
+          if(
+            data &&
+            data.success === true
+          ){
+
+            resolve(
+              data
+            );
+
+          }else{
+
+            reject(
+              new Error(
+                data &&
+                data.message
+                  ? data.message
+                  : "Unable to save email status."
+              )
+            );
+
+          }
+
+        };
+
+
+      script.onerror =
+        function(){
+
+          finish();
+
+
+          reject(
+            new Error(
+              "Unable to connect to the email status service."
+            )
+          );
+
+        };
+
+
+      const participantEventId =
+        participant.eventId ||
+        eventId;
+
+
+      script.src =
+        DASHBOARD_BASE +
+        "?action=markQREmailSent" +
+        "&event=" +
+        encodeURIComponent(
+          participantEventId
+        ) +
+        "&participantId=" +
+        encodeURIComponent(
+          participant.participantId
+        ) +
+        "&callback=" +
+        encodeURIComponent(
+          callbackName
+        ) +
+        "&_=" +
+        Date.now();
+
+
+      document.head.appendChild(
+        script
+      );
+
+
+      setTimeout(
+        function(){
+
+          if(finished) return;
+
+
+          finish();
+
+
+          reject(
+            new Error(
+              "Email status update timed out."
+            )
+          );
+
+        },
+        10000
+      );
+
+    }
+  );
 
 }
 
@@ -2385,7 +4088,7 @@ function showEmailResult(
 
 
 /* =========================================================
-   SEND PARTICIPANT EMAILS
+   SEND QR EMAIL BATCH
    ========================================================= */
 
 async function sendParticipantEmails(){
@@ -2398,7 +4101,7 @@ async function sendParticipantEmails(){
 
     showEmailResult(
       "warning",
-      "Please select at least one participant."
+      "Please click Select All or select at least one participant."
     );
 
     return;
@@ -2446,34 +4149,122 @@ async function sendParticipantEmails(){
   }
 
 
-  const selected =
-    selectedIndexes.map(
+  const batchSize =
+    Number(
+      document.getElementById(
+        "emailBatchSize"
+      ).value ||
+      100
+    );
+
+
+  const skipSent =
+    document.getElementById(
+      "skipSentToggle"
+    ).checked;
+
+
+  /*
+   * Find all selected participants
+   * that are eligible for sending.
+   */
+
+  const eligibleIndexes =
+    selectedIndexes.filter(
       function(index){
 
-        return emailParticipants[index];
+        const participant =
+          emailParticipants[index];
+
+
+        if(!participant){
+
+          return false;
+
+        }
+
+
+        if(
+          skipSent &&
+          isQREmailSent(
+            participant
+          )
+        ){
+
+          return false;
+
+        }
+
+
+        return true;
+
+      }
+    );
+
+
+  if(!eligibleIndexes.length){
+
+    showEmailResult(
+      "success",
+      skipSent
+        ? "All selected participants have already received their QR email."
+        : "No participants are available to send."
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+   * Only send the next selected batch.
+   */
+
+  const batchIndexes =
+    eligibleIndexes.slice(
+      0,
+      batchSize
+    );
+
+
+  const selected =
+    batchIndexes.map(
+      function(index){
+
+        return emailParticipants[
+          index
+        ];
 
       }
     );
 
 
   /*
-   * Only send the data Lambda actually needs.
+   * Lambda receives ONLY the data
+   * it needs.
    *
-   * QR will be generated by Lambda from
-   * checkInCode.
+   * QR is generated by Lambda using
+   * the 6-character checkInCode.
    *
    * No Apps Script URL.
    * No token.
+   * No QR URL.
    */
-
 
   const payload = {
 
-    eventId: eventId,
+    eventId:
+      eventId,
 
-    subject: subject,
 
-    message: message,
+    subject:
+      subject,
+
+
+    message:
+      message,
+
 
     participants:
       selected.map(
@@ -2484,15 +4275,19 @@ async function sendParticipantEmails(){
             participantId:
               participant.participantId,
 
+
             eventId:
               participant.eventId ||
               eventId,
 
+
             name:
               participant.name,
 
+
             email:
               participant.email,
+
 
             checkInCode:
               participant.checkInCode
@@ -2511,7 +4306,9 @@ async function sendParticipantEmails(){
     );
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
+
 
   button.textContent =
     "Sending…";
@@ -2519,7 +4316,7 @@ async function sendParticipantEmails(){
 
   showEmailResult(
     "warning",
-    "Sending email to " +
+    "Sending QR email to " +
     selected.length +
     " participant(s)…"
   );
@@ -2533,16 +4330,24 @@ async function sendParticipantEmails(){
         {
           method:"POST",
 
+
           headers:{
+
             "Content-Type":
               "application/json",
-              "X-EventOS-Secret": EVENTOS_SECRET
+
+
+            "X-EventOS-Secret":
+              EVENTOS_SECRET
+
           },
+
 
           body:
             JSON.stringify(
               payload
             )
+
         }
       );
 
@@ -2552,33 +4357,429 @@ async function sendParticipantEmails(){
 
 
     if(
-      response.ok &&
-      result &&
+      !response.ok ||
+      !result
+    ){
+
+      throw new Error(
+        result &&
+        result.message
+          ? result.message
+          : "Email sending failed."
+      );
+
+    }
+
+
+    /*
+     * Determine which participants
+     * were actually sent successfully.
+     */
+
+    let successfulResults =
+      [];
+
+
+    if(
+      Array.isArray(
+        result.results
+      )
+    ){
+
+      successfulResults =
+        result.results.filter(
+          function(item){
+
+            return item &&
+              item.success === true;
+
+          }
+        );
+
+
+    }else if(
       result.success === true
+    ){
+
+      /*
+       * Fallback for a successful
+       * Lambda response without
+       * individual result objects.
+       */
+
+      successfulResults =
+        selected.map(
+          function(participant){
+
+            return {
+
+              participantId:
+                participant.participantId,
+
+
+              success:
+                true
+
+            };
+
+          }
+        );
+
+    }
+
+
+    /*
+     * If nothing succeeded,
+     * do not update the sheet.
+     */
+
+    if(
+      !successfulResults.length
+    ){
+
+      showEmailResult(
+        "error",
+        result.message ||
+        "No emails were sent successfully."
+      );
+
+
+      return;
+
+    }
+
+
+    /* =====================================================
+       SAVE SENT STATUS
+       ===================================================== */
+
+    let statusSaved = 0;
+
+    let statusFailed = 0;
+
+
+    for(
+      const sentItem of
+      successfulResults
+    ){
+
+      const participantIndex =
+        batchIndexes.find(
+          function(index){
+
+            return String(
+              emailParticipants[
+                index
+              ]?.participantId
+            ) ===
+            String(
+              sentItem.participantId
+            );
+
+          }
+        );
+
+
+      if(
+        participantIndex ===
+        undefined
+      ){
+
+        continue;
+
+      }
+
+
+      const participant =
+        emailParticipants[
+          participantIndex
+        ];
+
+
+      try{
+
+        /*
+         * Persist SENT to Google Sheet.
+         */
+
+        await markQREmailSent(
+          participant
+        );
+
+
+        /*
+         * Only update local UI
+         * after persistence succeeds.
+         */
+
+        participant.qrEmailStatus =
+          "SENT";
+
+
+        participant.qrEmailSentAt =
+          new Date().toISOString();
+
+
+        statusSaved++;
+
+
+      }catch(error){
+
+        console.error(
+          "Unable to save QR email status:",
+          error
+        );
+
+
+        statusFailed++;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       REMOVE SUCCESSFULLY SENT PARTICIPANTS
+       FROM GLOBAL SELECTION
+       ===================================================== */
+
+    successfulResults.forEach(
+      function(sentItem){
+
+        const participantIndex =
+          batchIndexes.find(
+            function(index){
+
+              return String(
+                emailParticipants[
+                  index
+                ]?.participantId
+              ) ===
+              String(
+                sentItem.participantId
+              );
+
+            }
+          );
+
+
+        if(
+          participantIndex !==
+          undefined
+        ){
+
+          /*
+           * Email was already sent.
+           *
+           * Remove it from selection so
+           * the next batch won't resend it.
+           */
+
+          emailSelectedIndexes.delete(
+            participantIndex
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       MARK FAILED RESULTS
+       ===================================================== */
+
+    if(
+      Array.isArray(
+        result.results
+      )
+    ){
+
+      result.results
+        .filter(
+          function(item){
+
+            return item &&
+              item.success === false;
+
+          }
+        )
+        .forEach(
+          function(failedItem){
+
+            const failedIndex =
+              batchIndexes.find(
+                function(index){
+
+                  return String(
+                    emailParticipants[
+                      index
+                    ]?.participantId
+                  ) ===
+                  String(
+                    failedItem.participantId
+                  );
+
+                }
+              );
+
+
+            if(
+              failedIndex !==
+              undefined
+            ){
+
+              emailParticipants[
+                failedIndex
+              ].qrEmailStatus =
+                "FAILED";
+
+            }
+
+          }
+        );
+
+    }
+
+
+    /*
+     * Refresh counts and table.
+     */
+
+    updateEmailSummary();
+
+    renderEmailParticipants();
+
+
+    const sentCount =
+      successfulResults.length;
+
+
+    const failedCount =
+      Array.isArray(
+        result.results
+      )
+        ? result.results.filter(
+            function(item){
+
+              return item &&
+                item.success === false;
+
+            }
+          ).length
+        : 0;
+
+
+    /*
+     * Calculate remaining selected
+     * eligible participants.
+     */
+
+    const remainingEligible =
+      getSelectedParticipantIndexes()
+        .filter(
+          function(index){
+
+            const participant =
+              emailParticipants[
+                index
+              ];
+
+
+            if(!participant){
+
+              return false;
+
+            }
+
+
+            if(
+              skipSent &&
+              isQREmailSent(
+                participant
+              )
+            ){
+
+              return false;
+
+            }
+
+
+            return true;
+
+          }
+        ).length;
+
+
+    /* =====================================================
+       RESULT MESSAGE
+       ===================================================== */
+
+    if(
+      statusFailed > 0 &&
+      failedCount > 0
+    ){
+
+      showEmailResult(
+        "warning",
+        sentCount +
+        " QR email(s) sent. " +
+        statusSaved +
+        " status update(s) saved. " +
+        statusFailed +
+        " status update(s) failed. " +
+        failedCount +
+        " email(s) failed."
+      );
+
+
+    }else if(
+      statusFailed > 0
+    ){
+
+      showEmailResult(
+        "warning",
+        sentCount +
+        " QR email(s) sent. " +
+        statusSaved +
+        " status update(s) saved, but " +
+        statusFailed +
+        " status update(s) could not be saved."
+      );
+
+
+    }else if(
+      failedCount > 0
+    ){
+
+      showEmailResult(
+        "warning",
+        sentCount +
+        " QR email(s) sent and status saved. " +
+        failedCount +
+        " email(s) failed."
+      );
+
+
+    }else if(
+      remainingEligible > 0
     ){
 
       showEmailResult(
         "success",
-        result.message ||
-        (
-          "Email sent successfully to " +
-          selected.length +
-          " participant(s)."
-        )
+        sentCount +
+        " QR email(s) sent and status saved. " +
+        remainingEligible +
+        " participant(s) remain selected for the next batch."
       );
-
-
-      clearParticipantSelection();
 
 
     }else{
 
       showEmailResult(
-        "error",
-        result &&
-        result.message
-          ? result.message
-          : "Email sending failed."
+        "success",
+        sentCount +
+        " QR email(s) sent and status saved successfully."
       );
 
     }
@@ -2594,16 +4795,60 @@ async function sendParticipantEmails(){
 
     showEmailResult(
       "error",
-      "Unable to connect to the email service."
+      error &&
+      error.message
+        ? error.message
+        : "Unable to connect to the email service."
     );
 
 
   }finally{
 
-    button.disabled = false;
+    button.disabled =
+      false;
+
+
+    updateBatchInfo();
+
+
+    /*
+     * Decide whether the next click
+     * should say Send Next Batch.
+     */
+
+    const remaining =
+      getSelectedParticipantIndexes()
+        .filter(
+          function(index){
+
+            const participant =
+              emailParticipants[
+                index
+              ];
+
+
+            if(!participant){
+
+              return false;
+
+            }
+
+
+            return (
+              !skipSentEmails ||
+              !isQREmailSent(
+                participant
+              )
+            );
+
+          }
+        ).length;
+
 
     button.textContent =
-      "✉ Send Email";
+      remaining > 0
+        ? "✉ Send Next Batch"
+        : "✉ Send QR Emails";
 
   }
 
@@ -2624,7 +4869,8 @@ function init(){
     "eventIdDisplay"
   ).textContent =
     eventId
-      ? "Event ID · " + eventId
+      ? "Event ID · " +
+        eventId
       : "";
 
 
@@ -2642,12 +4888,14 @@ function init(){
       "Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
     );
 
+
     return;
 
   }
 
 
   loadEventName();
+
 
   loadDashboard();
 
@@ -2672,14 +4920,22 @@ function init(){
     ).get("view");
 
 
-  if(view === "email"){
+  if(
+    view === "email"
+  ){
 
-    showView("email");
+    showView(
+      "email"
+    );
 
   }
 
 }
 
+
+/* =========================================================
+   START
+   ========================================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
