@@ -3,3129 +3,2688 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#087f7a">
 <title>ParsDo EventOS - Organizer Dashboard</title>
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Inter, Arial, Helvetica, sans-serif;
-    background: #f4f7f9;
-    color: #17212b;
-  }
-
-  button,
-  select,
-  input,
-  textarea {
-    font: inherit;
-  }
-
-  .app {
-    min-height: 100vh;
-  }
-
-  /* =========================
-     HEADER
-  ========================= */
-
-  .topbar {
-    background: linear-gradient(135deg, #062d35, #087f8c);
-    color: white;
-    padding: 18px 28px;
-    box-shadow: 0 4px 18px rgba(0,0,0,.12);
-  }
-
-  .topbar-inner {
-    max-width: 1400px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .brand-logo {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #087f8c;
-    font-size: 20px;
-    font-weight: 800;
-  }
-
-  .brand-text h1 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 800;
-  }
-
-  .brand-text span {
-    display: block;
-    margin-top: 3px;
-    font-size: 12px;
-    opacity: .8;
-  }
-
-  .event-box {
-    text-align: right;
-  }
-
-  .event-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    opacity: .7;
-  }
-
-  .event-name {
-    font-size: 15px;
-    font-weight: 700;
-    margin-top: 3px;
-  }
-
-  /* =========================
-     MAIN
-  ========================= */
-
-  .container {
-    max-width: 1400px;
-    margin: auto;
-    padding: 28px;
-  }
-
-  /* =========================
-     TABS
-  ========================= */
-
-  .tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 24px;
-  }
-
-  .tab-button {
-    border: none;
-    background: white;
-    color: #50616b;
-    padding: 12px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(0,0,0,.05);
-    transition: .2s;
-  }
-
-  .tab-button:hover {
-    transform: translateY(-1px);
-  }
-
-  .tab-button.active {
-    background: #087f8c;
-    color: white;
-  }
-
-  .tab {
-    display: none;
-  }
-
-  .tab.active {
-    display: block;
-  }
-
-  /* =========================
-     CARDS
-  ========================= */
-
-  .card {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(19,44,53,.07);
-    border: 1px solid #e7edef;
-  }
-
-  .card-header {
-    padding: 20px 22px;
-    border-bottom: 1px solid #edf1f2;
-  }
-
-  .card-header h2 {
-    margin: 0;
-    font-size: 17px;
-  }
-
-  .card-header p {
-    margin: 5px 0 0;
-    color: #728089;
-    font-size: 13px;
-  }
-
-  .card-body {
-    padding: 22px;
-  }
-
-  /* =========================
-     STATS
-  ========================= */
-
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 24px;
-  }
-
-  .stat-card {
-    background: white;
-    border-radius: 16px;
-    padding: 22px;
-    border: 1px solid #e7edef;
-    box-shadow: 0 5px 20px rgba(19,44,53,.06);
-  }
-
-  .stat-label {
-    color: #7b8991;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: .06em;
-  }
-
-  .stat-value {
-    font-size: 30px;
-    font-weight: 800;
-    margin-top: 8px;
-    color: #12333a;
-  }
-
-  .stat-sub {
-    font-size: 12px;
-    color: #7c8990;
-    margin-top: 4px;
-  }
-
-  /* =========================
-     DASHBOARD GRID
-  ========================= */
-
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 24px;
-  }
-
-  /* =========================
-     ACTIVITY
-  ========================= */
-
-  .activity-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-
-  .activity-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid #edf1f2;
-  }
-
-  .activity-item:last-child {
-    border-bottom: none;
-  }
-
-  .activity-name {
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  .activity-id {
-    font-size: 12px;
-    color: #819098;
-    margin-top: 3px;
-  }
-
-  .activity-time {
-    font-size: 12px;
-    color: #75838b;
-    white-space: nowrap;
-  }
-
-  /* =========================
-     EMAIL SUMMARY
-  ========================= */
-
-  .email-summary {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-
-  .email-summary-box {
-    border-radius: 12px;
-    padding: 17px;
-    background: #f7fafb;
-    border: 1px solid #e6edef;
-  }
-
-  .email-summary-label {
-    font-size: 11px;
-    color: #7c8a91;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-  }
-
-  .email-summary-value {
-    margin-top: 6px;
-    font-size: 25px;
-    font-weight: 800;
-    color: #12343b;
-  }
-
-  /* =========================
-     COMPOSER
-  ========================= */
-
-  .composer {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .field label {
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    color: #4e6068;
-    margin-bottom: 7px;
-  }
-
-  .field input,
-  .field textarea,
-  .field select {
-    width: 100%;
-    border: 1px solid #dbe4e7;
-    border-radius: 10px;
-    padding: 12px 13px;
-    outline: none;
-    background: white;
-    color: #1d2c32;
-  }
-
-  .field input:focus,
-  .field textarea:focus,
-  .field select:focus {
-    border-color: #087f8c;
-    box-shadow: 0 0 0 3px rgba(8,127,140,.08);
-  }
-
-  .field textarea {
-    min-height: 130px;
-    resize: vertical;
-  }
-
-  /* =========================
-     CONTROLS
-  ========================= */
-
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  .btn {
-    border: none;
-    border-radius: 10px;
-    padding: 11px 17px;
-    cursor: pointer;
-    font-weight: 700;
-    transition: .2s;
-  }
-
-  .btn:hover:not(:disabled) {
-    transform: translateY(-1px);
-  }
-
-  .btn:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-  }
-
-  .btn-primary {
-    background: #087f8c;
-    color: white;
-  }
-
-  .btn-secondary {
-    background: #edf3f4;
-    color: #28454c;
-  }
-
-  .btn-danger {
-    background: #fff0f0;
-    color: #b33a3a;
-  }
-
-  .batch-select {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .batch-select label {
-    font-size: 12px;
-    color: #62727a;
-    font-weight: 700;
-  }
-
-  .batch-select select {
-    padding: 10px 12px;
-    border: 1px solid #d9e4e7;
-    border-radius: 9px;
-    background: white;
-  }
-
-  /* =========================
-     TOGGLE
-  ========================= */
-
-  .toggle-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-left: 5px;
-  }
-
-  .toggle {
-    position: relative;
-    width: 44px;
-    height: 24px;
-  }
-
-  .toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    inset: 0;
-    background: #ccd7da;
-    border-radius: 20px;
-    transition: .2s;
-  }
-
-  .slider:before {
-    content: "";
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    left: 3px;
-    top: 3px;
-    background: white;
-    border-radius: 50%;
-    transition: .2s;
-    box-shadow: 0 1px 4px rgba(0,0,0,.2);
-  }
-
-  .toggle input:checked + .slider {
-    background: #087f8c;
-  }
-
-  .toggle input:checked + .slider:before {
-    transform: translateX(20px);
-  }
-
-  .toggle-label {
-    font-size: 12px;
-    font-weight: 700;
-    color: #52656d;
-  }
-
-  /* =========================
-     PROGRESS
-  ========================= */
-
-  .progress-wrap {
-    margin-top: 20px;
-  }
-
-  .progress-top {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #64757d;
-    margin-bottom: 7px;
-  }
-
-  .progress {
-    height: 8px;
-    background: #e7edef;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .progress-bar {
-    height: 100%;
-    width: 0%;
-    background: #087f8c;
-    border-radius: 10px;
-    transition: width .3s;
-  }
-
-  /* =========================
-     TABLE
-  ========================= */
-
-  .table-card {
-    margin-top: 24px;
-  }
-
-  .table-wrap {
-    overflow-x: auto;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px;
-  }
-
-  th,
-  td {
-    padding: 14px 16px;
-    text-align: left;
-    border-bottom: 1px solid #edf1f2;
-    font-size: 13px;
-  }
-
-  th {
-    background: #f8fafb;
-    color: #6e7c83;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-  }
-
-  td {
-    color: #293c43;
-  }
-
-  .participant-name {
-    font-weight: 700;
-  }
-
-  .participant-id {
-    color: #849198;
-    font-size: 11px;
-    margin-top: 3px;
-  }
-
-  .code {
-    display: inline-block;
-    padding: 5px 9px;
-    border-radius: 7px;
-    background: #eef7f8;
-    color: #08737e;
-    font-family: monospace;
-    font-weight: 800;
-    letter-spacing: .08em;
-  }
-
-  /* =========================
-     STATUS
-  ========================= */
-
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border-radius: 20px;
-    padding: 5px 9px;
-    font-size: 11px;
-    font-weight: 800;
-  }
-
-  .status.checked {
-    background: #e8f7ef;
-    color: #23754b;
-  }
-
-  .status.pending {
-    background: #fff6df;
-    color: #967018;
-  }
-
-  .status.sent {
-    background: #e8f7ef;
-    color: #23754b;
-  }
-
-  .status.not-sent {
-    background: #f1f4f5;
-    color: #718088;
-  }
-
-  .status.failed {
-    background: #fff0f0;
-    color: #b23a3a;
-  }
-
-  /* =========================
-     PAGINATION
-  ========================= */
-
-  .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    padding: 17px 20px;
-    border-top: 1px solid #edf1f2;
-  }
-
-  .page-info {
-    font-size: 12px;
-    color: #718087;
-  }
-
-  .page-buttons {
-    display: flex;
-    gap: 7px;
-  }
-
-  .page-btn {
-    min-width: 34px;
-    height: 34px;
-    border: 1px solid #dce5e7;
-    border-radius: 8px;
-    background: white;
-    cursor: pointer;
-    font-weight: 700;
-    color: #52646b;
-  }
-
-  .page-btn.active {
-    background: #087f8c;
-    color: white;
-    border-color: #087f8c;
-  }
-
-  .page-btn:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-  }
-
-  /* =========================
-     EMPTY / LOADING
-  ========================= */
-
-  .empty {
-    text-align: center;
-    padding: 45px 20px;
-    color: #819098;
-    font-size: 14px;
-  }
-
-  .loading {
-    text-align: center;
-    padding: 35px;
-    color: #75858c;
-    font-size: 13px;
-  }
-
-  /* =========================
-     NOTIFICATION
-  ========================= */
-
-  .toast {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    max-width: 380px;
-    padding: 15px 18px;
-    border-radius: 12px;
-    background: #17373e;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,.2);
-    opacity: 0;
-    transform: translateY(15px);
-    pointer-events: none;
-    transition: .25s;
-    z-index: 9999;
-    font-size: 13px;
-    line-height: 1.45;
-  }
-
-  .toast.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .toast.success {
-    background: #176b55;
-  }
-
-  .toast.error {
-    background: #9e3535;
-  }
-
-  /* =========================
-     RESPONSIVE
-  ========================= */
-
-  @media (max-width: 1000px) {
-
-    .stats {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .dashboard-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 700px) {
-
-    .topbar {
-      padding: 15px;
-    }
-
-    .topbar-inner {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .event-box {
-      text-align: left;
-    }
-
-    .container {
-      padding: 16px;
-    }
-
-    .stats {
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .stat-card {
-      padding: 16px;
-    }
-
-    .stat-value {
-      font-size: 24px;
-    }
-
-    .email-summary {
-      grid-template-columns: 1fr;
-    }
-
-    .controls {
-      align-items: stretch;
-      flex-direction: column;
-    }
-
-    .btn {
-      width: 100%;
-    }
-
-    .batch-select,
-    .toggle-wrap {
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .pagination {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .page-buttons {
-      justify-content: center;
-    }
-  }
+:root{
+--teal:#18aaa2;
+--teal-dark:#087c78;
+--navy:#0b1f33;
+--navy2:#123b5b;
+--blue:#3b73d1;
+--orange:#e99543;
+--ink:#162f42;
+--muted:#71818c;
+--line:#e3ebef;
+--bg:#f2f6f8;
+--white:#fff;
+--success:#087a61;
+--danger:#a52d2d;
+--shadow:0 16px 42px rgba(13,42,61,.09);
+}
+
+*{
+box-sizing:border-box;
+}
+
+html,body{
+margin:0;
+min-height:100%;
+font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+color:var(--ink);
+}
+
+body{
+padding-bottom:36px;
+background:
+radial-gradient(circle at 8% 42%,rgba(24,170,162,.08),transparent 24%),
+radial-gradient(circle at 94% 62%,rgba(59,115,209,.07),transparent 26%),
+linear-gradient(145deg,#f8fafb,#eef4f7);
+overflow-x:hidden;
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+pointer-events:none;
+opacity:.32;
+background-image:
+linear-gradient(rgba(11,31,51,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(11,31,51,.035) 1px,transparent 1px);
+background-size:44px 44px;
+mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+
+body:after{
+content:"";
+position:fixed;
+right:-180px;
+top:280px;
+width:480px;
+height:480px;
+border-radius:50%;
+border:1px solid rgba(24,170,162,.07);
+box-shadow:
+0 0 0 50px rgba(24,170,162,.025),
+0 0 0 100px rgba(59,115,209,.018);
+pointer-events:none;
+z-index:-1;
+}
+
+.topbar{
+height:5px;
+background:linear-gradient(
+90deg,
+#e99543 0%,
+#18aaa2 35%,
+#3b73d1 70%,
+#18aaa2 100%
+);
+}
+
+.header{
+position:relative;
+overflow:hidden;
+color:#fff;
+padding:26px 20px 20px;
+background:
+radial-gradient(circle at 88% 20%,rgba(53,125,190,.34),transparent 30%),
+radial-gradient(circle at 62% 105%,rgba(24,170,162,.18),transparent 35%),
+linear-gradient(125deg,#071827 0%,#0b2942 52%,#123e5e 100%);
+box-shadow:0 18px 45px rgba(7,24,39,.22);
+}
+
+.header:before{
+content:"";
+position:absolute;
+right:-90px;
+top:-230px;
+width:560px;
+height:560px;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.09);
+box-shadow:
+0 0 0 48px rgba(255,255,255,.025),
+0 0 0 96px rgba(255,255,255,.016);
+}
+
+.header:after{
+content:"";
+position:absolute;
+left:44%;
+bottom:-120px;
+width:520px;
+height:190px;
+border-radius:50%;
+background:linear-gradient(
+90deg,
+rgba(24,170,162,.11),
+rgba(59,115,209,.07),
+transparent
+);
+transform:rotate(-8deg);
+filter:blur(1px);
+}
+
+.header-inner,
+.container{
+max-width:1080px;
+margin:auto;
+position:relative;
+z-index:1;
+}
+
+.brand-row{
+display:flex;
+align-items:center;
+gap:17px;
+}
+
+.logo-wrap{
+width:84px;
+height:54px;
+background:#fff;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+box-shadow:0 9px 24px rgba(0,0,0,.22);
+}
+
+.logo{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.eyebrow{
+font-size:10px;
+font-weight:800;
+letter-spacing:2.2px;
+text-transform:uppercase;
+color:#75d8d3;
+}
+
+.title{
+margin-top:2px;
+font-size:30px;
+font-weight:800;
+letter-spacing:-.7px;
+}
+
+.subtitle{
+margin-top:5px;
+font-size:13px;
+color:rgba(255,255,255,.68);
+}
+
+.event-row{
+margin-top:20px;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.event-name{
+font-size:23px;
+font-weight:760;
+letter-spacing:-.2px;
+}
+
+.event-id{
+margin-top:5px;
+font-size:11px;
+color:rgba(255,255,255,.52);
+letter-spacing:.6px;
+}
+
+.live{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:9px 14px;
+border-radius:999px;
+background:rgba(255,255,255,.075);
+border:1px solid rgba(255,255,255,.13);
+font-size:10px;
+font-weight:850;
+letter-spacing:1.4px;
+backdrop-filter:blur(12px);
+}
+
+.live-dot{
+width:8px;
+height:8px;
+border-radius:50%;
+background:#69e6b8;
+box-shadow:
+0 0 0 4px rgba(105,230,184,.12),
+0 0 12px rgba(105,230,184,.7);
+}
+
+/* =========================================================
+  MAIN NAV
+  ========================================================= */
+
+.dashboard-nav{
+max-width:1080px;
+margin:18px auto 0;
+padding:0 18px;
+}
+
+.nav-card{
+background:rgba(255,255,255,.94);
+border:1px solid var(--line);
+border-radius:16px;
+padding:6px;
+box-shadow:var(--shadow);
+display:flex;
+gap:6px;
+}
+
+.nav-button{
+flex:1;
+border:0;
+border-radius:11px;
+padding:12px 16px;
+background:transparent;
+color:var(--muted);
+font-size:12px;
+font-weight:800;
+cursor:pointer;
+}
+
+.nav-button.active{
+color:#fff;
+background:linear-gradient(135deg,#0b8a83,#066b67);
+box-shadow:0 7px 16px rgba(8,127,122,.18);
+}
+
+/* =========================================================
+  CONTAINER / CARDS
+  ========================================================= */
+
+.container{
+padding:0 18px;
+margin-top:17px;
+}
+
+.view{
+display:none;
+}
+
+.view.active{
+display:block;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:17px;
+}
+
+.card{
+background:rgba(255,255,255,.96);
+border:1px solid var(--line);
+border-radius:20px;
+box-shadow:var(--shadow);
+position:relative;
+overflow:hidden;
+}
+
+.stat{
+padding:23px 23px 22px;
+min-height:152px;
+}
+
+.stat:before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+bottom:0;
+width:4px;
+background:var(--teal);
+}
+
+.stat:nth-child(2):before{
+background:var(--blue);
+}
+
+.stat:nth-child(3):before{
+background:var(--orange);
+}
+
+.stat:after{
+content:"";
+position:absolute;
+right:-45px;
+top:-45px;
+width:145px;
+height:145px;
+border-radius:50%;
+background:radial-gradient(
+circle,
+rgba(24,170,162,.14),
+transparent 68%
+);
+}
+
+.stat:nth-child(2):after{
+background:radial-gradient(
+circle,
+rgba(59,115,209,.13),
+transparent 68%
+);
+}
+
+.stat:nth-child(3):after{
+background:radial-gradient(
+circle,
+rgba(233,149,67,.14),
+transparent 68%
+);
+}
+
+.stat-label{
+position:relative;
+z-index:1;
+color:var(--muted);
+font-size:10px;
+font-weight:850;
+letter-spacing:1.45px;
+text-transform:uppercase;
+}
+
+.stat-value{
+position:relative;
+z-index:1;
+margin-top:10px;
+font-size:43px;
+line-height:1;
+font-weight:820;
+letter-spacing:-2px;
+color:var(--teal-dark);
+}
+
+.stat:nth-child(2) .stat-value{
+color:var(--blue);
+}
+
+.stat:nth-child(3) .stat-value{
+color:#c9782d;
+}
+
+.stat-note{
+position:relative;
+z-index:1;
+margin-top:10px;
+color:var(--muted);
+font-size:12px;
+}
+
+/* =========================================================
+  ATTENDANCE
+  ========================================================= */
+
+.progress-card,
+.activity{
+margin-top:17px;
+padding:23px;
+}
+
+.progress-top,
+.activity-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:14px;
+}
+
+.section-title{
+font-size:15px;
+font-weight:800;
+color:var(--navy);
+}
+
+.percentage{
+color:var(--teal-dark);
+font-size:29px;
+font-weight:850;
+}
+
+.progress-track{
+height:13px;
+margin-top:16px;
+background:#e7eef1;
+border-radius:999px;
+overflow:hidden;
+box-shadow:inset 0 1px 3px rgba(11,31,51,.08);
+}
+
+.progress-fill{
+width:0;
+height:100%;
+border-radius:999px;
+background:linear-gradient(
+90deg,
+#087c78,
+#18aaa2,
+#3b73d1
+);
+box-shadow:0 2px 9px rgba(24,170,162,.25);
+transition:width .6s ease;
+}
+
+.progress-meta{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+color:var(--muted);
+font-size:11px;
+}
+
+.updated{
+color:var(--muted);
+font-size:11px;
+}
+
+/* =========================================================
+  ACTIVITY
+  ========================================================= */
+
+.activity-head{
+margin-bottom:12px;
+}
+
+.activity-list{
+display:flex;
+flex-direction:column;
+}
+
+.activity-row{
+display:grid;
+grid-template-columns:38px 1fr auto;
+gap:13px;
+align-items:center;
+padding:14px 4px;
+border-bottom:1px solid #edf2f4;
+}
+
+.activity-row:last-child{
+border-bottom:0;
+}
+
+.check{
+width:34px;
+height:34px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#eaf8f6;
+color:var(--teal-dark);
+border:1px solid #d5efed;
+font-weight:900;
+}
+
+.person-name{
+font-size:13px;
+font-weight:760;
+color:var(--ink);
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.person-id{
+margin-top:3px;
+color:var(--muted);
+font-size:10px;
+letter-spacing:.5px;
+}
+
+.time{
+color:var(--muted);
+font-size:11px;
+white-space:nowrap;
+}
+
+.empty{
+padding:30px 10px;
+text-align:center;
+color:var(--muted);
+font-size:13px;
+}
+
+.error{
+margin-top:17px;
+padding:14px 16px;
+border-radius:13px;
+background:#fff3f1;
+color:#a52d2d;
+border:1px solid #f0cccc;
+display:none;
+font-size:12px;
+}
+
+/* =========================================================
+  EMAIL DASHBOARD
+  ========================================================= */
+
+.email-toolbar{
+padding:21px;
+}
+
+.email-toolbar-top{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.email-heading{
+font-size:19px;
+font-weight:850;
+color:var(--navy);
+}
+
+.email-description{
+margin-top:5px;
+color:var(--muted);
+font-size:11px;
+}
+
+.email-actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.email-actions button{
+width:auto;
+min-height:40px;
+padding:10px 14px;
+}
+
+button{
+border:0;
+border-radius:12px;
+padding:12px 16px;
+font-size:12px;
+font-weight:800;
+cursor:pointer;
+transition:
+transform .12s ease,
+opacity .12s ease,
+box-shadow .12s ease;
+}
+
+button:active{
+transform:scale(.985);
+}
+
+button:disabled{
+opacity:.55;
+cursor:not-allowed;
+}
+
+button.primary{
+color:#fff;
+background:linear-gradient(135deg,#0b8a83,#066b67);
+box-shadow:0 9px 20px rgba(8,127,122,.20);
+}
+
+button.secondary{
+color:var(--ink);
+background:#edf3f2;
+}
+
+button.blue{
+color:#fff;
+background:linear-gradient(135deg,#3b73d1,#285ba9);
+}
+
+.email-summary{
+margin-top:17px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+padding:12px 15px;
+background:#f8fbfb;
+border:1px solid var(--line);
+border-radius:13px;
+}
+
+.email-count{
+font-size:11px;
+font-weight:800;
+color:var(--muted);
+}
+
+.email-count strong{
+color:var(--teal-dark);
+}
+
+.participant-table-wrap{
+margin-top:17px;
+overflow:auto;
+}
+
+.participant-table{
+width:100%;
+border-collapse:collapse;
+min-width:720px;
+}
+
+.participant-table th{
+text-align:left;
+padding:12px 13px;
+background:#f5f9f9;
+color:var(--muted);
+font-size:9px;
+font-weight:850;
+letter-spacing:1px;
+text-transform:uppercase;
+border-bottom:1px solid var(--line);
+}
+
+.participant-table td{
+padding:13px;
+border-bottom:1px solid #edf2f4;
+font-size:12px;
+vertical-align:middle;
+}
+
+.participant-table tr:last-child td{
+border-bottom:0;
+}
+
+.participant-table tbody tr:hover{
+background:#fbfdfd;
+}
+
+.participant-name{
+font-weight:780;
+color:var(--ink);
+}
+
+.participant-id{
+margin-top:3px;
+font-size:9px;
+color:var(--muted);
+letter-spacing:.5px;
+}
+
+.status-pill{
+display:inline-flex;
+padding:5px 8px;
+border-radius:999px;
+background:#edf5f4;
+color:var(--muted);
+font-size:8px;
+font-weight:850;
+letter-spacing:.6px;
+}
+
+.status-pill.checked{
+background:#e9faf4;
+color:#087a61;
+}
+
+.check-cell{
+width:38px;
+}
+
+.check-cell input{
+width:16px;
+height:16px;
+accent-color:var(--teal-dark);
+cursor:pointer;
+}
+
+.email-loading{
+padding:40px 20px;
+text-align:center;
+color:var(--muted);
+font-size:12px;
+}
+
+.email-spinner{
+width:28px;
+height:28px;
+border:3px solid #dcebea;
+border-top-color:var(--teal);
+border-radius:50%;
+margin:0 auto 12px;
+animation:emailSpin .8s linear infinite;
+}
+
+@keyframes emailSpin{
+to{transform:rotate(360deg)}
+}
+
+.email-form{
+margin-top:17px;
+padding:21px;
+}
+
+.email-form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+gap:7px;
+}
+
+.form-group.full{
+grid-column:1/-1;
+}
+
+.form-label{
+font-size:9px;
+font-weight:850;
+letter-spacing:1.2px;
+text-transform:uppercase;
+color:var(--muted);
+}
+
+.form-input,
+.form-textarea{
+width:100%;
+border:1px solid #dce6e5;
+border-radius:12px;
+padding:12px 13px;
+font:inherit;
+font-size:12px;
+color:var(--ink);
+background:#fbfdfd;
+outline:none;
+}
+
+.form-textarea{
+min-height:170px;
+resize:vertical;
+line-height:1.55;
+}
+
+.form-input:focus,
+.form-textarea:focus{
+border-color:#72bdb9;
+box-shadow:0 0 0 3px rgba(8,127,122,.08);
+}
+
+.email-send-row{
+margin-top:15px;
+display:flex;
+justify-content:flex-end;
+gap:9px;
+flex-wrap:wrap;
+}
+
+.email-result{
+margin-top:14px;
+padding:13px 15px;
+border-radius:12px;
+font-size:11px;
+display:none;
+}
+
+.email-result.success{
+display:block;
+background:#e9faf4;
+color:#087a61;
+border:1px solid #c9eee0;
+}
+
+.email-result.error{
+display:block;
+background:#fff3f1;
+color:#a52d2d;
+border:1px solid #f0cccc;
+}
+
+.email-result.warning{
+display:block;
+background:#fff8e6;
+color:#8a5a00;
+border:1px solid #f0dfad;
+}
+
+/* =========================================================
+  FOOTER
+  ========================================================= */
+
+.footer{
+margin-top:21px;
+text-align:center;
+color:#82909a;
+font-size:10px;
+letter-spacing:.7px;
+}
+
+.footer a{
+color:var(--teal-dark);
+text-decoration:none;
+font-weight:850;
+}
+
+/* =========================================================
+  RESPONSIVE
+  ========================================================= */
+
+@media(max-width:760px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.title{
+font-size:25px;
+}
+
+.event-name{
+font-size:18px;
+}
+
+.container{
+padding:0 13px;
+}
+
+.header{
+padding-left:17px;
+padding-right:17px;
+}
+
+.dashboard-nav{
+padding:0 13px;
+}
+
+.email-form-grid{
+grid-template-columns:1fr;
+}
+
+.form-group.full{
+grid-column:auto;
+}
+
+.email-actions{
+width:100%;
+}
+
+.email-actions button{
+flex:1;
+}
+}
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div class="topbar"></div>
 
-  <!-- =========================
-       HEADER
-  ========================= -->
+<header class="header">
+<div class="header-inner">
 
-  <header class="topbar">
-    <div class="topbar-inner">
+<div class="brand-row">
 
-      <div class="brand">
-        <div class="brand-logo">P</div>
+<div class="logo-wrap">
+<img
+class="logo"
+src="parsdo_logo.jpeg"
+alt="ParsDo">
+</div>
 
-        <div class="brand-text">
-          <h1>ParsDo EventOS</h1>
-          <span>Organizer Dashboard</span>
-        </div>
-      </div>
+<div>
+<div class="eyebrow">ParsDo EventOS</div>
 
-      <div class="event-box">
-        <div class="event-label">Active Event</div>
-        <div class="event-name" id="eventName">
-          Loading...
-        </div>
-      </div>
+<div class="title">
+Organizer Dashboard
+</div>
 
-    </div>
-  </header>
+<div class="subtitle">
+Live attendance, check-in & participant communication
+</div>
+</div>
 
+</div>
 
-  <main class="container">
-
-    <!-- =========================
-         TABS
-    ========================= -->
+<div class="event-row">
 
-    <div class="tabs">
+<div>
 
-      <button
-        class="tab-button active"
-        id="liveTabButton"
-        onclick="switchTab('live')">
-        Live Dashboard
-      </button>
+<div
+id="eventName"
+class="event-name">
+Loading event...
+</div>
 
-      <button
-        class="tab-button"
-        id="emailTabButton"
-        onclick="switchTab('email')">
-        Email Participants
-      </button>
+<div
+id="eventIdDisplay"
+class="event-id">
+</div>
 
-    </div>
+</div>
 
+<div class="live">
+<span class="live-dot"></span>
+EVENTOS
+</div>
 
-    <!-- =====================================================
-         LIVE DASHBOARD
-    ====================================================== -->
+</div>
 
-    <section
-      class="tab active"
-      id="liveTab">
+</div>
+</header>
 
-      <div class="stats">
 
-        <div class="stat-card">
-          <div class="stat-label">
-            Total Attendees
-          </div>
+<!-- =========================================================
+    NAVIGATION
+    ========================================================= -->
 
-          <div
-            class="stat-value"
-            id="totalCount">
-            0
-          </div>
+<div class="dashboard-nav">
 
-          <div class="stat-sub">
-            Registered participants
-          </div>
-        </div>
+<div class="nav-card">
 
+<button
+id="liveNav"
+class="nav-button active"
+type="button"
+onclick="showView('live')">
+📊 Live Dashboard
+</button>
 
-        <div class="stat-card">
-          <div class="stat-label">
-            Checked In
-          </div>
+<button
+id="emailNav"
+class="nav-button"
+type="button"
+onclick="showView('email')">
+✉ Email Participants
+</button>
 
-          <div
-            class="stat-value"
-            id="checkedInCount">
-            0
-          </div>
+</div>
 
-          <div class="stat-sub">
-            Successfully checked in
-          </div>
-        </div>
+</div>
 
 
-        <div class="stat-card">
-          <div class="stat-label">
-            Pending
-          </div>
+<main class="container">
 
-          <div
-            class="stat-value"
-            id="pendingCount">
-            0
-          </div>
 
-          <div class="stat-sub">
-            Yet to arrive
-          </div>
-        </div>
+<!-- =========================================================
+    LIVE DASHBOARD VIEW
+    ========================================================= -->
 
+<section
+id="liveView"
+class="view active">
 
-        <div class="stat-card">
-          <div class="stat-label">
-            Attendance
-          </div>
+<section class="grid">
 
-          <div
-            class="stat-value"
-            id="attendancePercent">
-            0%
-          </div>
+<div class="card stat">
 
-          <div class="stat-sub">
-            Current attendance rate
-          </div>
-        </div>
+<div class="stat-label">
+Total Registrations
+</div>
 
-      </div>
+<div
+id="total"
+class="stat-value">
+—
+</div>
 
+<div class="stat-note">
+Registered attendees
+</div>
 
-      <div class="dashboard-grid">
+</div>
 
-        <div class="card">
 
-          <div class="card-header">
-            <h2>Recent Check-ins</h2>
-            <p>Latest participant activity</p>
-          </div>
+<div class="card stat">
 
-          <div class="card-body">
+<div class="stat-label">
+Checked In
+</div>
 
-            <div id="activityContainer">
-              <div class="loading">
-                Loading activity...
-              </div>
-            </div>
+<div
+id="checkedIn"
+class="stat-value">
+—
+</div>
 
-          </div>
+<div class="stat-note">
+Attendance recorded
+</div>
 
-        </div>
+</div>
 
 
-        <div class="card">
+<div class="card stat">
 
-          <div class="card-header">
-            <h2>Event Status</h2>
-            <p>Current check-in overview</p>
-          </div>
+<div class="stat-label">
+Yet to Check In
+</div>
 
-          <div class="card-body">
+<div
+id="pending"
+class="stat-value">
+—
+</div>
 
-            <div class="progress-wrap">
+<div class="stat-note">
+Remaining attendees
+</div>
 
-              <div class="progress-top">
-                <span>Attendance</span>
+</div>
 
-                <span id="attendanceProgressText">
-                  0%
-                </span>
-              </div>
+</section>
 
-              <div class="progress">
-                <div
-                  class="progress-bar"
-                  id="attendanceProgress">
-                </div>
-              </div>
 
-            </div>
+<section class="card progress-card">
 
-            <div style="margin-top:28px">
+<div class="progress-top">
 
-              <div style="
-                font-size:12px;
-                color:#75858c;
-                margin-bottom:7px;
-              ">
-                Event ID
-              </div>
+<div class="section-title">
+Attendance Progress
+</div>
 
-              <div
-                id="displayEventId"
-                style="
-                  font-weight:800;
-                  color:#17373e;
-                ">
-                —
-              </div>
+<div
+id="attendance"
+class="percentage">
+0%
+</div>
 
-            </div>
+</div>
 
-          </div>
+<div class="progress-track">
 
-        </div>
+<div
+id="progressFill"
+class="progress-fill">
+</div>
 
-      </div>
+</div>
 
-    </section>
+<div class="progress-meta">
 
+<span id="progressLeft">
+0 checked in
+</span>
 
-    <!-- =====================================================
-         EMAIL DASHBOARD
-    ====================================================== -->
+<span id="progressRight">
+0 registered
+</span>
 
-    <section
-      class="tab"
-      id="emailTab">
+</div>
 
-      <!-- SUMMARY -->
+</section>
 
-      <div class="email-summary">
 
-        <div class="email-summary-box">
+<section class="card activity">
 
-          <div class="email-summary-label">
-            Total
-          </div>
+<div class="activity-head">
 
-          <div
-            class="email-summary-value"
-            id="emailTotal">
-            0
-          </div>
+<div class="section-title">
+Live Check-in Activity
+</div>
 
-        </div>
+<div
+id="updated"
+class="updated">
+Waiting for data...
+</div>
 
+</div>
 
-        <div class="email-summary-box">
+<div
+id="activityList"
+class="activity-list">
 
-          <div class="email-summary-label">
-            Sent
-          </div>
+<div class="empty">
+Loading live activity...
+</div>
 
-          <div
-            class="email-summary-value"
-            id="emailSent">
-            0
-          </div>
+</div>
 
-        </div>
+</section>
 
+</section>
 
-        <div class="email-summary-box">
 
-          <div class="email-summary-label">
-            Remaining
-          </div>
+<!-- =========================================================
+    EMAIL VIEW
+    ========================================================= -->
 
-          <div
-            class="email-summary-value"
-            id="emailRemaining">
-            0
-          </div>
+<section
+id="emailView"
+class="view">
 
-        </div>
 
-      </div>
+<section class="card email-toolbar">
 
+<div class="email-toolbar-top">
 
-      <!-- COMPOSER -->
+<div>
 
-      <div class="card">
+<div class="email-heading">
+Email Participants
+</div>
 
-        <div class="card-header">
+<div class="email-description">
+Select registered participants and send their EventOS invitation.
+</div>
 
-          <h2>Email Participants</h2>
+</div>
 
-          <p>
-            Send event check-in QR codes to participants.
-          </p>
 
-        </div>
+<div class="email-actions">
 
+<button
+class="secondary"
+type="button"
+onclick="loadEmailParticipants()">
+↻ Refresh
+</button>
 
-        <div class="card-body">
+<button
+class="secondary"
+type="button"
+onclick="selectAllParticipants()">
+Select All
+</button>
 
-          <div class="composer">
+<button
+class="secondary"
+type="button"
+onclick="clearParticipantSelection()">
+Clear
+</button>
 
-            <div class="field">
+</div>
 
-              <label for="emailSubject">
-                Subject
-              </label>
+</div>
 
-              <input
-                id="emailSubject"
-                type="text"
-                value="Your Event Check-in QR Code"
-                placeholder="Enter email subject">
 
-            </div>
+<div class="email-summary">
 
+<div class="email-count">
 
-            <div class="field">
+Participants:
+<strong id="emailParticipantCount">
+0
+</strong>
 
-              <label for="emailMessage">
-                Message
-              </label>
+</div>
 
-              <textarea
-                id="emailMessage"
-                placeholder="Enter your message to participants...">Dear Participant,
+<div class="email-count">
+
+Selected:
+<strong id="emailSelectedCount">
+0
+</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card participant-table-wrap">
+
+<div
+id="emailParticipantArea">
+
+<div class="email-loading">
+
+<div class="email-spinner"></div>
+
+Loading participants...
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="card email-form">
+
+<div class="section-title">
+Email Message
+</div>
+
+
+<div
+class="email-description"
+style="margin-bottom:17px">
+
+This message will be sent to the selected participants.
+
+</div>
+
+
+<div class="email-form-grid">
+
+
+<div class="form-group full">
+
+<label class="form-label">
+Subject
+</label>
+
+<input
+id="emailSubject"
+class="form-input"
+type="text"
+value="You're registered for our event"
+placeholder="Email subject">
+
+</div>
+
+
+<div class="form-group full">
+
+<label class="form-label">
+Message
+</label>
+
+<textarea
+id="emailMessage"
+class="form-textarea"
+placeholder="Write your email message here...">Hello {{name}},
 
 Thank you for registering for our event.
 
-Please find your event check-in QR code in this email.
+Your participation has been confirmed.
 
-Kindly keep this QR code ready when you arrive at the venue.
+Please keep the QR code attached to this email ready for check-in at the event.
+
+Your check-in code is {{checkInCode}}.
 
 We look forward to seeing you.
 
 Regards,
 ParsDo EventOS</textarea>
 
-            </div>
-
-          </div>
-
-
-          <!-- CONTROLS -->
-
-          <div class="controls">
-
-            <div class="batch-select">
-
-              <label for="batchSize">
-                Batch Size
-              </label>
-
-              <select
-                id="batchSize"
-                onchange="emailBatchSize = Number(this.value); updateEmailSummary();">
-
-                <option value="25">
-                  25
-                </option>
-
-                <option value="50">
-                  50
-                </option>
-
-                <option value="100" selected>
-                  100
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="toggle-wrap">
-
-              <label class="toggle">
-
-                <input
-                  type="checkbox"
-                  id="skipSent"
-                  checked
-                  onchange="
-                    emailSkipSent = this.checked;
-                    updateEmailSummary();
-                    renderEmailParticipants();
-                  ">
-
-                <span class="slider"></span>
-
-              </label>
-
-              <span class="toggle-label">
-                Skip SENT
-              </span>
-
-            </div>
-
-
-            <button
-              class="btn btn-primary"
-              id="sendBatchButton"
-              onclick="sendParticipantEmails()">
-
-              SEND NEXT <span id="sendBatchLabel">
-                100
-              </span>
-
-            </button>
-
-
-            <button
-              class="btn btn-secondary"
-              onclick="loadEmailParticipants()">
-
-              Refresh Participants
-
-            </button>
-
-          </div>
-
-
-          <!-- PROGRESS -->
-
-          <div class="progress-wrap">
-
-            <div class="progress-top">
-
-              <span id="emailProgressText">
-                0 of 0 sent
-              </span>
-
-              <span id="emailProgressPercent">
-                0%
-              </span>
-
-            </div>
-
-            <div class="progress">
-
-              <div
-                class="progress-bar"
-                id="emailProgress">
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- PARTICIPANT TABLE -->
-
-      <div class="card table-card">
-
-        <div class="card-header">
-
-          <h2>Participants</h2>
-
-          <p>
-            Showing 10 participants per page.
-            Pagination is only for viewing.
-          </p>
-
-        </div>
-
-
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  Participant
-                </th>
-
-                <th>
-                  Email
-                </th>
-
-                <th>
-                  Check-in Code
-                </th>
-
-                <th>
-                  Check-in Status
-                </th>
-
-                <th>
-                  QR Email
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody id="participantTableBody">
-
-              <tr>
-                <td
-                  colspan="5"
-                  class="loading">
-
-                  Loading participants...
-
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-
-        <!-- PAGINATION -->
-
-        <div class="pagination">
-
-          <div
-            class="page-info"
-            id="pageInfo">
-            Page 1
-          </div>
-
-          <div
-            class="page-buttons"
-            id="pageButtons">
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
+</div>
 
 </div>
 
 
-<!-- TOAST -->
+<div class="email-send-row">
+
+<button
+class="primary"
+id="sendEmailButton"
+type="button"
+onclick="sendParticipantEmails()">
+✉ Send Email
+</button>
+
+</div>
+
 
 <div
-  class="toast"
-  id="toast">
+id="emailResult"
+class="email-result">
 </div>
+
+</section>
+
+</section>
+
+
+<div
+id="errorBox"
+class="error">
+</div>
+
+
+<div class="footer">
+
+<div>
+BEHIND BETTER COMPANIES · Powered by ParsDo EventOS
+</div>
+
+<a
+href="https://www.parsdo.in"
+target="_blank"
+rel="noopener">
+www.parsdo.in
+</a>
+
+</div>
+
+</main>
 
 
 <script>
 
-/* ============================================================
-   CONFIGURATION
-============================================================ */
+/* =========================================================
+  PARSDO EVENTOS - ORGANIZER DASHBOARD
+  Live Dashboard + Email Participants
+  ========================================================= */
+
+
+/* =========================================================
+  CONFIGURATION
+  ========================================================= */
 
 const DASHBOARD_BASE =
-  "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
+"https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9ftaI1Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
 
 
 const EMAIL_API =
-  "https://vhe4vhw7262km6z7gbqnkwjutu0ekiov.lambda-url.ap-south-1.on.aws/";
+"https://vhe4vhw7262km6z7gbqnkwjutu0ekiov.lambda-url.ap-south-1.on.aws/";
 
 
 const REFRESH_INTERVAL = 5000;
 
+const EVENTOS_SECRET = "ParsDoEventOS_2026_Email_9xK7mQ"; 
 
-const EVENTOS_SECRET =
-  "ParsDoEventOS_2026_Email_9xK7mQ";
-
-
-/* ============================================================
-   GLOBAL STATE
-============================================================ */
 
 let eventId = "";
 
-let eventName = "";
+
+/* =========================================================
+  EMAIL DATA
+  ========================================================= */
 
 let emailParticipants = [];
 
-let emailCurrentPage = 1;
 
-const EMAIL_PAGE_SIZE = 10;
+/* =========================================================
+  GET EVENT ID
+  ========================================================= */
 
-let emailBatchSize = 100;
+function getEventIdFromUrl(){
 
-let emailSkipSent = true;
-
-let emailSending = false;
-
-
-/* ============================================================
-   INITIALIZATION
-============================================================ */
-
-function init() {
-
-  const params =
-    new URLSearchParams(window.location.search);
-
-  eventId =
-    String(params.get("event") || "").trim();
-
-  document.getElementById("displayEventId").textContent =
-    eventId || "—";
-
-  if (!eventId) {
-
-    document.getElementById("eventName").textContent =
-      "Event ID missing";
-
-    showToast(
-      "Event ID is missing from the dashboard URL.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  document.getElementById("batchSize").value =
-    String(emailBatchSize);
-
-  document.getElementById("sendBatchLabel").textContent =
-    emailBatchSize;
-
-
-  loadEventName();
-
-  loadDashboard();
-
-  loadEmailParticipants();
-
-
-  setInterval(function() {
-
-    loadDashboard();
-
-  }, REFRESH_INTERVAL);
+return String(
+new URLSearchParams(
+window.location.search
+).get("event") || ""
+).trim();
 
 }
 
 
-/* ============================================================
-   TAB SWITCHING
-============================================================ */
+/* =========================================================
+  SAFE HTML
+  ========================================================= */
 
-function switchTab(tab) {
+function escapeHtml(value){
 
-  const liveTab =
-    document.getElementById("liveTab");
-
-  const emailTab =
-    document.getElementById("emailTab");
-
-  const liveButton =
-    document.getElementById("liveTabButton");
-
-  const emailButton =
-    document.getElementById("emailTabButton");
-
-
-  if (tab === "live") {
-
-    liveTab.classList.add("active");
-    emailTab.classList.remove("active");
-
-    liveButton.classList.add("active");
-    emailButton.classList.remove("active");
-
-  } else {
-
-    liveTab.classList.remove("active");
-    emailTab.classList.add("active");
-
-    liveButton.classList.remove("active");
-    emailButton.classList.add("active");
-
-  }
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
-/* ============================================================
-   TOAST
-============================================================ */
+/* =========================================================
+  ERROR DISPLAY
+  ========================================================= */
 
-let toastTimer = null;
+function showError(message){
 
-function showToast(message, type) {
+const box =
+document.getElementById("errorBox");
 
-  const toast =
-    document.getElementById("toast");
+box.textContent = message;
 
-  toast.textContent = message;
-
-  toast.className =
-    "toast show " + (type || "");
-
-  clearTimeout(toastTimer);
-
-  toastTimer = setTimeout(function() {
-
-    toast.className = "toast";
-
-  }, 4500);
+box.style.display = "block";
 
 }
 
 
-/* ============================================================
-   JSONP REQUEST
-============================================================ */
+function hideError(){
 
-function jsonpRequest(url) {
-
-  return new Promise(function(resolve, reject) {
-
-    const callbackName =
-      "parsdoCallback_" +
-      Date.now() +
-      "_" +
-      Math.random()
-        .toString(36)
-        .substring(2, 8);
-
-    const script =
-      document.createElement("script");
-
-    let finished = false;
-
-
-    function finish() {
-
-      if (finished) {
-        return;
-      }
-
-      finished = true;
-
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-
-      try {
-        delete window[callbackName];
-      } catch (error) {
-        window[callbackName] = undefined;
-      }
-
-    }
-
-
-    window[callbackName] =
-      function(data) {
-
-        if (finished) {
-          return;
-        }
-
-        finish();
-
-        resolve(data);
-
-      };
-
-
-    script.onerror =
-      function() {
-
-        finish();
-
-        reject(
-          new Error(
-            "Unable to connect to EventOS service."
-          )
-        );
-
-      };
-
-
-    const separator =
-      url.includes("?") ? "&" : "?";
-
-
-    script.src =
-      url +
-      separator +
-      "callback=" +
-      encodeURIComponent(callbackName) +
-      "&_=" +
-      Date.now();
-
-
-    document.head.appendChild(script);
-
-
-    setTimeout(function() {
-
-      if (finished) {
-        return;
-      }
-
-      finish();
-
-      reject(
-        new Error(
-          "EventOS service request timed out."
-        )
-      );
-
-    }, 15000);
-
-  });
+document.getElementById(
+"errorBox"
+).style.display = "none";
 
 }
 
 
-/* ============================================================
-   LOAD EVENT NAME
-============================================================ */
+/* =========================================================
+  VIEW SWITCH
+  ========================================================= */
 
-async function loadEventName() {
+function showView(view){
 
-  try {
+const liveView =
+document.getElementById("liveView");
 
-    const url =
-      DASHBOARD_BASE +
-      "?action=staffEvent" +
-      "&event=" +
-      encodeURIComponent(eventId);
+const emailView =
+document.getElementById("emailView");
 
+const liveNav =
+document.getElementById("liveNav");
 
-    const data =
-      await jsonpRequest(url);
-
-
-    if (data && data.success === false) {
-
-      document.getElementById("eventName").textContent =
-        eventId;
-
-      return;
-    }
+const emailNav =
+document.getElementById("emailNav");
 
 
-    eventName =
-      data.eventName ||
-      data.name ||
-      data.event ||
-      eventId;
+liveView.classList.remove("active");
+emailView.classList.remove("active");
+
+liveNav.classList.remove("active");
+emailNav.classList.remove("active");
 
 
-    document.getElementById("eventName").textContent =
-      eventName;
+if(view === "email"){
 
-  } catch (error) {
+emailView.classList.add("active");
+emailNav.classList.add("active");
 
-    console.error(
-      "loadEventName:",
-      error
-    );
+loadEmailParticipants();
 
-    document.getElementById("eventName").textContent =
-      eventId;
+history.replaceState(
+null,
+"",
+window.location.pathname +
+"?event=" +
+encodeURIComponent(eventId) +
+"&view=email"
+);
 
-  }
+}else{
+
+liveView.classList.add("active");
+liveNav.classList.add("active");
+
+history.replaceState(
+null,
+"",
+window.location.pathname +
+"?event=" +
+encodeURIComponent(eventId)
+);
+
+}
 
 }
 
 
-/* ============================================================
-   LIVE DASHBOARD
-============================================================ */
+/* =========================================================
+  LIVE DASHBOARD REQUEST
+  ========================================================= */
 
-async function loadDashboard() {
+function loadDashboard(){
 
-  try {
+if(!eventId){
 
-    const url =
-      DASHBOARD_BASE +
-      "?action=dashboard" +
-      "&event=" +
-      encodeURIComponent(eventId);
+showError(
+"Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
+);
 
-
-    const data =
-      await jsonpRequest(url);
-
-
-    updateDashboard(data);
-
-  } catch (error) {
-
-    console.error(
-      "loadDashboard:",
-      error
-    );
-
-  }
+return;
 
 }
 
 
-/* ============================================================
-   UPDATE LIVE DASHBOARD
-============================================================ */
-
-function updateDashboard(data) {
-
-  if (!data) {
-    return;
-  }
+const callbackName =
+"parsdoDashboard_" +
+Date.now() +
+"_" +
+Math.random()
+.toString(36)
+.substring(2,8);
 
 
-  const total =
-    Number(data.total || 0);
-
-  const checkedIn =
-    Number(data.checkedIn || 0);
-
-  const pending =
-    Number(data.pending || 0);
-
-  const attendance =
-    Number(data.attendance || 0);
+const script =
+document.createElement("script");
 
 
-  document.getElementById("totalCount").textContent =
-    total;
+let finished = false;
 
 
-  document.getElementById("checkedInCount").textContent =
-    checkedIn;
+function finish(){
+
+if(finished) return;
+
+finished = true;
 
 
-  document.getElementById("pendingCount").textContent =
-    pending;
+if(script.parentNode){
 
-
-  document.getElementById("attendancePercent").textContent =
-    attendance.toFixed(1) + "%";
-
-
-  document.getElementById("attendanceProgressText").textContent =
-    attendance.toFixed(1) + "%";
-
-
-  document.getElementById("attendanceProgress").style.width =
-    Math.min(Math.max(attendance, 0), 100) + "%";
-
-
-  renderRecentActivity(
-    Array.isArray(data.recent)
-      ? data.recent
-      : []
-  );
+script.parentNode.removeChild(
+script
+);
 
 }
 
 
-/* ============================================================
-   RECENT ACTIVITY
-============================================================ */
+try{
 
-function renderRecentActivity(items) {
+delete window[callbackName];
 
-  const container =
-    document.getElementById("activityContainer");
+}catch(e){
 
+window[callbackName] =
+undefined;
 
-  if (!items.length) {
-
-    container.innerHTML =
-      '<div class="empty">No check-ins yet.</div>';
-
-    return;
-  }
-
-
-  const list =
-    document.createElement("ul");
-
-  list.className =
-    "activity-list";
-
-
-  items.forEach(function(item) {
-
-    const li =
-      document.createElement("li");
-
-    li.className =
-      "activity-item";
-
-
-    const left =
-      document.createElement("div");
-
-
-    const name =
-      document.createElement("div");
-
-    name.className =
-      "activity-name";
-
-    name.textContent =
-      item.name || "Participant";
-
-
-    const id =
-      document.createElement("div");
-
-    id.className =
-      "activity-id";
-
-    id.textContent =
-      item.id || "";
-
-
-    left.appendChild(name);
-    left.appendChild(id);
-
-
-    const time =
-      document.createElement("div");
-
-    time.className =
-      "activity-time";
-
-    time.textContent =
-      item.time || "";
-
-
-    li.appendChild(left);
-    li.appendChild(time);
-
-
-    list.appendChild(li);
-
-  });
-
-
-  container.innerHTML = "";
-
-  container.appendChild(list);
+}
 
 }
 
 
-/* ============================================================
-   LOAD EMAIL PARTICIPANTS
-   IMPORTANT:
-   action MUST be "emailParticipants"
-============================================================ */
+window[callbackName] =
+function(data){
 
-async function loadEmailParticipants() {
+if(finished) return;
 
-  try {
-
-    document.getElementById("participantTableBody").innerHTML =
-      '<tr><td colspan="5" class="loading">Loading participants...</td></tr>';
+finish();
 
 
-    const url =
-      DASHBOARD_BASE +
-      "?action=emailParticipants" +
-      "&event=" +
-      encodeURIComponent(eventId);
+if(!data){
 
+showError(
+"ParsDo EventOS returned an empty response."
+);
 
-    const data =
-      await jsonpRequest(url);
-
-
-    if (!data || data.success !== true) {
-
-      throw new Error(
-        data && data.message
-          ? data.message
-          : "Unable to load participants."
-      );
-
-    }
-
-
-    emailParticipants =
-      Array.isArray(data.participants)
-        ? data.participants.map(normalizeParticipant)
-        : [];
-
-
-    emailCurrentPage = 1;
-
-
-    updateEmailSummary();
-
-    renderEmailParticipants();
-
-
-  } catch (error) {
-
-    console.error(
-      "loadEmailParticipants:",
-      error
-    );
-
-
-    document.getElementById("participantTableBody").innerHTML =
-      '<tr><td colspan="5" class="empty">' +
-      escapeHtml(error.message) +
-      '</td></tr>';
-
-
-    showToast(
-      error.message,
-      "error"
-    );
-
-  }
+return;
 
 }
 
 
-/* ============================================================
-   NORMALIZE PARTICIPANT
-============================================================ */
+hideError();
 
-function normalizeParticipant(participant) {
+updateDashboard(data);
 
-  return {
-
-    participantId:
-      String(
-        participant.participantId || ""
-      ).trim(),
-
-    eventId:
-      String(
-        participant.eventId || eventId
-      ).trim(),
-
-    name:
-      String(
-        participant.name || ""
-      ).trim(),
-
-    email:
-      String(
-        participant.email || ""
-      ).trim(),
-
-    status:
-      String(
-        participant.status || ""
-      ).trim(),
-
-    checkInCode:
-      String(
-        participant.checkInCode || ""
-      ).trim().toUpperCase(),
-
-    qrEmailStatus:
-      String(
-        participant.qrEmailStatus || ""
-      ).trim().toUpperCase(),
-
-    qrEmailSentAt:
-      String(
-        participant.qrEmailSentAt || ""
-      ).trim()
-
-  };
-
-}
+};
 
 
-/* ============================================================
-   EMAIL SUMMARY
-============================================================ */
+script.onerror =
+function(){
 
-function updateEmailSummary() {
+finish();
 
-  const total =
-    emailParticipants.length;
+showError(
+"Unable to connect to ParsDo EventOS."
+);
 
-
-  const sent =
-    emailParticipants.filter(function(participant) {
-
-      return participant.qrEmailStatus === "SENT";
-
-    }).length;
+};
 
 
-  const remaining =
-    emailParticipants.filter(function(participant) {
-
-      return (
-        participant.qrEmailStatus !== "SENT"
-      );
-
-    }).length;
-
-
-  document.getElementById("emailTotal").textContent =
-    total;
+const url =
+DASHBOARD_BASE +
+"?action=dashboard" +
+"&event=" +
+encodeURIComponent(eventId) +
+"&callback=" +
+callbackName +
+"&_=" +
+Date.now();
 
 
-  document.getElementById("emailSent").textContent =
-    sent;
+script.src = url;
+
+document.head.appendChild(script);
 
 
-  document.getElementById("emailRemaining").textContent =
-    remaining;
+setTimeout(
+function(){
 
+if(finished) return;
 
-  const percent =
-    total > 0
-      ? (sent / total) * 100
-      : 0;
+finish();
 
+showError(
+"ParsDo EventOS did not return a valid dashboard response."
+);
 
-  document.getElementById("emailProgress").style.width =
-    Math.min(percent, 100) + "%";
-
-
-  document.getElementById("emailProgressText").textContent =
-    sent + " of " + total + " sent";
-
-
-  document.getElementById("emailProgressPercent").textContent =
-    percent.toFixed(1) + "%";
-
-
-  document.getElementById("sendBatchLabel").textContent =
-    emailBatchSize;
-
-
-  const eligible =
-    getEligibleEmailParticipants().length;
-
-
-  const sendButton =
-    document.getElementById("sendBatchButton");
-
-
-  if (emailSending) {
-
-    sendButton.disabled = true;
-
-    sendButton.innerHTML =
-      "SENDING...";
-
-  } else if (eligible === 0) {
-
-    sendButton.disabled = true;
-
-    sendButton.innerHTML =
-      "ALL ELIGIBLE EMAILS SENT";
-
-  } else {
-
-    sendButton.disabled = false;
-
-    sendButton.innerHTML =
-      "SEND NEXT " +
-      emailBatchSize;
-
-  }
+},
+12000
+);
 
 }
 
 
-/* ============================================================
-   GET ELIGIBLE PARTICIPANTS
-============================================================ */
+/* =========================================================
+  UPDATE LIVE DASHBOARD
+  ========================================================= */
 
-function getEligibleEmailParticipants() {
+function updateDashboard(data){
 
-  return emailParticipants.filter(
-    function(participant) {
+const total =
+Number(data.total || 0);
 
-      if (
-        !participant.participantId ||
-        !participant.eventId ||
-        !participant.name ||
-        !participant.email ||
-        !participant.checkInCode
-      ) {
-        return false;
-      }
+const checkedIn =
+Number(data.checkedIn || 0);
 
+const pending =
+Number(data.pending || 0);
 
-      if (
-        emailSkipSent &&
-        participant.qrEmailStatus === "SENT"
-      ) {
-        return false;
-      }
+const attendance =
+Number(data.attendance || 0);
 
 
-      return true;
+document.getElementById(
+"total"
+).textContent = total;
 
-    }
-  );
+
+document.getElementById(
+"checkedIn"
+).textContent = checkedIn;
+
+
+document.getElementById(
+"pending"
+).textContent = pending;
+
+
+document.getElementById(
+"attendance"
+).textContent =
+attendance.toFixed(1) + "%";
+
+
+document.getElementById(
+"progressFill"
+).style.width =
+Math.min(
+100,
+Math.max(
+0,
+attendance
+)
+) + "%";
+
+
+document.getElementById(
+"progressLeft"
+).textContent =
+checkedIn + " checked in";
+
+
+document.getElementById(
+"progressRight"
+).textContent =
+total + " registered";
+
+
+renderRecent(
+Array.isArray(data.recent)
+? data.recent
+: []
+);
+
+
+document.getElementById(
+"updated"
+).textContent =
+"Updated " +
+new Date().toLocaleTimeString(
+"en-IN",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+}
+);
 
 }
 
 
-/* ============================================================
-   GET NEXT BATCH
-============================================================ */
+/* =========================================================
+  RECENT CHECK-INS
+  ========================================================= */
 
-function getNextEmailBatch() {
+function renderRecent(items){
 
-  const eligible =
-    getEligibleEmailParticipants();
-
-
-  return eligible.slice(
-    0,
-    emailBatchSize
-  );
-
-}
+const container =
+document.getElementById(
+"activityList"
+);
 
 
-/* ============================================================
-   MARK QR EMAIL SENT
-============================================================ */
+if(!items.length){
 
-function markQREmailSent(participant) {
+container.innerHTML =
+'<div class="empty">No check-ins yet.</div>';
 
-  return new Promise(function(resolve, reject) {
-
-    const callbackName =
-      "parsdoMarkEmailSent_" +
-      Date.now() +
-      "_" +
-      Math.random()
-        .toString(36)
-        .substring(2, 8);
-
-
-    const script =
-      document.createElement("script");
-
-
-    let finished = false;
-
-
-    function finish() {
-
-      if (finished) {
-        return;
-      }
-
-      finished = true;
-
-
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-
-
-      try {
-
-        delete window[callbackName];
-
-      } catch (error) {
-
-        window[callbackName] =
-          undefined;
-
-      }
-
-    }
-
-
-    window[callbackName] =
-      function(data) {
-
-        if (finished) {
-          return;
-        }
-
-
-        finish();
-
-
-        if (
-          data &&
-          data.success === true
-        ) {
-
-          resolve(data);
-
-        } else {
-
-          reject(
-            new Error(
-              data && data.message
-                ? data.message
-                : "Unable to save email status."
-            )
-          );
-
-        }
-
-      };
-
-
-    script.onerror =
-      function() {
-
-        finish();
-
-        reject(
-          new Error(
-            "Unable to connect to email status service."
-          )
-        );
-
-      };
-
-
-    script.src =
-      DASHBOARD_BASE +
-      "?action=markQREmailSent" +
-      "&event=" +
-      encodeURIComponent(
-        participant.eventId || eventId
-      ) +
-      "&participantId=" +
-      encodeURIComponent(
-        participant.participantId
-      ) +
-      "&callback=" +
-      encodeURIComponent(
-        callbackName
-      ) +
-      "&_=" +
-      Date.now();
-
-
-    document.head.appendChild(script);
-
-
-    setTimeout(function() {
-
-      if (finished) {
-        return;
-      }
-
-
-      finish();
-
-
-      reject(
-        new Error(
-          "Email status update timed out."
-        )
-      );
-
-    }, 10000);
-
-  });
+return;
 
 }
 
 
-/* ============================================================
-   SEND NEXT BATCH
-============================================================ */
+container.innerHTML =
+items.map(
+function(item){
 
-async function sendParticipantEmails() {
+return `
+         <div class="activity-row">
 
-  if (emailSending) {
-    return;
-  }
+           <div class="check">
+             ✓
+           </div>
 
+           <div class="person">
 
-  const batch =
-    getNextEmailBatch();
+             <div class="person-name">
+               ${escapeHtml(item.name)}
+             </div>
 
+             <div class="person-id">
+               ${escapeHtml(item.id)}
+             </div>
 
-  if (!batch.length) {
+           </div>
 
-    showToast(
-      "There are no eligible participants to send.",
-      "error"
-    );
+           <div class="time">
+             ${escapeHtml(item.time)}
+           </div>
 
-    updateEmailSummary();
+         </div>
+       `;
 
-    return;
-  }
-
-
-  const subject =
-    String(
-      document.getElementById("emailSubject").value || ""
-    ).trim();
-
-
-  const message =
-    String(
-      document.getElementById("emailMessage").value || ""
-    ).trim();
-
-
-  if (!subject) {
-
-    showToast(
-      "Please enter an email subject.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if (!message) {
-
-    showToast(
-      "Please enter an email message.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  const confirmed =
-    confirm(
-      "Send QR emails to the next " +
-      batch.length +
-      " participant(s)?"
-    );
-
-
-  if (!confirmed) {
-    return;
-  }
-
-
-  emailSending = true;
-
-  updateEmailSummary();
-
-
-  try {
-
-    const participants =
-      batch.map(function(participant) {
-
-        return {
-
-          participantId:
-            participant.participantId,
-
-          eventId:
-            participant.eventId || eventId,
-
-          name:
-            participant.name,
-
-          email:
-            participant.email,
-
-          checkInCode:
-            participant.checkInCode
-
-        };
-
-      });
-
-
-    /*
-      IMPORTANT
-
-      Only these fields are sent to Lambda:
-
-      eventId
-      subject
-      message
-      participants
-
-      No token.
-      No Apps Script URL.
-      No scanner URL.
-      No QR URL.
-
-      Lambda creates the QR from checkInCode.
-    */
-
-    const response =
-      await fetch(
-        EMAIL_API,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-            "X-EventOS-Secret": EVENTOS_SECRET
-          },
-
-          body: JSON.stringify({
-
-            eventId:
-              eventId,
-
-            subject:
-              subject,
-
-            message:
-              message,
-
-            participants:
-              participants
-
-          })
-
-        }
-      );
-
-
-    const result =
-      await response.json();
-
-
-    if (!response.ok) {
-
-      throw new Error(
-        result.message ||
-        "Email service returned an error."
-      );
-
-    }
-
-
-    if (!result.success) {
-
-      throw new Error(
-        result.message ||
-        "Unable to send emails."
-      );
-
-    }
-
-
-    const results =
-      Array.isArray(result.results)
-        ? result.results
-        : [];
-
-
-    let successCount = 0;
-
-    let failureCount = 0;
-
-    let statusSaveFailures = 0;
-
-
-    /*
-      Process each Lambda result.
-
-      Only successful Lambda sends are marked SENT.
-
-      Failed emails remain eligible for retry.
-    */
-
-    for (
-      const sendResult of results
-    ) {
-
-      const participant =
-        emailParticipants.find(
-          function(item) {
-
-            return (
-              item.participantId ===
-              sendResult.participantId
-            );
-
-          }
-        );
-
-
-      if (
-        sendResult.success === true
-      ) {
-
-        successCount++;
-
-
-        if (participant) {
-
-          try {
-
-            await markQREmailSent(
-              participant
-            );
-
-
-            participant.qrEmailStatus =
-              "SENT";
-
-
-            participant.qrEmailSentAt =
-              new Date().toLocaleString();
-
-          } catch (error) {
-
-            /*
-              Email was successfully sent,
-              but persistence failed.
-
-              Mark locally to avoid an immediate
-              duplicate in this browser session.
-            */
-
-            statusSaveFailures++;
-
-
-            participant.qrEmailStatus =
-              "SENT";
-
-
-            participant.qrEmailSentAt =
-              new Date().toLocaleString();
-
-          }
-
-        }
-
-      } else {
-
-        failureCount++;
-
-      }
-
-    }
-
-
-    /*
-      Fallback:
-      If Lambda reports sent count but individual
-      results are incomplete, do not blindly mark
-      everyone as SENT.
-    */
-
-
-    updateEmailSummary();
-
-    renderEmailParticipants();
-
-
-    let messageText =
-      "Batch completed: " +
-      successCount +
-      " sent";
-
-
-    if (failureCount > 0) {
-
-      messageText +=
-        ", " +
-        failureCount +
-        " failed";
-
-    }
-
-
-    if (statusSaveFailures > 0) {
-
-      messageText +=
-        ". " +
-        statusSaveFailures +
-        " status update(s) could not be saved.";
-
-    }
-
-
-    showToast(
-      messageText,
-      failureCount === 0
-        ? "success"
-        : "error"
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "sendParticipantEmails:",
-      error
-    );
-
-
-    showToast(
-      error.message ||
-      "Unable to send email batch.",
-      "error"
-    );
-
-  } finally {
-
-    emailSending = false;
-
-    updateEmailSummary();
-
-    renderEmailParticipants();
-
-  }
+}
+).join("");
 
 }
 
 
-/* ============================================================
-   RENDER PARTICIPANT TABLE
-============================================================ */
+/* =========================================================
+  EVENT NAME
+  ========================================================= */
 
-function renderEmailParticipants() {
+function loadEventName(){
 
-  const tbody =
-    document.getElementById(
-      "participantTableBody"
-    );
+const callbackName =
+"parsdoEventName_" +
+Date.now() +
+"_" +
+Math.random()
+.toString(36)
+.substring(2,8);
 
 
-  const total =
-    emailParticipants.length;
+const script =
+document.createElement("script");
 
 
-  if (!total) {
+let finished = false;
 
-    tbody.innerHTML =
-      '<tr>' +
-      '<td colspan="5" class="empty">' +
-      'No participants found.' +
-      '</td>' +
-      '</tr>';
 
+function finish(){
 
-    renderPagination();
+if(finished) return;
 
-    return;
-  }
+finished = true;
 
 
-  const totalPages =
-    Math.ceil(
-      total / EMAIL_PAGE_SIZE
-    );
+if(script.parentNode){
 
-
-  if (
-    emailCurrentPage > totalPages
-  ) {
-
-    emailCurrentPage =
-      totalPages;
-
-  }
-
-
-  const start =
-    (emailCurrentPage - 1) *
-    EMAIL_PAGE_SIZE;
-
-
-  const end =
-    start +
-    EMAIL_PAGE_SIZE;
-
-
-  const pageItems =
-    emailParticipants.slice(
-      start,
-      end
-    );
-
-
-  tbody.innerHTML = "";
-
-
-  pageItems.forEach(
-    function(participant) {
-
-      const tr =
-        document.createElement("tr");
-
-
-      /* Participant */
-
-      const participantTd =
-        document.createElement("td");
-
-
-      const name =
-        document.createElement("div");
-
-      name.className =
-        "participant-name";
-
-      name.textContent =
-        participant.name || "—";
-
-
-      const id =
-        document.createElement("div");
-
-      id.className =
-        "participant-id";
-
-      id.textContent =
-        participant.participantId || "";
-
-
-      participantTd.appendChild(name);
-
-      participantTd.appendChild(id);
-
-
-      /* Email */
-
-      const emailTd =
-        document.createElement("td");
-
-      emailTd.textContent =
-        participant.email || "—";
-
-
-      /* Check-in Code */
-
-      const codeTd =
-        document.createElement("td");
-
-
-      if (participant.checkInCode) {
-
-        const code =
-          document.createElement("span");
-
-        code.className =
-          "code";
-
-        code.textContent =
-          participant.checkInCode;
-
-        codeTd.appendChild(code);
-
-      } else {
-
-        codeTd.textContent =
-          "—";
-
-      }
-
-
-      /* Check-in Status */
-
-      const statusTd =
-        document.createElement("td");
-
-
-      const status =
-        document.createElement("span");
-
-
-      const checkedIn =
-        participant.status
-          .trim()
-          .toUpperCase() ===
-        "CHECKED IN";
-
-
-      status.className =
-        checkedIn
-          ? "status checked"
-          : "status pending";
-
-
-      status.textContent =
-        checkedIn
-          ? "CHECKED IN"
-          : "PENDING";
-
-
-      statusTd.appendChild(status);
-
-
-      /* QR Email */
-
-      const qrTd =
-        document.createElement("td");
-
-
-      const qrStatus =
-        document.createElement("span");
-
-
-      if (
-        participant.qrEmailStatus ===
-        "SENT"
-      ) {
-
-        qrStatus.className =
-          "status sent";
-
-        qrStatus.textContent =
-          "SENT";
-
-      } else {
-
-        qrStatus.className =
-          "status not-sent";
-
-        qrStatus.textContent =
-          "NOT SENT";
-
-      }
-
-
-      qrTd.appendChild(qrStatus);
-
-
-      if (
-        participant.qrEmailSentAt
-      ) {
-
-        const sentAt =
-          document.createElement("div");
-
-
-        sentAt.style.marginTop =
-          "5px";
-
-
-        sentAt.style.fontSize =
-          "10px";
-
-
-        sentAt.style.color =
-          "#849198";
-
-
-        sentAt.textContent =
-          participant.qrEmailSentAt;
-
-
-        qrTd.appendChild(
-          sentAt
-        );
-
-      }
-
-
-      tr.appendChild(
-        participantTd
-      );
-
-      tr.appendChild(
-        emailTd
-      );
-
-      tr.appendChild(
-        codeTd
-      );
-
-      tr.appendChild(
-        statusTd
-      );
-
-      tr.appendChild(
-        qrTd
-      );
-
-
-      tbody.appendChild(tr);
-
-    }
-  );
-
-
-  renderPagination();
+script.parentNode.removeChild(
+script
+);
 
 }
 
 
-/* ============================================================
-   PAGINATION
-============================================================ */
+try{
 
-function renderPagination() {
+delete window[callbackName];
 
-  const total =
-    emailParticipants.length;
+}catch(e){
 
+window[callbackName] =
+undefined;
 
-  const totalPages =
-    Math.max(
-      1,
-      Math.ceil(
-        total / EMAIL_PAGE_SIZE
-      )
-    );
-
-
-  const pageInfo =
-    document.getElementById(
-      "pageInfo"
-    );
-
-
-  pageInfo.textContent =
-    total
-      ? "Page " +
-        emailCurrentPage +
-        " of " +
-        totalPages +
-        " • " +
-        total +
-        " participants"
-      : "No participants";
-
-
-  const container =
-    document.getElementById(
-      "pageButtons"
-    );
-
-
-  container.innerHTML = "";
-
-
-  const previous =
-    document.createElement("button");
-
-  previous.className =
-    "page-btn";
-
-  previous.textContent =
-    "‹";
-
-  previous.disabled =
-    emailCurrentPage <= 1;
-
-
-  previous.onclick =
-    function() {
-
-      if (
-        emailCurrentPage > 1
-      ) {
-
-        emailCurrentPage--;
-
-        renderEmailParticipants();
-
-      }
-
-    };
-
-
-  container.appendChild(
-    previous
-  );
-
-
-  /*
-    Show a compact page range.
-  */
-
-  let startPage =
-    Math.max(
-      1,
-      emailCurrentPage - 2
-    );
-
-
-  let endPage =
-    Math.min(
-      totalPages,
-      emailCurrentPage + 2
-    );
-
-
-  if (
-    endPage - startPage < 4
-  ) {
-
-    if (startPage === 1) {
-
-      endPage =
-        Math.min(
-          totalPages,
-          5
-        );
-
-    } else {
-
-      startPage =
-        Math.max(
-          1,
-          totalPages - 4
-        );
-
-    }
-
-  }
-
-
-  for (
-    let page = startPage;
-    page <= endPage;
-    page++
-  ) {
-
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "page-btn" +
-      (
-        page === emailCurrentPage
-          ? " active"
-          : ""
-      );
-
-
-    button.textContent =
-      page;
-
-
-    button.onclick =
-      function() {
-
-        emailCurrentPage =
-          page;
-
-        renderEmailParticipants();
-
-      };
-
-
-    container.appendChild(
-      button
-    );
-
-  }
-
-
-  const next =
-    document.createElement("button");
-
-  next.className =
-    "page-btn";
-
-  next.textContent =
-    "›";
-
-  next.disabled =
-    emailCurrentPage >= totalPages;
-
-
-  next.onclick =
-    function() {
-
-      if (
-        emailCurrentPage <
-        totalPages
-      ) {
-
-        emailCurrentPage++;
-
-        renderEmailParticipants();
-
-      }
-
-    };
-
-
-  container.appendChild(
-    next
-  );
+}
 
 }
 
 
-/* ============================================================
-   ESCAPE HTML
-============================================================ */
+window[callbackName] =
+function(data){
 
-function escapeHtml(value) {
+if(finished) return;
 
-  return String(value || "")
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+finish();
+
+
+if(
+data &&
+data.success === true &&
+data.eventName
+){
+
+document.getElementById(
+"eventName"
+).textContent =
+data.eventName;
+
+
+document.getElementById(
+"eventIdDisplay"
+).textContent =
+"Event ID · " +
+(data.eventId || eventId);
+
+
+return;
 
 }
 
 
-/* ============================================================
-   BATCH SIZE CHANGE
-============================================================ */
+document.getElementById(
+"eventName"
+).textContent =
+eventId;
+
+};
+
+
+script.onerror =
+function(){
+
+finish();
+
+document.getElementById(
+"eventName"
+).textContent =
+eventId;
+
+};
+
+
+const url =
+DASHBOARD_BASE +
+"?action=staffEvent" +
+"&event=" +
+encodeURIComponent(eventId) +
+"&callback=" +
+callbackName +
+"&_=" +
+Date.now();
+
+
+script.src = url;
+
+document.head.appendChild(script);
+
+
+setTimeout(
+function(){
+
+if(finished) return;
+
+finish();
+
+document.getElementById(
+"eventName"
+).textContent =
+eventId;
+
+},
+8000
+);
+
+}
+
+
+/* =========================================================
+  EMAIL PARTICIPANTS - LOAD
+  ========================================================= */
+
+function loadEmailParticipants(){
+
+if(!eventId){
+
+showEmailResult(
+"error",
+"Event ID is missing."
+);
+
+return;
+
+}
+
+
+const area =
+document.getElementById(
+"emailParticipantArea"
+);
+
+
+area.innerHTML = `
+   <div class="email-loading">
+
+     <div class="email-spinner"></div>
+
+     Loading participants...
+
+   </div>
+ `;
+
+
+const callbackName =
+"parsdoEmailParticipants_" +
+Date.now() +
+"_" +
+Math.random()
+.toString(36)
+.substring(2,8);
+
+
+const script =
+document.createElement("script");
+
+
+let finished = false;
+
+
+function finish(){
+
+if(finished) return;
+
+finished = true;
+
+
+if(script.parentNode){
+
+script.parentNode.removeChild(
+script
+);
+
+}
+
+
+try{
+
+delete window[callbackName];
+
+}catch(e){
+
+window[callbackName] =
+undefined;
+
+}
+
+}
+
+
+window[callbackName] =
+function(data){
+
+if(finished) return;
+
+finish();
+
+
+if(
+!data ||
+data.success !== true
+){
+
+area.innerHTML = `
+         <div class="empty">
+           Unable to load participants.
+         </div>
+       `;
+
+showEmailResult(
+"error",
+data &&
+data.message
+? data.message
+: "Unable to load participants."
+);
+
+return;
+
+}
+
+
+emailParticipants =
+Array.isArray(
+data.participants
+)
+? data.participants
+: [];
+
+
+renderEmailParticipants();
+
+};
+
+
+script.onerror =
+function(){
+
+finish();
+
+
+area.innerHTML = `
+       <div class="empty">
+         Unable to connect to EventOS.
+       </div>
+     `;
+
+
+showEmailResult(
+"error",
+"Unable to connect to the EventOS participant service."
+);
+
+};
+
+
+const url =
+DASHBOARD_BASE +
+"?action=emailParticipants" +
+"&event=" +
+encodeURIComponent(eventId) +
+"&callback=" +
+callbackName +
+"&_=" +
+Date.now();
+
+
+script.src = url;
+
+document.head.appendChild(script);
+
+
+setTimeout(
+function(){
+
+if(finished) return;
+
+finish();
+
+
+area.innerHTML = `
+       <div class="empty">
+         Participant request timed out.
+       </div>
+     `;
+
+
+showEmailResult(
+"error",
+"Participant request timed out."
+);
+
+},
+12000
+);
+
+}
+
+
+/* =========================================================
+  RENDER PARTICIPANTS
+  ========================================================= */
+
+function renderEmailParticipants(){
+
+const area =
+document.getElementById(
+"emailParticipantArea"
+);
+
+
+document.getElementById(
+"emailParticipantCount"
+).textContent =
+emailParticipants.length;
+
+
+if(!emailParticipants.length){
+
+area.innerHTML =
+'<div class="empty">No participants found for this event.</div>';
+
+updateSelectedCount();
+
+return;
+
+}
+
+
+area.innerHTML = `
+
+   <table class="participant-table">
+
+     <thead>
+
+       <tr>
+
+         <th class="check-cell">
+           <input
+             type="checkbox"
+             id="emailSelectAll"
+             onchange="toggleAllParticipants(this.checked)">
+         </th>
+
+         <th>
+           Participant
+         </th>
+
+         <th>
+           Email
+         </th>
+
+         <th>
+           Check-in Code
+         </th>
+
+         <th>
+           Status
+         </th>
+
+       </tr>
+
+     </thead>
+
+     <tbody>
+
+       ${emailParticipants.map(
+         function(participant,index){
+
+           const status =
+             String(
+               participant.status || ""
+             ).trim();
+
+
+           const checkedClass =
+             status.toUpperCase() ===
+             "CHECKED IN"
+               ? "checked"
+               : "";
+
+
+           return `
+
+             <tr>
+
+               <td class="check-cell">
+
+                 <input
+                   type="checkbox"
+                   class="participant-check"
+                   data-index="${index}"
+                   onchange="updateSelectedCount()">
+
+               </td>
+
+
+               <td>
+
+                 <div class="participant-name">
+
+                   ${escapeHtml(
+                     participant.name
+                   )}
+
+                 </div>
+
+                 <div class="participant-id">
+
+                   ${escapeHtml(
+                     participant.participantId
+                   )}
+
+                 </div>
+
+               </td>
+
+
+               <td>
+
+                 ${escapeHtml(
+                   participant.email
+                 )}
+
+               </td>
+
+
+               <td>
+
+                 <strong>
+
+                   ${escapeHtml(
+                     participant.checkInCode || "—"
+                   )}
+
+                 </strong>
+
+               </td>
+
+
+               <td>
+
+                 <span
+                   class="status-pill ${checkedClass}">
+
+                   ${escapeHtml(
+                     status || "REGISTERED"
+                   )}
+
+                 </span>
+
+               </td>
+
+             </tr>
+
+           `;
+
+         }
+       ).join("")}
+
+     </tbody>
+
+   </table>
+
+ `;
+
+
+updateSelectedCount();
+
+}
+
+
+/* =========================================================
+  SELECTION
+  ========================================================= */
+
+function getSelectedParticipantIndexes(){
+
+return Array.from(
+document.querySelectorAll(
+".participant-check:checked"
+)
+).map(
+function(box){
+
+return Number(
+box.dataset.index
+);
+
+}
+);
+
+}
+
+
+function updateSelectedCount(){
+
+const selected =
+getSelectedParticipantIndexes();
+
+
+document.getElementById(
+"emailSelectedCount"
+).textContent =
+selected.length;
+
+
+const selectAll =
+document.getElementById(
+"emailSelectAll"
+);
+
+
+if(selectAll){
+
+selectAll.checked =
+emailParticipants.length > 0 &&
+selected.length ===
+emailParticipants.length;
+
+}
+
+}
+
+
+function updateSelectedCountAlias(){
+
+updateSelectedCount();
+
+}
+
+
+function toggleAllParticipants(checked){
 
 document
-  .getElementById("batchSize")
-  .addEventListener(
-    "change",
-    function() {
+.querySelectorAll(
+".participant-check"
+)
+.forEach(
+function(box){
 
-      emailBatchSize =
-        Number(
-          this.value
-        ) || 100;
+box.checked = checked;
 
-
-      document.getElementById(
-        "sendBatchLabel"
-      ).textContent =
-        emailBatchSize;
+}
+);
 
 
-      updateEmailSummary();
+updateSelectedCount();
 
-    }
-  );
+}
 
 
-/* ============================================================
-   START
-============================================================ */
+function selectAllParticipants(){
 
-window.addEventListener(
-  "DOMContentLoaded",
-  init
+toggleAllParticipants(true);
+
+}
+
+
+function clearParticipantSelection(){
+
+toggleAllParticipants(false);
+
+}
+
+
+/* =========================================================
+  EMAIL RESULT
+  ========================================================= */
+
+function showEmailResult(
+type,
+message
+){
+
+const box =
+document.getElementById(
+"emailResult"
+);
+
+
+box.className =
+"email-result " +
+type;
+
+
+box.textContent =
+message;
+
+}
+
+
+/* =========================================================
+  SEND PARTICIPANT EMAILS
+  ========================================================= */
+
+async function sendParticipantEmails(){
+
+const selectedIndexes =
+getSelectedParticipantIndexes();
+
+
+if(!selectedIndexes.length){
+
+showEmailResult(
+"warning",
+"Please select at least one participant."
+);
+
+return;
+
+}
+
+
+const subject =
+String(
+document.getElementById(
+"emailSubject"
+).value || ""
+).trim();
+
+
+const message =
+String(
+document.getElementById(
+"emailMessage"
+).value || ""
+);
+
+
+if(!subject){
+
+showEmailResult(
+"warning",
+"Please enter an email subject."
+);
+
+return;
+
+}
+
+
+if(!message.trim()){
+
+showEmailResult(
+"warning",
+"Please enter an email message."
+);
+
+return;
+
+}
+
+
+const selected =
+selectedIndexes.map(
+function(index){
+
+return emailParticipants[index];
+
+}
+);
+
+
+/*
+  * Only send the data Lambda actually needs.
+  *
+  * QR will be generated by Lambda from
+  * checkInCode.
+  *
+  * No Apps Script URL.
+  * No token.
+  */
+
+
+const payload = {
+
+eventId: eventId,
+
+subject: subject,
+
+message: message,
+
+participants:
+selected.map(
+function(participant){
+
+return {
+
+participantId:
+participant.participantId,
+
+eventId:
+participant.eventId ||
+eventId,
+
+name:
+participant.name,
+
+email:
+participant.email,
+
+checkInCode:
+participant.checkInCode
+
+};
+
+}
+)
+
+};
+
+
+const button =
+document.getElementById(
+"sendEmailButton"
+);
+
+
+button.disabled = true;
+
+button.textContent =
+"Sending…";
+
+
+showEmailResult(
+"warning",
+"Sending email to " +
+selected.length +
+" participant(s)…"
+);
+
+
+try{
+
+const response =
+await fetch(
+EMAIL_API,
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+              "application/json"
+              "application/json",
+              "X-EventOS-Secret": EVENTOS_SECRET
+},
+
+body:
+JSON.stringify(
+payload
+)
+}
+);
+
+
+const result =
+await response.json();
+
+
+if(
+response.ok &&
+result &&
+result.success === true
+){
+
+showEmailResult(
+"success",
+result.message ||
+(
+"Email sent successfully to " +
+selected.length +
+" participant(s)."
+)
+);
+
+
+clearParticipantSelection();
+
+
+}else{
+
+showEmailResult(
+"error",
+result &&
+result.message
+? result.message
+: "Email sending failed."
+);
+
+}
+
+
+}catch(error){
+
+console.error(
+"Email API error:",
+error
+);
+
+
+showEmailResult(
+"error",
+"Unable to connect to the email service."
+);
+
+
+}finally{
+
+button.disabled = false;
+
+button.textContent =
+"✉ Send Email";
+
+}
+
+}
+
+
+/* =========================================================
+  INITIALIZE
+  ========================================================= */
+
+function init(){
+
+eventId =
+getEventIdFromUrl();
+
+
+document.getElementById(
+"eventIdDisplay"
+).textContent =
+eventId
+? "Event ID · " + eventId
+: "";
+
+
+document.getElementById(
+"eventName"
+).textContent =
+eventId
+? "Loading event..."
+: "Event Dashboard";
+
+
+if(!eventId){
+
+showError(
+"Event ID is missing. Open the dashboard using ?event=YOUR_EVENT_ID"
+);
+
+return;
+
+}
+
+
+loadEventName();
+
+loadDashboard();
+
+
+setInterval(
+loadDashboard,
+REFRESH_INTERVAL
+);
+
+
+/*
+  * If URL contains:
+  *
+  * ?event=EVT001&view=email
+  *
+  * open Email automatically.
+  */
+
+const view =
+new URLSearchParams(
+window.location.search
+).get("view");
+
+
+if(view === "email"){
+
+showView("email");
+
+}
+
+}
+
+
+document.addEventListener(
+"DOMContentLoaded",
+init
 );
 
 </script>
