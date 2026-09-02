@@ -981,6 +981,23 @@ width:100%;
 flex:1;
 }
 
+ .logout-button {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: #ffffff;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
 }
 
 </style>
@@ -1086,6 +1103,10 @@ onclick="showView('email')">
 ✉ Email Participants
 
 </button>
+
+<button class="logout-button" onclick="logoutOrganizer()">
+  Logout
+</button>   
 
 </div>
 
@@ -3524,6 +3545,20 @@ showView("email");
 }
 
 }
+
+
+/* =========================================================
+   For Logout button in dashboard
+   ========================================================= */
+function logoutOrganizer() {
+
+  // Clear any organizer information stored locally
+  localStorage.removeItem("parsdoOrganizer");
+  sessionStorage.removeItem("parsdoOrganizer");
+
+  // Return to Organizer Login
+  window.location.href = "index.html";
+}   
 
 
 /* =========================================================
