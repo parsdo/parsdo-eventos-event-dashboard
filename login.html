@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ParsDo EventOS - Organizer Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(20, 184, 166, 0.15), transparent 35%),
+        linear-gradient(135deg, #071817, #0b2523 55%, #071817);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-name {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: #ffffff;
+    }
+
+    .brand-name span {
+      color: #20c7b5;
+    }
+
+    .product-name {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #9bb7b4;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 20px;
+      padding: 36px;
+      box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      color: #17201f;
+    }
+
+    .login-title {
+      margin: 0;
+      font-size: 25px;
+      font-weight: 700;
+    }
+
+    .login-subtitle {
+      margin: 8px 0 28px;
+      font-size: 14px;
+      color: #6b7775;
+      line-height: 1.5;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: #374442;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+      padding: 0 14px;
+      border: 1px solid #d7e0de;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.2s;
+      background: #ffffff;
+    }
+
+    input:focus {
+      border-color: #20b8a8;
+      box-shadow: 0 0 0 3px rgba(32, 184, 168, 0.12);
+    }
+
+    .login-button {
+      width: 100%;
+      height: 50px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 10px;
+      background: #149f91;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .login-button:hover {
+      background: #108d80;
+    }
+
+    .login-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0f0;
+      color: #b42318;
+      border: 1px solid #ffd5d2;
+    }
+
+    .message.success {
+      display: block;
+      background: #edfdf9;
+      color: #087f70;
+      border: 1px solid #bceee7;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 12px;
+      color: #77908d;
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 28px 22px;
+      }
+
+      .brand-name {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-container">
+
+    <div class="brand">
+      <div class="brand-name">
+        Pars<span>Do</span>
+      </div>
+
+      <div class="product-name">
+        EventOS
+      </div>
+    </div>
+
+    <div class="login-card">
+
+      <h1 class="login-title">
+        Organizer Login
+      </h1>
+
+      <p class="login-subtitle">
+        Sign in to manage your event and access the ParsDo EventOS organizer dashboard.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label for="organizerId">
+            Organizer ID
+          </label>
+
+          <input
+            type="text"
+            id="organizerId"
+            placeholder="Enter Organizer ID"
+            autocomplete="username"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="login-button"
+          id="loginButton"
+        >
+          Login
+        </button>
+
+      </form>
+
+      <div id="message" class="message"></div>
+
+    </div>
+
+    <div class="footer">
+      ParsDo EventOS · Smart Check-in. Smarter Events.
+    </div>
+
+  </div>
+
+
+<script>
+
+  /* ================================
+     PARSDO EVENTOS CONFIG
+  ================================= */
+
+  const DASHBOARD_BASE =
+    "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
+
+
+  /* ================================
+     LOGIN FORM
+  ================================= */
+
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const organizerId =
+        document
+          .getElementById("organizerId")
+          .value
+          .trim();
+
+      const password =
+        document
+          .getElementById("password")
+          .value
+          .trim();
+
+      if (!organizerId || !password) {
+        showMessage(
+          "Please enter your Organizer ID and password.",
+          "error"
+        );
+
+        return;
+      }
+
+      loginOrganizer(
+        organizerId,
+        password
+      );
+
+    });
+
+
+  /* ================================
+     ORGANIZER LOGIN
+  ================================= */
+
+  function loginOrganizer(
+    organizerId,
+    password
+  ) {
+
+    const button =
+      document.getElementById("loginButton");
+
+    button.disabled = true;
+    button.textContent = "Signing in...";
+
+    showMessage(
+      "Authenticating organizer...",
+      "success"
+    );
+
+    const callbackName =
+      "parsdoOrganizerLogin_" +
+      Date.now() +
+      "_" +
+      Math.random()
+        .toString(36)
+        .substring(2, 8);
+
+
+    let script = document.createElement("script");
+
+    let finished = false;
+
+
+    function cleanup() {
+
+      if (finished) {
+        return;
+      }
+
+      finished = true;
+
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+
+      try {
+        delete window[callbackName];
+      } catch (error) {
+        window[callbackName] = undefined;
+      }
+
+      button.disabled = false;
+      button.textContent = "Login";
+    }
+
+
+    window[callbackName] =
+      function(data) {
+
+        if (finished) {
+          return;
+        }
+
+        cleanup();
+
+
+        if (
+          data &&
+          data.success === true
+        ) {
+
+          showMessage(
+            "Login successful. Opening your event dashboard...",
+            "success"
+          );
+
+
+          const eventId =
+            String(data.eventId || "").trim();
+
+
+          if (!eventId) {
+
+            showMessage(
+              "Login succeeded, but no Event ID is assigned to this organizer.",
+              "error"
+            );
+
+            return;
+          }
+
+
+          /*
+             Redirect to existing index.html
+             with the organizer's assigned Event ID.
+          */
+
+          setTimeout(function() {
+
+            window.location.href =
+              "index.html?event=" +
+              encodeURIComponent(eventId);
+
+          }, 500);
+
+          return;
+        }
+
+
+        showMessage(
+          data && data.message
+            ? data.message
+            : "Invalid Organizer ID or password.",
+          "error"
+        );
+
+      };
+
+
+    script.onerror =
+      function() {
+
+        cleanup();
+
+        showMessage(
+          "Unable to connect to the ParsDo EventOS login service.",
+          "error"
+        );
+
+      };
+
+
+    script.src =
+      DASHBOARD_BASE +
+      "?action=organizerAuth" +
+      "&organizerId=" +
+      encodeURIComponent(organizerId) +
+      "&password=" +
+      encodeURIComponent(password) +
+      "&callback=" +
+      encodeURIComponent(callbackName) +
+      "&_=" +
+      Date.now();
+
+
+    document.head.appendChild(script);
+
+
+    setTimeout(function() {
+
+      if (finished) {
+        return;
+      }
+
+      cleanup();
+
+      showMessage(
+        "Login request timed out. Please try again.",
+        "error"
+      );
+
+    }, 15000);
+
+  }
+
+
+  /* ================================
+     MESSAGE
+  ================================= */
+
+  function showMessage(
+    text,
+    type
+  ) {
+
+    const message =
+      document.getElementById("message");
+
+    message.textContent = text;
+
+    message.className =
+      "message " + type;
+
+  }
+
+</script>
+
+</body>
+</html>
