@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+
     :root {
       --teal: #009688;
       --teal-dark: #00796b;
@@ -32,6 +33,7 @@
 
     body {
       font-family: "Inter", sans-serif;
+
       background:
         radial-gradient(
           circle at 90% 0%,
@@ -39,22 +41,30 @@
           transparent 30%
         ),
         var(--bg);
+
       color: var(--dark);
       min-height: 100vh;
     }
 
-    /* HEADER */
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
     header {
       height: 72px;
       background: rgba(255,255,255,.96);
       border-bottom: 1px solid var(--border);
+
       display: flex;
       align-items: center;
+
       padding: 0 34px;
+
       position: sticky;
       top: 0;
       z-index: 20;
+
       backdrop-filter: blur(10px);
     }
 
@@ -67,6 +77,7 @@
     .brand img {
       width: 42px;
       height: 42px;
+
       object-fit: contain;
       border-radius: 9px;
     }
@@ -81,17 +92,23 @@
       color: var(--teal);
     }
 
-    /* MAIN */
+
+    /* =====================================================
+       MAIN
+    ===================================================== */
 
     main {
       max-width: 980px;
       margin: auto;
+
       padding: 65px 20px 80px;
     }
 
     .hero {
       text-align: center;
+
       max-width: 720px;
+
       margin: 0 auto 38px;
     }
 
@@ -99,62 +116,89 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+
       background: var(--teal-soft);
       color: var(--teal-dark);
+
       padding: 8px 15px;
+
       border-radius: 50px;
+
       font-size: 11px;
       font-weight: 800;
+
       letter-spacing: .8px;
       text-transform: uppercase;
+
       margin-bottom: 18px;
     }
 
     .badge-dot {
       width: 7px;
       height: 7px;
+
       background: var(--teal);
+
       border-radius: 50%;
     }
 
     h1 {
       font-size: clamp(34px, 6vw, 55px);
+
       line-height: 1.05;
+
       letter-spacing: -2.5px;
+
       margin-bottom: 17px;
     }
 
     .hero-text {
       color: var(--muted);
+
       font-size: 15px;
       line-height: 1.7;
+
       max-width: 600px;
+
       margin: auto;
     }
 
     .event-name {
       margin-top: 19px;
+
       font-size: 14px;
       font-weight: 700;
+
       color: #536264;
     }
 
     .organizer {
       margin-top: 7px;
+
       color: #899496;
+
       font-size: 12px;
     }
 
-    /* VERIFICATION CARD */
+
+    /* =====================================================
+       VERIFICATION CARD
+    ===================================================== */
 
     .verify-card {
       width: 100%;
       max-width: 560px;
+
       margin: auto;
+
       background: var(--white);
+
       border: 1px solid var(--border);
+
       border-radius: 24px;
+
       padding: 35px;
+
       box-shadow:
         0 25px 65px rgba(23,35,38,.08),
         0 3px 10px rgba(23,35,38,.03);
@@ -163,100 +207,143 @@
     .certificate-icon {
       width: 58px;
       height: 58px;
+
       border-radius: 17px;
+
       background: var(--teal-soft);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       font-size: 27px;
+
       margin-bottom: 22px;
     }
 
     .verify-card h2 {
       font-size: 22px;
+
       letter-spacing: -.6px;
+
       margin-bottom: 8px;
     }
 
     .description {
       color: var(--muted);
+
       font-size: 13px;
       line-height: 1.6;
+
       margin-bottom: 25px;
     }
 
     label {
       display: block;
+
       font-size: 12px;
       font-weight: 800;
+
       margin-bottom: 9px;
     }
 
     .code-input {
       width: 100%;
       height: 64px;
+
       border: 2px solid var(--border);
+
       border-radius: 14px;
+
       outline: none;
+
       text-align: center;
+
       font-size: 25px;
       font-weight: 800;
+
       letter-spacing: 8px;
       text-transform: uppercase;
+
       color: var(--dark);
+
       transition: .2s;
     }
 
     .code-input:focus {
       border-color: var(--teal);
-      box-shadow: 0 0 0 4px rgba(0,150,136,.10);
+
+      box-shadow:
+        0 0 0 4px rgba(0,150,136,.10);
     }
 
     .code-input::placeholder {
       color: #c2cbcc;
+
       letter-spacing: 7px;
     }
 
     .hint {
       text-align: center;
+
       margin-top: 9px;
+
       color: #929d9e;
+
       font-size: 11px;
     }
 
     .verify-btn {
       width: 100%;
       height: 55px;
+
       margin-top: 23px;
+
       border: 0;
       border-radius: 13px;
+
       background: var(--teal);
+
       color: white;
+
       font-size: 13px;
       font-weight: 800;
+
       cursor: pointer;
+
       transition: .2s;
     }
 
     .verify-btn:hover {
       background: var(--teal-dark);
+
       transform: translateY(-1px);
     }
 
     .verify-btn:disabled {
       opacity: .65;
+
       cursor: not-allowed;
+
       transform: none;
     }
 
-    /* STATUS */
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
 
     .status {
       display: none;
+
       margin-top: 18px;
+
       padding: 15px;
+
       border-radius: 12px;
+
       font-size: 12px;
+
       line-height: 1.5;
     }
 
@@ -266,20 +353,28 @@
 
     .status.loading {
       background: var(--teal-soft);
+
       color: var(--teal-dark);
     }
 
     .status.error {
       background: #fff1f3;
+
       border: 1px solid #ffd8dc;
+
       color: var(--danger);
     }
 
-    /* RESULT */
+
+    /* =====================================================
+       RESULT
+    ===================================================== */
 
     .result {
       display: none;
+
       max-width: 720px;
+
       margin: 28px auto 0;
     }
 
@@ -289,120 +384,176 @@
 
     .result-card {
       background: white;
+
       border: 1px solid var(--border);
+
       border-radius: 24px;
+
       padding: 35px;
+
       text-align: center;
-      box-shadow: 0 25px 65px rgba(23,35,38,.08);
+
+      box-shadow:
+        0 25px 65px rgba(23,35,38,.08);
     }
 
     .verified-icon {
       width: 66px;
       height: 66px;
+
       border-radius: 50%;
+
       background: #eaf8f0;
+
       color: var(--success);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       margin: auto auto 18px;
+
       font-size: 30px;
       font-weight: 800;
     }
 
     .verified-label {
       color: var(--success);
+
       font-size: 11px;
       font-weight: 800;
+
       letter-spacing: 1px;
+
       text-transform: uppercase;
+
       margin-bottom: 8px;
     }
 
     .result-card h2 {
       font-size: 30px;
+
       letter-spacing: -1px;
+
       margin-bottom: 8px;
     }
 
     .result-description {
       color: var(--muted);
+
       font-size: 13px;
+
       margin-bottom: 25px;
     }
 
     .details {
       display: grid;
+
       grid-template-columns: 1fr 1fr;
+
       gap: 12px;
+
       text-align: left;
+
       margin-bottom: 23px;
     }
 
     .detail {
       background: #f8faf9;
+
       border: 1px solid #edf1f1;
+
       padding: 14px;
+
       border-radius: 12px;
     }
 
     .detail-label {
       color: #8a9698;
+
       font-size: 9px;
       font-weight: 800;
+
       text-transform: uppercase;
+
       letter-spacing: .7px;
+
       margin-bottom: 5px;
     }
 
     .detail-value {
       color: var(--dark);
+
       font-size: 12px;
       font-weight: 700;
+
       line-height: 1.4;
     }
 
     .download-btn {
       width: 100%;
       height: 55px;
+
       border: 0;
+
       border-radius: 13px;
+
       background: var(--dark);
+
       color: white;
+
       font-size: 13px;
       font-weight: 800;
+
       cursor: pointer;
+
       transition: .2s;
     }
 
     .download-btn:hover {
       transform: translateY(-1px);
+
       opacity: .92;
     }
 
     .another-btn {
       border: 0;
+
       background: none;
+
       color: var(--teal-dark);
+
       font-size: 12px;
       font-weight: 700;
+
       margin-top: 17px;
+
       cursor: pointer;
     }
 
-    /* FOOTER */
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     footer {
       text-align: center;
+
       color: #9ba5a6;
+
       font-size: 10px;
+
       padding-bottom: 28px;
     }
 
-    /* HIDDEN CERTIFICATE */
+
+    /* =====================================================
+       HIDDEN CERTIFICATE
+    ===================================================== */
 
     .certificate-source {
       position: fixed;
+
       left: -10000px;
       top: 0;
     }
@@ -410,147 +561,205 @@
     .certificate {
       width: 1123px;
       height: 794px;
-      background: white;
+
+      /*
+        PREMIUM CERTIFICATE BACKGROUND
+      */
+
+      background:
+        radial-gradient(
+          circle at 8% 12%,
+          rgba(0, 150, 136, 0.12),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 92% 88%,
+          rgba(0, 150, 136, 0.10),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f8fcfb 50%,
+          #ffffff 100%
+        );
+
       border: 14px solid #009688;
+
       padding: 55px;
+
       position: relative;
+
       text-align: center;
+
       overflow: hidden;
+
+      box-sizing: border-box;
     }
+
+
+    /* Decorative circular pattern */
+
+    .certificate::before {
+      content: "";
+
+      position: absolute;
+
+      width: 700px;
+      height: 700px;
+
+      left: -350px;
+      bottom: -430px;
+
+      border: 1px solid rgba(0, 150, 136, 0.10);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 0 35px rgba(0, 150, 136, 0.035),
+        0 0 0 70px rgba(0, 150, 136, 0.022);
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+
+    .certificate::after {
+      content: "";
+
+      position: absolute;
+
+      width: 600px;
+      height: 600px;
+
+      right: -300px;
+      top: -370px;
+
+      border: 1px solid rgba(0, 150, 136, 0.09);
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 0 30px rgba(0, 150, 136, 0.032),
+        0 0 0 60px rgba(0, 150, 136, 0.020);
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
 
     .certificate-inner {
       width: 100%;
       height: 100%;
+
       border: 1px solid #d6dddd;
+
       display: flex;
+
       flex-direction: column;
+
       justify-content: center;
+
       align-items: center;
+
       padding: 55px;
+
+      position: relative;
+
+      z-index: 2;
     }
 
     .certificate-brand {
       color: #009688;
+
       font-size: 23px;
+
       font-weight: 800;
+
       margin-bottom: 28px;
     }
 
     .certificate-title {
       color: #172326;
+
       font-size: 37px;
+
       font-weight: 800;
+
       letter-spacing: 5px;
+
       margin-bottom: 18px;
     }
 
     .certificate-subtitle {
       color: #687678;
+
       font-size: 15px;
+
       margin-bottom: 25px;
     }
 
     .certificate-name {
       color: #00796b;
+
       font-size: 42px;
+
       font-weight: 800;
+
       margin-bottom: 20px;
+
       max-width: 850px;
     }
 
     .certificate-text {
       color: #536264;
+
       font-size: 16px;
+
       line-height: 1.8;
     }
 
     .certificate-event {
       color: #172326;
+
       font-weight: 800;
     }
 
     .certificate-date {
       color: #657173;
+
       font-size: 13px;
+
       margin-top: 25px;
     }
 
     .certificate-footer {
       position: absolute;
+
+      z-index: 3;
+
       bottom: 25px;
+
       left: 0;
       right: 0;
+
       color: #929d9e;
+
       font-size: 10px;
     }
 
-    .certificate {
-    position: relative;
-    overflow: hidden;
 
-    background:
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(0, 137, 123, 0.08) 0,
-            rgba(0, 137, 123, 0.03) 22%,
-            transparent 45%
-        ),
-        radial-gradient(
-            circle at 90% 85%,
-            rgba(0, 137, 123, 0.07) 0,
-            rgba(0, 137, 123, 0.025) 25%,
-            transparent 50%
-        ),
-        linear-gradient(
-            135deg,
-            #ffffff 0%,
-            #f8fcfb 50%,
-            #ffffff 100%
-        );
-}
-
-    .certificate::before {
-    content: "";
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    left: -350px;
-    bottom: -420px;
-
-    border: 1px solid rgba(0, 137, 123, 0.08);
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 0 35px rgba(0, 137, 123, 0.025),
-        0 0 0 70px rgba(0, 137, 123, 0.018);
-
-    pointer-events: none;
-}
-
-.certificate::after {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    right: -300px;
-    top: -350px;
-
-    border: 1px solid rgba(0, 137, 123, 0.07);
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 0 30px rgba(0, 137, 123, 0.025),
-        0 0 0 60px rgba(0, 137, 123, 0.015);
-
-    pointer-events: none;
-}
-
-    /* MOBILE */
+    /* =====================================================
+       MOBILE
+    ===================================================== */
 
     @media (max-width: 600px) {
 
       header {
         height: 64px;
+
         padding: 0 18px;
       }
 
@@ -577,12 +786,15 @@
 
       .verify-card {
         padding: 25px 20px;
+
         border-radius: 20px;
       }
 
       .code-input {
         height: 60px;
+
         font-size: 21px;
+
         letter-spacing: 6px;
       }
 
@@ -592,61 +804,100 @@
 
       .result-card {
         padding: 27px 20px;
+
         border-radius: 20px;
       }
 
       .result-card h2 {
         font-size: 25px;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header>
+
   <div class="brand">
-    <img src="../parsdo_logo.jpeg" alt="ParsDo">
+
+    <img
+      src="../parsdo_logo.jpeg"
+      alt="ParsDo"
+    >
+
     <div class="brand-text">
       ParsDo <span>EventOS</span>
     </div>
+
   </div>
+
 </header>
 
 
 <main>
 
-  <!-- HERO -->
+
+  <!-- ===================================================
+       HERO
+  =================================================== -->
 
   <section class="hero">
 
     <div class="badge">
+
       <span class="badge-dot"></span>
+
       Certificate Portal
+
     </div>
+
 
     <h1>
+
       Your Certificate<br>
+
       Awaits.
+
     </h1>
 
+
     <p class="hero-text">
+
       Verify your participation using your 6-character
       check-in code and access your personalized certificate.
+
     </p>
 
+
     <div class="event-name">
+
       AppSecure – Protecting Your Product
+
     </div>
 
+
     <div class="organizer">
+
       GDG Cloud Madurai · in association with GDG Madurai
+
     </div>
 
   </section>
 
 
-  <!-- VERIFICATION -->
+
+  <!-- ===================================================
+       VERIFICATION
+  =================================================== -->
 
   <section
     class="verify-card"
@@ -654,21 +905,33 @@
   >
 
     <div class="certificate-icon">
+
       🎓
+
     </div>
 
+
     <h2>
+
       Verify your certificate
+
     </h2>
 
+
     <p class="description">
+
       Enter the 6-character check-in code provided
       for your event participation.
+
     </p>
 
+
     <label for="code">
+
       CHECK-IN CODE
+
     </label>
+
 
     <input
       id="code"
@@ -680,17 +943,24 @@
       placeholder="ABC123"
     >
 
+
     <div class="hint">
+
       Your code contains exactly 6 characters
+
     </div>
+
 
     <button
       id="verifyButton"
       class="verify-btn"
       onclick="verifyCertificate()"
     >
+
       VERIFY & GET CERTIFICATE
+
     </button>
+
 
     <div
       id="status"
@@ -700,7 +970,10 @@
   </section>
 
 
-  <!-- VERIFIED RESULT -->
+
+  <!-- ===================================================
+       VERIFIED RESULT
+  =================================================== -->
 
   <section
     id="result"
@@ -709,99 +982,166 @@
 
     <div class="result-card">
 
+
       <div class="verified-icon">
+
         ✓
+
       </div>
+
 
       <div class="verified-label">
+
         Certificate Verified
+
       </div>
 
+
       <h2 id="participantName">
+
         Participant
+
       </h2>
 
+
       <p class="result-description">
+
         Your event participation has been successfully verified.
+
       </p>
+
 
       <div class="details">
 
+
         <div class="detail">
+
           <div class="detail-label">
+
             Event
+
           </div>
+
 
           <div
             class="detail-value"
             id="eventName"
           >
+
             AppSecure – Protecting Your Product
+
           </div>
+
         </div>
 
+
+
         <div class="detail">
+
           <div class="detail-label">
+
             Date
+
           </div>
+
 
           <div class="detail-value">
+
             September 5, 2026
+
           </div>
+
         </div>
 
+
+
         <div class="detail">
+
           <div class="detail-label">
+
             Participant ID
+
           </div>
+
 
           <div
             class="detail-value"
             id="participantId"
           >
+
             —
+
           </div>
+
         </div>
+
+
 
         <div class="detail">
+
           <div class="detail-label">
+
             Check-in Status
+
           </div>
+
 
           <div class="detail-value">
+
             ✓ CHECKED IN
+
           </div>
+
         </div>
 
+
       </div>
+
 
       <button
         class="download-btn"
         onclick="downloadCertificate()"
       >
+
         ↓ DOWNLOAD CERTIFICATE
+
       </button>
+
 
       <button
         class="another-btn"
         onclick="resetVerification()"
       >
+
         Verify another code
+
       </button>
+
 
     </div>
 
   </section>
 
+
 </main>
 
 
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
 <footer>
+
   ParsDo EventOS · Certificate Verification Portal
+
 </footer>
 
 
-<!-- CERTIFICATE TEMPLATE -->
+
+<!-- =====================================================
+     CERTIFICATE TEMPLATE
+===================================================== -->
 
 <div class="certificate-source">
 
@@ -810,26 +1150,40 @@
     class="certificate"
   >
 
+
     <div class="certificate-inner">
 
+
       <div class="certificate-brand">
+
         Google Developers Groups Madurai
+
       </div>
+
 
       <div class="certificate-title">
+
         CERTIFICATE OF PARTICIPATION
+
       </div>
 
+
       <div class="certificate-subtitle">
+
         This certificate is proudly presented to
+
       </div>
+
 
       <div
         id="certificateName"
         class="certificate-name"
       >
+
         Participant Name
+
       </div>
+
 
       <div class="certificate-text">
 
@@ -838,7 +1192,9 @@
         <br>
 
         <span class="certificate-event">
+
           AppSecure – Protecting Your Product
+
         </span>
 
         <br>
@@ -853,34 +1209,47 @@
 
       </div>
 
+
       <div class="certificate-date">
+
         September 5, 2026 · Madurai
+
       </div>
 
+
     </div>
 
+
     <div class="certificate-footer">
+
       ParsDo EventOS · Certificate of Participation
+
     </div>
+
 
   </div>
 
 </div>
 
 
+
 <script>
+
 
   /* =====================================================
      CONFIGURATION
   ===================================================== */
 
   const WEB_APP_URL =
-    "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9ftaI1Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
+    "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
+
 
   const DEFAULT_EVENT_ID =
     "EVT001";
 
+
   let verifiedParticipant = null;
+
 
 
   /* =====================================================
@@ -890,7 +1259,10 @@
   function getEventId() {
 
     const params =
-      new URLSearchParams(window.location.search);
+      new URLSearchParams(
+        window.location.search
+      );
+
 
     return (
       params.get("eventId") ||
@@ -898,6 +1270,7 @@
     ).trim();
 
   }
+
 
 
   /* =====================================================
@@ -927,11 +1300,14 @@
     function (event) {
 
       if (event.key === "Enter") {
+
         verifyCertificate();
+
       }
 
     }
   );
+
 
 
   /* =====================================================
@@ -941,13 +1317,19 @@
   function verifyCertificate() {
 
     const code =
-      codeInput.value.trim().toUpperCase();
+      codeInput.value
+        .trim()
+        .toUpperCase();
+
 
     const eventId =
       getEventId();
 
+
     const button =
-      document.getElementById("verifyButton");
+      document.getElementById(
+        "verifyButton"
+      );
 
 
     if (!/^[A-Z0-9]{6}$/.test(code)) {
@@ -957,9 +1339,12 @@
         "Please enter a valid 6-character check-in code."
       );
 
+
       codeInput.focus();
 
+
       return;
+
     }
 
 
@@ -970,6 +1355,7 @@
 
 
     button.disabled = true;
+
 
     button.innerText =
       "VERIFYING...";
@@ -987,6 +1373,7 @@
     window[callbackName] =
       function (result) {
 
+
         if (
           result &&
           result.success &&
@@ -995,7 +1382,9 @@
 
           showVerifiedResult(result);
 
-        } else {
+        }
+
+        else {
 
           showStatus(
             "error",
@@ -1007,6 +1396,7 @@
 
 
         button.disabled = false;
+
 
         button.innerText =
           "VERIFY & GET CERTIFICATE";
@@ -1034,6 +1424,7 @@
     script.onerror =
       function () {
 
+
         showStatus(
           "error",
           "Unable to connect to the certificate service. Please try again."
@@ -1041,6 +1432,7 @@
 
 
         button.disabled = false;
+
 
         button.innerText =
           "VERIFY & GET CERTIFICATE";
@@ -1057,6 +1449,7 @@
     document.body.appendChild(script);
 
   }
+
 
 
   /* =====================================================
@@ -1081,13 +1474,15 @@
     document
       .getElementById("participantName")
       .innerText =
-        result.name || "Participant";
+        result.name ||
+        "Participant";
 
 
     document
       .getElementById("participantId")
       .innerText =
-        result.participantId || "—";
+        result.participantId ||
+        "—";
 
 
     document
@@ -1100,33 +1495,47 @@
     document
       .getElementById("certificateName")
       .innerText =
-        result.name || "Participant";
+        result.name ||
+        "Participant";
 
 
     window.scrollTo({
+
       top: 0,
+
       behavior: "smooth"
+
     });
 
   }
+
 
 
   /* =====================================================
      STATUS
   ===================================================== */
 
-  function showStatus(type, message) {
+  function showStatus(
+    type,
+    message
+  ) {
 
     const status =
-      document.getElementById("status");
+      document.getElementById(
+        "status"
+      );
+
 
     status.className =
-      "status show " + type;
+      "status show " +
+      type;
+
 
     status.innerText =
       message;
 
   }
+
 
 
   /* =====================================================
@@ -1136,6 +1545,7 @@
   function resetVerification() {
 
     verifiedParticipant = null;
+
 
     document
       .getElementById("result")
@@ -1152,12 +1562,14 @@
 
     document
       .getElementById("status")
-      .className = "status";
+      .className =
+        "status";
 
 
     codeInput.focus();
 
   }
+
 
 
   /* =====================================================
@@ -1167,16 +1579,22 @@
   function downloadCertificate() {
 
     if (!verifiedParticipant) {
+
       return;
+
     }
 
 
     const certificate =
-      document.getElementById("certificate");
+      document.getElementById(
+        "certificate"
+      );
 
 
     certificate
-      .querySelector(".certificate-name")
+      .querySelector(
+        ".certificate-name"
+      )
       .innerText =
         verifiedParticipant.name ||
         "Participant";
@@ -1210,123 +1628,345 @@
       <head>
 
         <title>
+
           Certificate -
           ${escapeHTML(
             verifiedParticipant.name ||
             "Participant"
           )}
+
         </title>
+
 
         <style>
 
+
           @page {
+
             size: A4 landscape;
+
             margin: 0;
+
           }
+
 
           html,
           body {
+
             margin: 0;
+
             padding: 0;
+
             width: 100%;
+
             height: 100%;
+
             background: white;
+
           }
+
 
           body {
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-family: Arial, sans-serif;
+
           }
+
+
+          /* =============================================
+             CERTIFICATE
+          ============================================= */
 
           .certificate {
+
             width: 1123px;
+
             height: 794px;
-            background: white;
+
+
+            /*
+              IMPORTANT:
+              This background is inside the print window.
+              Therefore it will appear in the actual PDF.
+            */
+
+            background:
+
+              radial-gradient(
+                circle at 8% 12%,
+                rgba(0, 150, 136, 0.12),
+                transparent 28%
+              ),
+
+              radial-gradient(
+                circle at 92% 88%,
+                rgba(0, 150, 136, 0.10),
+                transparent 30%
+              ),
+
+              linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #f8fcfb 50%,
+                #ffffff 100%
+              );
+
+
             border: 14px solid #009688;
+
             padding: 55px;
+
             position: relative;
+
             text-align: center;
+
             overflow: hidden;
+
             box-sizing: border-box;
+
           }
+
+
+          /* =============================================
+             DECORATIVE BACKGROUND - LEFT
+          ============================================= */
+
+          .certificate::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 700px;
+
+            height: 700px;
+
+            left: -350px;
+
+            bottom: -430px;
+
+
+            border: 1px solid
+              rgba(0, 150, 136, 0.10);
+
+
+            border-radius: 50%;
+
+
+            box-shadow:
+
+              0 0 0 35px
+                rgba(0, 150, 136, 0.035),
+
+              0 0 0 70px
+                rgba(0, 150, 136, 0.022);
+
+
+            pointer-events: none;
+
+            z-index: 0;
+
+          }
+
+
+          /* =============================================
+             DECORATIVE BACKGROUND - RIGHT
+          ============================================= */
+
+          .certificate::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+
+            height: 600px;
+
+            right: -300px;
+
+            top: -370px;
+
+
+            border: 1px solid
+              rgba(0, 150, 136, 0.09);
+
+
+            border-radius: 50%;
+
+
+            box-shadow:
+
+              0 0 0 30px
+                rgba(0, 150, 136, 0.032),
+
+              0 0 0 60px
+                rgba(0, 150, 136, 0.020);
+
+
+            pointer-events: none;
+
+            z-index: 0;
+
+          }
+
+
+          /* =============================================
+             INNER CERTIFICATE
+          ============================================= */
 
           .certificate-inner {
+
             width: 100%;
+
             height: 100%;
+
             border: 1px solid #d6dddd;
+
+
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
+
+
             padding: 55px;
+
+
             box-sizing: border-box;
+
+
+            position: relative;
+
+            z-index: 2;
+
           }
+
 
           .certificate-brand {
+
             color: #009688;
+
             font-size: 23px;
+
             font-weight: 800;
+
             margin-bottom: 28px;
+
           }
+
 
           .certificate-title {
+
             color: #172326;
+
             font-size: 37px;
+
             font-weight: 800;
+
             letter-spacing: 5px;
+
             margin-bottom: 18px;
+
           }
+
 
           .certificate-subtitle {
+
             color: #687678;
+
             font-size: 15px;
+
             margin-bottom: 25px;
+
           }
+
 
           .certificate-name {
+
             color: #00796b;
+
             font-size: 42px;
+
             font-weight: 800;
+
             margin-bottom: 20px;
+
           }
+
 
           .certificate-text {
+
             color: #536264;
+
             font-size: 16px;
+
             line-height: 1.8;
+
           }
+
 
           .certificate-event {
+
             color: #172326;
+
             font-weight: 800;
+
           }
+
 
           .certificate-date {
+
             color: #657173;
+
             font-size: 13px;
+
             margin-top: 25px;
+
           }
 
+
           .certificate-footer {
+
             position: absolute;
+
+            z-index: 3;
+
             bottom: 25px;
+
             left: 0;
+
             right: 0;
+
             color: #929d9e;
+
             font-size: 10px;
+
           }
+
 
         </style>
 
       </head>
 
+
       <body>
+
 
         ${certificate.outerHTML}
 
+
       </body>
+
 
       </html>
 
@@ -1336,15 +1976,21 @@
     printWindow.document.close();
 
 
+    /*
+      Give the browser time to render
+      the certificate background before printing.
+    */
+
     setTimeout(function () {
 
       printWindow.focus();
 
       printWindow.print();
 
-    }, 700);
+    }, 900);
 
   }
+
 
 
   /* =====================================================
@@ -1354,13 +2000,34 @@
   function escapeHTML(value) {
 
     return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
   }
+
 
 
   /* =====================================================
@@ -1373,19 +2040,29 @@
   ) {
 
     try {
+
       delete window[callbackName];
-    } catch (e) {}
+
+    }
+
+    catch (e) {}
+
 
     if (
       script &&
       script.parentNode
     ) {
-      script.parentNode.removeChild(script);
+
+      script.parentNode.removeChild(
+        script
+      );
+
     }
 
   }
 
 </script>
+
 
 </body>
 </html>
