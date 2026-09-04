@@ -3683,174 +3683,399 @@ async function stopOrganizerScanner(updateUi){
 }
 
 function onOrganizerScanSuccess(decodedText){
-  if(organizerScannerProcessing) return;
-  organizerScannerProcessing=true;
 
-  const scannedValue=String(decodedText||"").trim();
+  if(organizerScannerProcessing) return;
+
+  organizerScannerProcessing = true;
+
+  const scannedValue = String(decodedText || "").trim();
+
   if(!scannedValue){
-    organizerScannerProcessing=false;
-    organizerScannerShowResult("error","✕","Invalid QR Code","","The QR code did not contain any readable information.");
+
+    organizerScannerProcessing = false;
+
+    organizerScannerShowResult(
+      "error",
+      "✕",
+      "Invalid QR Code",
+      "",
+      "The QR code did not contain any readable information."
+    );
+
     return;
   }
 
-  /* Current QR format: QR contains only the 6-character check-in code. */
+
+  /* =========================================================
+     CURRENT QR FORMAT
+     QR contains ONLY the 6-character check-in code
+     ========================================================= */
+
   if(/^[A-Z2-9]{6}$/i.test(scannedValue)){
-    const checkInCode=scannedValue.toUpperCase();
+
+    const checkInCode =
+      scannedValue.toUpperCase();
+
 
     if(!eventId){
-      organizerScannerProcessing=false;
-      organizerScannerShowResult("error","⚠️","Event Not Ready","","Please wait for the event to finish loading.");
+
+      organizerScannerProcessing = false;
+
+      organizerScannerShowResult(
+        "error",
+        "⚠️",
+        "Event Not Ready",
+        "",
+        "Please wait for the event to finish loading."
+      );
+
       return;
     }
 
-    organizerScannerSetStatus("QR detected — verifying check-in code…","◉");
 
-    const callbackName="parsdoOrganizerQr_"+Date.now()+"_"+Math.random().toString(36).slice(2);
-    const script=document.createElement("script");
-    let finished=false;
-    let timeoutId=null;
+    organizerScannerSetStatus(
+      "QR detected — verifying check-in code…",
+      "◉"
+    );
 
-    function finish(){
-      if(finished) return;
-      finished=true;
-      if(timeoutId) clearTimeout(timeoutId);
-      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
-      if(script.parentNode) script.parentNode.removeChild(script);
-      organizerScannerProcessing=false;
-    }
 
-    window[callbackName]=function(result){
-      try{
-        if(result && result.success){
+    const url =
+      DASHBOARD_BASE +
+      "?action=manualCheckIn" +
+      "&event=" +
+      encodeURIComponent(eventId) +
+      "&code=" +
+      encodeURIComponent(checkInCode);
+
+
+    /*
+      IMPORTANT:
+      Use the SAME JSONP helper that is already
+      proven to work for manual check-in.
+    */
+
+    createJsonpRequest(
+      url,
+      15000,
+
+      function(result){
+
+        if(result && result.success === true){
+
           organizerScannerShowResult(
-            "success","✓","Check-in Successful",result.name||"Participant",
+            "success",
+            "✓",
+            "Check-in Successful",
+            result.name || "Participant",
             result.participantId
-              ? "Participant ID: "+escapeHtml(result.participantId)+"<br><br>Attendance has been recorded."
+              ? "Participant ID: " +
+                escapeHtml(result.participantId) +
+                "<br><br>Attendance has been recorded."
               : "Attendance has been recorded."
           );
-          organizerScannerSetStatus("Check-in completed. Tap SCAN NEXT ATTENDEE.","✓");
-        }else if(result && result.alreadyCheckedIn){
-          let message=result.message||"This participant has already been checked in.";
-          if(result.time) message+="<br><br><b>Time:</b> "+escapeHtml(result.time);
-          organizerScannerShowResult("warning","!","Already Checked In",result.name||"Participant",message);
-          organizerScannerSetStatus("Participant was already checked in.","!");
+
+
+          organizerScannerSetStatus(
+            "Check-in completed. Tap SCAN NEXT ATTENDEE.",
+            "✓"
+          );
+
+
+        }else if(
+          result &&
+          result.alreadyCheckedIn
+        ){
+
+          let message =
+            result.message ||
+            "This participant has already been checked in.";
+
+
+          if(result.time){
+
+            message +=
+              "<br><br><b>Time:</b> " +
+              escapeHtml(result.time);
+
+          }
+
+
+          organizerScannerShowResult(
+            "warning",
+            "!",
+            "Already Checked In",
+            result.name || "Participant",
+            message
+          );
+
+
+          organizerScannerSetStatus(
+            "Participant was already checked in.",
+            "!"
+          );
+
+
         }else{
-          organizerScannerShowResult("error","×","Invalid Check-in Code","",escapeHtml(result&&result.message?result.message:"This check-in code could not be verified for this event."));
-          organizerScannerSetStatus("QR check-in failed.","×");
+
+          organizerScannerShowResult(
+            "error",
+            "×",
+            "Invalid Check-in Code",
+            "",
+            escapeHtml(
+              result && result.message
+                ? result.message
+                : "This check-in code could not be verified for this event."
+            )
+          );
+
+
+          organizerScannerSetStatus(
+            "QR check-in failed.",
+            "×"
+          );
+
         }
-      }catch(error){
-        console.error("QR code response error:",error);
-        organizerScannerShowResult("error","×","System Error","","Unable to process the check-in response.");
-        organizerScannerSetStatus("System error.","×");
-      }finally{finish();}
-    };
 
-    script.onerror=function(){
-      finish();
-      organizerScannerShowResult("error","×","Connection Error","","Unable to connect to ParsDo EventOS. Please check the network and try again.");
-      organizerScannerSetStatus("Connection failed.","×");
-    };
+      },
 
-    script.src=DASHBOARD_BASE+
-      "?action=manualCheckIn"+
-      "&event="+encodeURIComponent(eventId)+
-      "&code="+encodeURIComponent(checkInCode)+
-      "&callback="+encodeURIComponent(callbackName)+
-      "&_="+Date.now();
+      function(error){
 
-    document.body.appendChild(script);
+        console.error(
+          "QR check-in request error:",
+          error
+        );
 
-    timeoutId=setTimeout(function(){
-      if(finished) return;
-      finish();
-      organizerScannerShowResult("error","×","Request Timed Out","","ParsDo EventOS did not respond in time. Please try again.");
-      organizerScannerSetStatus("Check-in request timed out.","×");
-    },10000);
+
+        organizerScannerShowResult(
+          "error",
+          "×",
+          "Connection Error",
+          "",
+          error && error.message
+            ? escapeHtml(error.message)
+            : "Unable to connect to ParsDo EventOS."
+        );
+
+
+        organizerScannerSetStatus(
+          "QR check-in request failed.",
+          "×"
+        );
+
+      }
+    );
+
+
+    /*
+      Stop camera AFTER the request has been created.
+      This does not cancel the JSONP request.
+    */
 
     stopOrganizerScanner(false);
+
     return;
   }
 
-  /* Backward-compatible old full-URL QR format from the working scanner. */
+
+  /* =========================================================
+     BACKWARD COMPATIBILITY
+     Old full URL QR format
+     ========================================================= */
+
   try{
-    const url=new URL(scannedValue);
-    const qrEvent=String(url.searchParams.get("event")||"").trim();
-    const participantId=String(url.searchParams.get("id")||"").trim();
-    const token=String(url.searchParams.get("token")||"").trim();
 
-    if(!qrEvent || !participantId || !token){
-      organizerScannerProcessing=false;
-      organizerScannerShowResult("error","✕","Invalid QR Code","","This QR does not contain valid ParsDo EventOS attendee information.");
+    const url =
+      new URL(scannedValue);
+
+
+    const qrEvent =
+      String(
+        url.searchParams.get("event") || ""
+      ).trim();
+
+
+    const participantId =
+      String(
+        url.searchParams.get("id") || ""
+      ).trim();
+
+
+    const token =
+      String(
+        url.searchParams.get("token") || ""
+      ).trim();
+
+
+    if(
+      !qrEvent ||
+      !participantId ||
+      !token
+    ){
+
+      organizerScannerProcessing = false;
+
+      organizerScannerShowResult(
+        "error",
+        "✕",
+        "Invalid QR Code",
+        "",
+        "This QR does not contain valid ParsDo EventOS attendee information."
+      );
+
       return;
     }
 
-    if(qrEvent!==eventId){
-      organizerScannerProcessing=false;
-      organizerScannerShowResult("warning","!","Wrong Event","","This attendee QR belongs to a different event.");
+
+    if(qrEvent !== eventId){
+
+      organizerScannerProcessing = false;
+
+      organizerScannerShowResult(
+        "warning",
+        "!",
+        "Wrong Event",
+        "",
+        "This attendee QR belongs to a different event."
+      );
+
       return;
     }
 
-    organizerScannerSetStatus("QR detected — verifying attendee…","◉");
 
-    const callbackName="parsdoOrganizerLegacyQr_"+Date.now()+"_"+Math.random().toString(36).slice(2);
-    const script=document.createElement("script");
-    let finished=false;
-    let timeoutId=null;
+    organizerScannerSetStatus(
+      "QR detected — verifying attendee…",
+      "◉"
+    );
 
-    function finish(){
-      if(finished) return;
-      finished=true;
-      if(timeoutId) clearTimeout(timeoutId);
-      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
-      if(script.parentNode) script.parentNode.removeChild(script);
-      organizerScannerProcessing=false;
-    }
 
-    window[callbackName]=function(result){
-      try{
-        if(result&&result.success){
-          organizerScannerShowResult("success","✓","Check-in Successful",result.name||"Participant",result.participantId?"Participant ID: "+escapeHtml(result.participantId)+"<br><br>Attendance has been recorded.":"Attendance has been recorded.");
-          organizerScannerSetStatus("Check-in completed. Tap SCAN NEXT ATTENDEE.","✓");
-        }else if(result&&result.alreadyCheckedIn){
-          organizerScannerShowResult("warning","!","Already Checked In",result.name||"Participant",escapeHtml(result.message||"This participant has already been checked in."));
-          organizerScannerSetStatus("Participant was already checked in.","!");
+    const legacyUrl =
+      DASHBOARD_BASE +
+      "?event=" +
+      encodeURIComponent(qrEvent) +
+      "&id=" +
+      encodeURIComponent(participantId) +
+      "&token=" +
+      encodeURIComponent(token);
+
+
+    createJsonpRequest(
+      legacyUrl,
+      15000,
+
+      function(result){
+
+        if(result && result.success){
+
+          organizerScannerShowResult(
+            "success",
+            "✓",
+            "Check-in Successful",
+            result.name || "Participant",
+            result.participantId
+              ? "Participant ID: " +
+                escapeHtml(result.participantId) +
+                "<br><br>Attendance has been recorded."
+              : "Attendance has been recorded."
+          );
+
+
+          organizerScannerSetStatus(
+            "Check-in completed. Tap SCAN NEXT ATTENDEE.",
+            "✓"
+          );
+
+
+        }else if(
+          result &&
+          result.alreadyCheckedIn
+        ){
+
+          organizerScannerShowResult(
+            "warning",
+            "!",
+            "Already Checked In",
+            result.name || "Participant",
+            escapeHtml(
+              result.message ||
+              "This participant has already been checked in."
+            )
+          );
+
+
+          organizerScannerSetStatus(
+            "Participant was already checked in.",
+            "!"
+          );
+
+
         }else{
-          organizerScannerShowResult("error","×","Invalid QR Code","",escapeHtml(result&&result.message?result.message:"This QR code could not be verified."));
-          organizerScannerSetStatus("QR check-in failed.","×");
+
+          organizerScannerShowResult(
+            "error",
+            "×",
+            "Invalid QR Code",
+            "",
+            escapeHtml(
+              result && result.message
+                ? result.message
+                : "This QR code could not be verified."
+            )
+          );
+
+
+          organizerScannerSetStatus(
+            "QR check-in failed.",
+            "×"
+          );
+
         }
-      }catch(error){
-        organizerScannerShowResult("error","×","System Error","","Unable to process the check-in response.");
-        organizerScannerSetStatus("System error.","×");
-      }finally{finish();}
-    };
 
-    script.onerror=function(){
-      finish();
-      organizerScannerShowResult("error","×","Connection Error","","Unable to connect to ParsDo EventOS. Please check the network and try again.");
-      organizerScannerSetStatus("Connection failed.","×");
-    };
+      },
 
-    script.src=DASHBOARD_BASE+
-      "?event="+encodeURIComponent(qrEvent)+
-      "&id="+encodeURIComponent(participantId)+
-      "&token="+encodeURIComponent(token)+
-      "&callback="+encodeURIComponent(callbackName)+
-      "&_="+Date.now();
+      function(error){
 
-    document.body.appendChild(script);
+        console.error(
+          "Legacy QR request error:",
+          error
+        );
 
-    timeoutId=setTimeout(function(){
-      if(finished) return;
-      finish();
-      organizerScannerShowResult("error","×","Request Timed Out","","ParsDo EventOS did not respond in time. Please try again.");
-      organizerScannerSetStatus("Check-in request timed out.","×");
-    },10000);
+
+        organizerScannerShowResult(
+          "error",
+          "×",
+          "Connection Error",
+          "",
+          "Unable to connect to ParsDo EventOS."
+        );
+
+
+        organizerScannerSetStatus(
+          "Connection failed.",
+          "×"
+        );
+
+      }
+    );
+
 
     stopOrganizerScanner(false);
+
+
   }catch(error){
-    organizerScannerProcessing=false;
-    organizerScannerShowResult("error","✕","Invalid QR Code","","Please scan a valid ParsDo attendee QR or 6-character check-in code.");
+
+    organizerScannerProcessing = false;
+
+    organizerScannerShowResult(
+      "error",
+      "✕",
+      "Invalid QR Code",
+      "",
+      "Please scan a valid ParsDo attendee QR or 6-character check-in code."
+    );
+
   }
+
 }
 
 async function organizerManualCheckIn(){
