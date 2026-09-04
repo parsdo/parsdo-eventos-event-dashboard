@@ -981,21 +981,25 @@ width:100%;
 flex:1;
 }
 
- .logout-button {
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: transparent;
-  color: #ffffff;
-  padding: 9px 16px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
+.logout-button{
+  flex:0 0 auto;
+  border:1px solid #dce6e5;
+  background:#edf3f2;
+  color:var(--ink);
+  padding:12px 16px;
+  border-radius:11px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  transition:
+    transform .12s ease,
+    background .12s ease,
+    border-color .12s ease;
 }
 
-.logout-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.4);
+.logout-button:hover{
+  background:#e3eeec;
+  border-color:#c8dcda;
 }
 
 }
@@ -1049,9 +1053,37 @@ flex:1;
 #scannerView .os-manual-row button{width:145px}
 #scannerView .os-hidden{display:none!important}
 @media(max-width:760px){
-  #scannerView .os-controls{flex-direction:column}
-  #scannerView .os-manual-row{flex-direction:column}
-  #scannerView .os-manual-row button{width:100%}
+
+  #scannerView .os-controls{
+    flex-direction:column;
+  }
+
+  #scannerView .os-manual-card{
+    padding:18px;
+  }
+
+  #scannerView .os-manual-row{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  #scannerView .os-manual-row input{
+    width:100%;
+    min-height:58px;
+    padding:14px 16px;
+    font-size:20px;
+    font-weight:750;
+    text-align:center;
+    letter-spacing:4px;
+    border-radius:13px;
+  }
+
+  #scannerView .os-manual-row button{
+    width:100%;
+    min-height:54px;
+    font-size:15px;
+  }
+
 }
 @media(min-width:700px){#scannerView #organizerReader{min-height:360px}#scannerView #organizerReader video{min-height:360px}}
 
