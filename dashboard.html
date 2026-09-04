@@ -1000,40 +1000,63 @@ flex:1;
 
 }
 
+
+/* =========================================================
+   ORGANIZER QR SCANNER - ISOLATED STYLES
+   Added without changing existing dashboard styles.
+   ========================================================= */
+#scannerView{display:none}
+#scannerView.active{display:block}
+#scannerView .os-scanner-card,
+#scannerView .os-result,
+#scannerView .os-manual-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow)}
+#scannerView .os-scanner-card{overflow:hidden}
+#scannerView .os-scanner-head{padding:18px 20px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+#scannerView .os-scanner-heading{font-size:15px;font-weight:850;letter-spacing:.8px;text-transform:uppercase;color:var(--navy)}
+#scannerView .os-live-badge{display:flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:#edf5f4;color:var(--muted);font-size:9px;font-weight:800;letter-spacing:.8px}
+#scannerView .os-dot{width:7px;height:7px;border-radius:50%;background:#9aa8a7}
+#scannerView .os-live-badge.active{color:var(--success);background:#e9faf4}
+#scannerView .os-live-badge.active .os-dot{background:#16a57d;box-shadow:0 0 0 4px rgba(22,165,125,.12)}
+#scannerView #organizerReader{width:100%;min-height:300px;background:#0d1515;position:relative;overflow:hidden}
+#scannerView #organizerReader video{width:100%!important;height:auto!important;min-height:300px;object-fit:cover}
+#scannerView #organizerReader #organizerReader__scan_region{background:#0d1515!important}
+#scannerView #organizerReader #organizerReader__dashboard{display:none!important}
+#scannerView .os-scan-overlay{pointer-events:none;position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+#scannerView .os-scan-frame{width:min(64vw,250px);height:min(64vw,250px);border-radius:22px;position:relative;box-shadow:0 0 0 999px rgba(0,0,0,.28)}
+#scannerView .os-scan-frame:before,#scannerView .os-scan-frame:after{content:"";position:absolute;inset:0;border:3px solid rgba(255,255,255,.92);border-radius:22px;clip-path:polygon(0 0,25% 0,25% 5%,5% 5%,5% 25%,0 25%,0 0,100% 0,75% 0,75% 5%,95% 5%,95% 25%,100% 25%,100% 0,0 100%,25% 100%,25% 95%,5% 95%,5% 75%,0 75%,0 100%,100% 100%,75% 100%,75% 95%,95% 95%,95% 75%,100% 75%,100% 100%)}
+#scannerView .os-scan-line{position:absolute;left:14px;right:14px;top:20%;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent);box-shadow:0 0 12px rgba(245,124,0,.8);animation:osScanline 1.8s ease-in-out infinite}
+@keyframes osScanline{0%,100%{top:18%;opacity:.45}50%{top:80%;opacity:1}}
+#scannerView .os-scan-hint{padding:13px 20px 15px;display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;line-height:1.4}
+#scannerView .os-hint-icon{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#e9f8f6;color:var(--teal);font-size:14px;flex:0 0 auto}
+#scannerView .os-controls{padding:0 20px 18px;display:flex;gap:8px}
+#scannerView .os-controls button{flex:1}
+#scannerView .os-status-row{display:flex;align-items:center;gap:9px;padding:12px 20px;background:#fbfdfd;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+#scannerView .os-status-icon{font-size:14px}
+#scannerView .os-result{display:none;margin-bottom:17px;padding:22px 18px;text-align:center;border:1px solid}
+#scannerView .os-result.success{display:block;background:#e9faf4;border-color:#c9eee0;color:#087a61}
+#scannerView .os-result.warning{display:block;background:#fff8e6;border-color:#f3dfab;color:#8a5a00}
+#scannerView .os-result.error{display:block;background:#fff3f1;border-color:#f0cccc;color:#a52d2d}
+#scannerView .os-result-icon{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:30px;background:rgba(255,255,255,.78);animation:osPop .25s ease-out}
+@keyframes osPop{from{transform:scale(.7);opacity:.2}to{transform:scale(1);opacity:1}}
+#scannerView .os-result-title{font-size:22px;font-weight:850;letter-spacing:-.3px}
+#scannerView .os-result-name{margin-top:4px;font-size:15px;font-weight:750}
+#scannerView .os-result-message{margin:8px auto 0;max-width:390px;font-size:11px;line-height:1.55;opacity:.86}
+#scannerView .os-result button{margin-top:16px;max-width:360px}
+#scannerView .os-manual-card{margin-top:17px;padding:20px}
+#scannerView .os-section-label{font-size:10px;font-weight:850;letter-spacing:1.3px;color:var(--muted);text-transform:uppercase;margin-bottom:9px}
+#scannerView .os-manual-row{display:flex;gap:8px}
+#scannerView .os-manual-row input{flex:1;min-width:0}
+#scannerView .os-manual-row button{width:145px}
+#scannerView .os-hidden{display:none!important}
+@media(max-width:760px){
+  #scannerView .os-controls{flex-direction:column}
+  #scannerView .os-manual-row{flex-direction:column}
+  #scannerView .os-manual-row button{width:100%}
+}
+@media(min-width:700px){#scannerView #organizerReader{min-height:360px}#scannerView #organizerReader video{min-height:360px}}
+
 </style>
 <script src="https://unpkg.com/html5-qrcode" defer></script>
-<style>
-/* ParsDo EventOS — QR Scanner additions only. Existing dashboard styles remain untouched. */
-.pos-scanner-card,.pos-manual-card{overflow:hidden}
-.pos-scanner-head{padding:16px 17px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.pos-scanner-heading{font-size:13px;font-weight:850;letter-spacing:.8px;text-transform:uppercase}
-.pos-scanner-event{margin-top:4px;font-size:10px;color:#7d8b8a;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.pos-live-badge{display:flex;align-items:center;gap:6px;padding:6px 9px;border-radius:999px;background:#edf5f4;color:#71807f;font-size:9px;font-weight:800;letter-spacing:.8px}
-.pos-dot{width:7px;height:7px;border-radius:50%;background:#9aa8a7}
-.pos-live-badge.active{color:#148b69;background:#e8f7f1}
-.pos-live-badge.active .pos-dot{background:#16a57d;box-shadow:0 0 0 4px rgba(22,165,125,.12)}
-.pos-reader{width:100%;min-height:270px;background:#0d1515;position:relative;overflow:hidden}
-.pos-reader video{width:100%!important;height:auto!important;min-height:270px;object-fit:cover}
-#organizerReader__scan_region{background:#0d1515!important}
-#organizerReader__dashboard{display:none!important}
-.pos-scan-overlay{pointer-events:none;position:relative;height:0;z-index:3;display:flex;align-items:center;justify-content:center;top:-270px}
-.pos-scan-frame{width:min(64vw,250px);height:min(64vw,250px);border-radius:22px;position:relative;box-shadow:0 0 0 999px rgba(0,0,0,.28)}
-.pos-scan-frame:before,.pos-scan-frame:after{content:"";position:absolute;inset:0;border:3px solid rgba(255,255,255,.92);border-radius:22px;clip-path:polygon(0 0,25% 0,25% 5%,5% 5%,5% 25%,0 25%,0 0,100% 0,75% 0,75% 5%,95% 5%,95% 25%,100% 25%,100% 0,0 100%,25% 100%,25% 95%,5% 95%,5% 75%,0 75%,0 100%,100% 100%,75% 100%,75% 95%,95% 95%,95% 75%,100% 75%,100% 100%)}
-.pos-scan-line{position:absolute;left:14px;right:14px;top:20%;height:2px;background:linear-gradient(90deg,transparent,#f57c00,transparent);box-shadow:0 0 12px rgba(245,124,0,.8);animation:posScanline 1.8s ease-in-out infinite}
-@keyframes posScanline{0%,100%{top:18%;opacity:.45}50%{top:80%;opacity:1}}
-.pos-scanner-hint{padding:13px 17px 15px;display:flex;align-items:center;gap:10px;border-top:1px solid #e5eceb;color:#7d8b8a;font-size:11px;line-height:1.4}
-.pos-hint-icon{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#e8f5f4;color:#087f7a;font-size:14px;flex:0 0 auto}
-.pos-controls{padding:0 17px 17px}.pos-controls button,.pos-result button{width:100%;border:0;border-radius:13px;min-height:49px;padding:13px 16px;font-size:14px;font-weight:800;cursor:pointer}
-.pos-primary{color:#fff!important;background:linear-gradient(135deg,#0b8a83,#066b67)!important;box-shadow:0 9px 20px rgba(8,127,122,.20)}
-.pos-secondary{color:#24302f!important;background:#edf3f2!important}.pos-hidden{display:none!important}
-.pos-status-row{display:flex;align-items:center;gap:9px;padding:12px 17px;background:#fbfdfd;border-top:1px solid #e5eceb;font-size:11px;color:#7d8b8a}.pos-status-icon{font-size:14px}
-.pos-result{display:none;margin-bottom:14px;padding:22px 18px;border-radius:20px;text-align:center;border:1px solid;box-shadow:0 10px 30px rgba(20,50,48,.08)}
-.pos-result.success{background:#eaf8f2;border-color:#c9eee0;color:#087a5c}.pos-result.warning{background:#fff8e8;border-color:#f3dfab;color:#9a6b00}.pos-result.error{background:#fff0f0;border-color:#f2cece;color:#b63b3b}
-.pos-result-icon{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:30px;background:rgba(255,255,255,.78)}
-.pos-result-title{font-size:22px;font-weight:850;letter-spacing:-.3px}.pos-result-name{margin-top:4px;font-size:15px;font-weight:750}.pos-result-message{margin:8px auto 0;max-width:390px;font-size:11px;line-height:1.55;opacity:.86}.pos-result button{margin-top:16px}
-.pos-manual-card{margin-top:14px;padding:16px}.pos-section-label{font-size:10px;font-weight:850;letter-spacing:1.3px;color:#7d8b8a;text-transform:uppercase;margin-bottom:9px}.pos-manual-row{display:flex;gap:8px}.pos-manual-row input{flex:1;min-width:0}.pos-manual-button{width:145px!important}
-@media (min-width:700px){.pos-reader{min-height:360px}.pos-reader video{min-height:360px}.pos-scan-overlay{top:-360px}}
-</style>
 </head>
 
 
@@ -1136,7 +1159,6 @@ onclick="showView('email')">
 ✉ Email Participants
 
 </button>
-
 
 <button
 id="scannerNav"
@@ -1588,6 +1610,60 @@ class="email-result">
 </section>
 
 
+
+
+<!-- QR SCANNER VIEW -->
+<section id="scannerView" class="view">
+
+  <section id="organizerScannerResult" class="os-result">
+    <div id="organizerScannerResultIcon" class="os-result-icon"></div>
+    <div id="organizerScannerResultTitle" class="os-result-title"></div>
+    <div id="organizerScannerResultName" class="os-result-name"></div>
+    <div id="organizerScannerResultMessage" class="os-result-message"></div>
+    <button class="primary" type="button" onclick="organizerScanNext()">SCAN NEXT ATTENDEE</button>
+  </section>
+
+  <section class="os-scanner-card">
+    <div class="os-scanner-head">
+      <div class="os-scanner-heading">QR Check-in</div>
+      <div id="organizerLiveBadge" class="os-live-badge"><span class="os-dot"></span>READY</div>
+    </div>
+
+    <div id="organizerReader">
+      <div class="os-scan-overlay">
+        <div class="os-scan-frame">
+          <div class="os-scan-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="os-scan-hint">
+      <div class="os-hint-icon">⌁</div>
+      <div>Place the attendee QR inside the frame. The scanner will detect it automatically.</div>
+    </div>
+
+    <div class="os-controls">
+      <button id="organizerStartButton" class="primary" type="button" onclick="startOrganizerScanner()">START CAMERA</button>
+      <button id="organizerStopButton" class="secondary os-hidden" type="button" onclick="stopOrganizerScanner(true)">STOP SCANNER</button>
+    </div>
+
+    <div class="os-status-row">
+      <span id="organizerStatusIcon" class="os-status-icon">●</span>
+      <span id="organizerStatus">Ready to scan.</span>
+    </div>
+  </section>
+
+  <section class="os-manual-card">
+    <div class="os-section-label">Manual check-in backup</div>
+    <div class="os-manual-row">
+      <input id="organizerManualCode" type="text" autocomplete="off" maxlength="6" autocapitalize="characters" spellcheck="false" placeholder="Enter 6-character code">
+      <button class="primary" type="button" onclick="organizerManualCheckIn()">CHECK IN</button>
+    </div>
+  </section>
+
+</section>
+
+
 <div
 id="errorBox"
 class="error">
@@ -1611,57 +1687,6 @@ www.parsdo.in
 </a>
 
 </div>
-
-
-<!-- QR SCANNER VIEW — added without changing existing views -->
-<section id="scannerView" class="view">
-  <section class="card pos-scanner-card">
-    <div class="pos-scanner-head">
-      <div>
-        <div class="pos-scanner-heading">QR Scanner</div>
-        <div class="pos-scanner-event" id="scannerEventLabel">Event ID · —</div>
-      </div>
-      <div id="organizerLiveBadge" class="pos-live-badge"><span class="pos-dot"></span>READY</div>
-    </div>
-
-    <div id="organizerResult" class="pos-result">
-      <div id="organizerResultIcon" class="pos-result-icon"></div>
-      <div id="organizerResultTitle" class="pos-result-title"></div>
-      <div id="organizerResultName" class="pos-result-name"></div>
-      <div id="organizerResultMessage" class="pos-result-message"></div>
-      <button type="button" class="pos-primary" onclick="organizerScanNext()">SCAN NEXT ATTENDEE</button>
-    </div>
-
-    <div id="organizerReader" class="pos-reader"></div>
-
-    <div class="pos-scan-overlay" aria-hidden="true">
-      <div class="pos-scan-frame"><div class="pos-scan-line"></div></div>
-    </div>
-
-    <div class="pos-scanner-hint">
-      <span class="pos-hint-icon">▣</span>
-      <span>Point the camera at the attendee QR code. The QR contains only the 6-character check-in code.</span>
-    </div>
-
-    <div class="pos-controls">
-      <button id="organizerStartButton" type="button" class="pos-primary" onclick="startOrganizerScanner()">START CAMERA</button>
-      <button id="organizerStopButton" type="button" class="pos-secondary pos-hidden" onclick="stopOrganizerScanner(true)">STOP SCANNER</button>
-    </div>
-
-    <div class="pos-status-row">
-      <span id="organizerStatusIcon" class="pos-status-icon">●</span>
-      <span id="organizerStatus">Ready — tap START CAMERA.</span>
-    </div>
-  </section>
-
-  <section class="card pos-manual-card">
-    <div class="pos-section-label">Manual check-in backup</div>
-    <div class="pos-manual-row">
-      <input id="organizerManualCode" type="text" autocomplete="off" maxlength="6" autocapitalize="characters" spellcheck="false" placeholder="Enter 6-character code">
-      <button type="button" class="pos-primary pos-manual-button" onclick="organizerManualCheckIn()">CHECK IN</button>
-    </div>
-  </section>
-</section>
 
 
 </main>
@@ -1822,13 +1847,23 @@ message;
 
 function showView(view){
 
-const liveView = document.getElementById("liveView");
-const emailView = document.getElementById("emailView");
-const scannerView = document.getElementById("scannerView");
+const liveView =
+document.getElementById("liveView");
 
-const liveNav = document.getElementById("liveNav");
-const emailNav = document.getElementById("emailNav");
-const scannerNav = document.getElementById("scannerNav");
+const emailView =
+document.getElementById("emailView");
+
+const scannerView =
+document.getElementById("scannerView");
+
+const liveNav =
+document.getElementById("liveNav");
+
+const emailNav =
+document.getElementById("emailNav");
+
+const scannerNav =
+document.getElementById("scannerNav");
 
 liveView.classList.remove("active");
 emailView.classList.remove("active");
@@ -1840,51 +1875,37 @@ scannerNav.classList.remove("active");
 
 if(view === "email"){
 
-  emailView.classList.add("active");
-  emailNav.classList.add("active");
+emailView.classList.add("active");
+emailNav.classList.add("active");
 
-  if(eventId){
-    loadEmailParticipants();
-  }
+if(eventId){
+loadEmailParticipants();
+}
 
-  history.replaceState(null,"",window.location.pathname +
-    "?event=" + encodeURIComponent(eventId) + "&view=email");
+history.replaceState(null,"",window.location.pathname+"?event="+encodeURIComponent(eventId)+"&view=email");
 
 }else if(view === "scanner"){
 
-  scannerView.classList.add("active");
-  scannerNav.classList.add("active");
+scannerView.classList.add("active");
+scannerNav.classList.add("active");
 
-  document.getElementById("scannerEventLabel").textContent =
-    "Event ID · " + (eventId || "—");
+history.replaceState(null,"",window.location.pathname+"?event="+encodeURIComponent(eventId)+"&view=scanner");
 
-  if(!eventId){
-    organizerScannerShowResult("error","⚠","Event Not Ready","",
-      "Event ID is missing from the dashboard URL.");
-  }else{
-    organizerScannerSetStatus("Ready — tap START CAMERA.","●");
-  }
-
-  history.replaceState(null,"",window.location.pathname +
-    "?event=" + encodeURIComponent(eventId) + "&view=scanner");
+if(eventId){
+organizerScannerHideResult();
+organizerScannerSetStatus("Ready — tap START CAMERA.","●");
+}
 
 }else{
 
-  liveView.classList.add("active");
-  liveNav.classList.add("active");
+liveView.classList.add("active");
+liveNav.classList.add("active");
 
-  history.replaceState(null,"",window.location.pathname +
-    "?event=" + encodeURIComponent(eventId));
-
-}
+history.replaceState(null,"",window.location.pathname+"?event="+encodeURIComponent(eventId));
 
 }
 
-/* =========================================================
-   JSONP GENERATOR
-   ========================================================= */
-
-function createJsonpRequest(
+}function createJsonpRequest(
 url,
 timeout,
 onSuccess,
@@ -3555,6 +3576,385 @@ renderEmailParticipants();
    INITIALIZE
    ========================================================= */
 
+
+/* =========================================================
+  ORGANIZER QR SCANNER
+  Reuses the existing working scanner logic.
+  No backend changes.
+  ========================================================= */
+
+let organizerScanner = null;
+let organizerScannerProcessing = false;
+
+function organizerScannerSetStatus(message, icon="●"){
+  const status=document.getElementById("organizerStatus");
+  const iconEl=document.getElementById("organizerStatusIcon");
+  if(status) status.textContent=message;
+  if(iconEl) iconEl.textContent=icon;
+}
+
+function organizerScannerSetLive(active){
+  const b=document.getElementById("organizerLiveBadge");
+  if(!b) return;
+  b.classList.toggle("active",active);
+  b.innerHTML=active
+    ? '<span class="os-dot"></span>SCANNING'
+    : '<span class="os-dot"></span>READY';
+}
+
+function organizerScannerShowResult(type,icon,title,name,message){
+  const el=document.getElementById("organizerScannerResult");
+  if(!el) return;
+  el.className="os-result "+type;
+  document.getElementById("organizerScannerResultIcon").textContent=icon;
+  document.getElementById("organizerScannerResultTitle").textContent=title;
+  document.getElementById("organizerScannerResultName").textContent=name||"";
+  document.getElementById("organizerScannerResultMessage").innerHTML=message||"";
+  el.style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function organizerScannerHideResult(){
+  const el=document.getElementById("organizerScannerResult");
+  if(el) el.style.display="none";
+}
+
+async function startOrganizerScanner(){
+  organizerScannerHideResult();
+  if(!eventId) return;
+
+  if(typeof Html5Qrcode === "undefined"){
+    organizerScannerSetStatus("Loading scanner…","◌");
+    setTimeout(startOrganizerScanner,400);
+    return;
+  }
+
+  await stopOrganizerScanner(false);
+  organizerScannerProcessing=false;
+
+  organizerScanner=new Html5Qrcode("organizerReader");
+
+  document.getElementById("organizerStartButton").classList.add("os-hidden");
+  document.getElementById("organizerStopButton").classList.remove("os-hidden");
+  organizerScannerSetLive(true);
+  organizerScannerSetStatus("Requesting camera access…","◉");
+
+  try{
+    await organizerScanner.start(
+      {facingMode:{exact:"environment"}},
+      {fps:15,qrbox:{width:220,height:220},aspectRatio:1.0,disableFlip:true},
+      onOrganizerScanSuccess,
+      function(){}
+    );
+    organizerScannerSetStatus("Camera active — scan attendee QR.","●");
+  }catch(firstError){
+    try{
+      await organizerScanner.start(
+        {facingMode:"environment"},
+        {fps:15,qrbox:{width:220,height:220},aspectRatio:1.0},
+        onOrganizerScanSuccess,
+        function(){}
+      );
+      organizerScannerSetStatus("Camera active — scan attendee QR.","●");
+    }catch(error){
+      organizerScannerSetLive(false);
+      document.getElementById("organizerStartButton").classList.remove("os-hidden");
+      document.getElementById("organizerStopButton").classList.add("os-hidden");
+      organizerScannerShowResult("error","✕","Camera Unavailable","","Please allow camera access in your browser and try again.");
+      organizerScannerSetStatus("Camera unavailable.","×");
+    }
+  }
+}
+
+async function stopOrganizerScanner(updateUi){
+  if(organizerScanner){
+    try{ await organizerScanner.stop(); }catch(e){}
+    try{ organizerScanner.clear(); }catch(e){}
+    organizerScanner=null;
+  }
+
+  organizerScannerSetLive(false);
+
+  if(updateUi){
+    document.getElementById("organizerStartButton").classList.remove("os-hidden");
+    document.getElementById("organizerStopButton").classList.add("os-hidden");
+    organizerScannerSetStatus("Scanner stopped. Tap START CAMERA.","●");
+  }
+}
+
+function onOrganizerScanSuccess(decodedText){
+  if(organizerScannerProcessing) return;
+  organizerScannerProcessing=true;
+
+  const scannedValue=String(decodedText||"").trim();
+  if(!scannedValue){
+    organizerScannerProcessing=false;
+    organizerScannerShowResult("error","✕","Invalid QR Code","","The QR code did not contain any readable information.");
+    return;
+  }
+
+  /* Current QR format: QR contains only the 6-character check-in code. */
+  if(/^[A-Z2-9]{6}$/i.test(scannedValue)){
+    const checkInCode=scannedValue.toUpperCase();
+
+    if(!eventId){
+      organizerScannerProcessing=false;
+      organizerScannerShowResult("error","⚠️","Event Not Ready","","Please wait for the event to finish loading.");
+      return;
+    }
+
+    organizerScannerSetStatus("QR detected — verifying check-in code…","◉");
+
+    const callbackName="parsdoOrganizerQr_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+    const script=document.createElement("script");
+    let finished=false;
+    let timeoutId=null;
+
+    function finish(){
+      if(finished) return;
+      finished=true;
+      if(timeoutId) clearTimeout(timeoutId);
+      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+      if(script.parentNode) script.parentNode.removeChild(script);
+      organizerScannerProcessing=false;
+    }
+
+    window[callbackName]=function(result){
+      try{
+        if(result && result.success){
+          organizerScannerShowResult(
+            "success","✓","Check-in Successful",result.name||"Participant",
+            result.participantId
+              ? "Participant ID: "+escapeHtml(result.participantId)+"<br><br>Attendance has been recorded."
+              : "Attendance has been recorded."
+          );
+          organizerScannerSetStatus("Check-in completed. Tap SCAN NEXT ATTENDEE.","✓");
+        }else if(result && result.alreadyCheckedIn){
+          let message=result.message||"This participant has already been checked in.";
+          if(result.time) message+="<br><br><b>Time:</b> "+escapeHtml(result.time);
+          organizerScannerShowResult("warning","!","Already Checked In",result.name||"Participant",message);
+          organizerScannerSetStatus("Participant was already checked in.","!");
+        }else{
+          organizerScannerShowResult("error","×","Invalid Check-in Code","",escapeHtml(result&&result.message?result.message:"This check-in code could not be verified for this event."));
+          organizerScannerSetStatus("QR check-in failed.","×");
+        }
+      }catch(error){
+        console.error("QR code response error:",error);
+        organizerScannerShowResult("error","×","System Error","","Unable to process the check-in response.");
+        organizerScannerSetStatus("System error.","×");
+      }finally{finish();}
+    };
+
+    script.onerror=function(){
+      finish();
+      organizerScannerShowResult("error","×","Connection Error","","Unable to connect to ParsDo EventOS. Please check the network and try again.");
+      organizerScannerSetStatus("Connection failed.","×");
+    };
+
+    script.src=DASHBOARD_BASE+
+      "?action=manualCheckIn"+
+      "&event="+encodeURIComponent(eventId)+
+      "&code="+encodeURIComponent(checkInCode)+
+      "&callback="+encodeURIComponent(callbackName)+
+      "&_="+Date.now();
+
+    document.body.appendChild(script);
+
+    timeoutId=setTimeout(function(){
+      if(finished) return;
+      finish();
+      organizerScannerShowResult("error","×","Request Timed Out","","ParsDo EventOS did not respond in time. Please try again.");
+      organizerScannerSetStatus("Check-in request timed out.","×");
+    },10000);
+
+    stopOrganizerScanner(false);
+    return;
+  }
+
+  /* Backward-compatible old full-URL QR format from the working scanner. */
+  try{
+    const url=new URL(scannedValue);
+    const qrEvent=String(url.searchParams.get("event")||"").trim();
+    const participantId=String(url.searchParams.get("id")||"").trim();
+    const token=String(url.searchParams.get("token")||"").trim();
+
+    if(!qrEvent || !participantId || !token){
+      organizerScannerProcessing=false;
+      organizerScannerShowResult("error","✕","Invalid QR Code","","This QR does not contain valid ParsDo EventOS attendee information.");
+      return;
+    }
+
+    if(qrEvent!==eventId){
+      organizerScannerProcessing=false;
+      organizerScannerShowResult("warning","!","Wrong Event","","This attendee QR belongs to a different event.");
+      return;
+    }
+
+    organizerScannerSetStatus("QR detected — verifying attendee…","◉");
+
+    const callbackName="parsdoOrganizerLegacyQr_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+    const script=document.createElement("script");
+    let finished=false;
+    let timeoutId=null;
+
+    function finish(){
+      if(finished) return;
+      finished=true;
+      if(timeoutId) clearTimeout(timeoutId);
+      try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+      if(script.parentNode) script.parentNode.removeChild(script);
+      organizerScannerProcessing=false;
+    }
+
+    window[callbackName]=function(result){
+      try{
+        if(result&&result.success){
+          organizerScannerShowResult("success","✓","Check-in Successful",result.name||"Participant",result.participantId?"Participant ID: "+escapeHtml(result.participantId)+"<br><br>Attendance has been recorded.":"Attendance has been recorded.");
+          organizerScannerSetStatus("Check-in completed. Tap SCAN NEXT ATTENDEE.","✓");
+        }else if(result&&result.alreadyCheckedIn){
+          organizerScannerShowResult("warning","!","Already Checked In",result.name||"Participant",escapeHtml(result.message||"This participant has already been checked in."));
+          organizerScannerSetStatus("Participant was already checked in.","!");
+        }else{
+          organizerScannerShowResult("error","×","Invalid QR Code","",escapeHtml(result&&result.message?result.message:"This QR code could not be verified."));
+          organizerScannerSetStatus("QR check-in failed.","×");
+        }
+      }catch(error){
+        organizerScannerShowResult("error","×","System Error","","Unable to process the check-in response.");
+        organizerScannerSetStatus("System error.","×");
+      }finally{finish();}
+    };
+
+    script.onerror=function(){
+      finish();
+      organizerScannerShowResult("error","×","Connection Error","","Unable to connect to ParsDo EventOS. Please check the network and try again.");
+      organizerScannerSetStatus("Connection failed.","×");
+    };
+
+    script.src=DASHBOARD_BASE+
+      "?event="+encodeURIComponent(qrEvent)+
+      "&id="+encodeURIComponent(participantId)+
+      "&token="+encodeURIComponent(token)+
+      "&callback="+encodeURIComponent(callbackName)+
+      "&_="+Date.now();
+
+    document.body.appendChild(script);
+
+    timeoutId=setTimeout(function(){
+      if(finished) return;
+      finish();
+      organizerScannerShowResult("error","×","Request Timed Out","","ParsDo EventOS did not respond in time. Please try again.");
+      organizerScannerSetStatus("Check-in request timed out.","×");
+    },10000);
+
+    stopOrganizerScanner(false);
+  }catch(error){
+    organizerScannerProcessing=false;
+    organizerScannerShowResult("error","✕","Invalid QR Code","","Please scan a valid ParsDo attendee QR or 6-character check-in code.");
+  }
+}
+
+async function organizerManualCheckIn(){
+  const input=document.getElementById("organizerManualCode");
+  const button=document.querySelector('#scannerView button[onclick="organizerManualCheckIn()"]');
+  const code=String(input&&input.value||"").trim().toUpperCase();
+
+  if(!eventId){
+    organizerScannerShowResult("error","⚠️","Event Not Ready","","Please wait for the event to finish loading.");
+    return;
+  }
+
+  if(!code){
+    organizerScannerShowResult("warning","!","Code Required","","Enter the attendee's 6-character check-in code.");
+    if(input) input.focus();
+    return;
+  }
+
+  if(!/^[A-Z2-9]{6}$/.test(code)){
+    organizerScannerShowResult("warning","!","Invalid Code","","Please enter a valid 6-character check-in code.");
+    if(input) input.focus();
+    return;
+  }
+
+  if(button){button.disabled=true;button.textContent="CHECKING…";}
+  organizerScannerProcessing=true;
+  organizerScannerSetStatus("Verifying manual check-in…","◉");
+
+  const callbackName="parsdoOrganizerManual_"+Date.now()+"_"+Math.random().toString(36).slice(2);
+  const script=document.createElement("script");
+  let finished=false;
+  let timeoutId=null;
+
+  function finish(){
+    if(finished) return;
+    finished=true;
+    if(timeoutId) clearTimeout(timeoutId);
+    try{delete window[callbackName];}catch(e){window[callbackName]=undefined;}
+    if(script.parentNode) script.parentNode.removeChild(script);
+    organizerScannerProcessing=false;
+    if(button){button.disabled=false;button.textContent="CHECK IN";}
+  }
+
+  window[callbackName]=function(result){
+    try{
+      if(result&&result.success){
+        organizerScannerShowResult("success","✓","Check-in Successful",result.name||"Participant",result.participantId?"Participant ID: "+escapeHtml(result.participantId)+"<br><br>Attendance has been recorded.":"Attendance has been recorded.");
+        if(input) input.value="";
+        organizerScannerSetStatus("Check-in completed. Tap SCAN NEXT ATTENDEE.","✓");
+      }else if(result&&result.alreadyCheckedIn){
+        let message=result.message||"This participant was already checked in.";
+        if(result.time) message+="<br><br><b>Time:</b> "+escapeHtml(result.time);
+        organizerScannerShowResult("warning","!","Already Checked In",result.name||"Participant",message);
+        if(input) input.value="";
+        organizerScannerSetStatus("Participant was already checked in.","!");
+      }else{
+        organizerScannerShowResult("error","×","Invalid Check-in Code","",escapeHtml(result&&result.message?result.message:"This code could not be verified for this event."));
+        if(input) input.focus();
+        organizerScannerSetStatus("Manual check-in failed.","×");
+      }
+    }catch(error){
+      organizerScannerShowResult("error","×","System Error","","Unable to process the check-in response.");
+      organizerScannerSetStatus("System error.","×");
+    }finally{finish();}
+  };
+
+  script.onerror=function(){
+    finish();
+    organizerScannerShowResult("error","×","Connection Error","","Unable to connect to ParsDo EventOS. Please check the network and try again.");
+    organizerScannerSetStatus("Connection failed.","×");
+  };
+
+  script.src=DASHBOARD_BASE+
+    "?action=manualCheckIn"+
+    "&event="+encodeURIComponent(eventId)+
+    "&code="+encodeURIComponent(code)+
+    "&callback="+encodeURIComponent(callbackName)+
+    "&_="+Date.now();
+
+  document.body.appendChild(script);
+
+  timeoutId=setTimeout(function(){
+    if(finished) return;
+    finish();
+    organizerScannerShowResult("error","×","Request Timed Out","","ParsDo EventOS did not respond in time. Please try again.");
+    organizerScannerSetStatus("Manual check-in request timed out.","×");
+  },10000);
+}
+
+function organizerScanNext(){
+  organizerScannerHideResult();
+  document.getElementById("organizerStartButton").classList.remove("os-hidden");
+  organizerScannerSetStatus("Ready — tap START CAMERA.","●");
+}
+
+function initOrganizerScanner(){
+  const input=document.getElementById("organizerManualCode");
+  if(input){
+    input.addEventListener("input",function(){
+      this.value=this.value.toUpperCase().replace(/[^A-Z2-9]/g,"").slice(0,6);
+    });
+  }
+}
+
 function init(){
 
 eventId =
@@ -3628,11 +4028,9 @@ window.location.search
 
 
 if(view === "email"){
-
 showView("email");
 
 }else if(view === "scanner"){
-
 showView("scanner");
 
 }
@@ -3653,207 +4051,6 @@ function logoutOrganizer() {
   window.location.href = "index.html";
 }   
 
-
-/* =========================================================
-   ORGANIZER QR SCANNER — added without changing existing logic
-   ========================================================= */
-const ORGANIZER_CHECKIN_BASE =
-  "https://script.google.com/macros/s/AKfycbySDLg-l7LJ_yO1fujijl9fta1I4Jk4MS3DmVcRh3-u9UpeNPPmB-pX-mhmqAc9q3jBm-g/exec";
-
-let organizerScanner = null;
-let organizerScannerProcessing = false;
-let organizerScannerRequestFinished = false;
-
-function organizerScannerSetStatus(message, icon){
-  const el = document.getElementById("organizerStatus");
-  const ic = document.getElementById("organizerStatusIcon");
-  if(el) el.textContent = message || "";
-  if(ic) ic.textContent = icon || "●";
-}
-
-function organizerScannerSetLive(active){
-  const b = document.getElementById("organizerLiveBadge");
-  if(!b) return;
-  b.classList.toggle("active", !!active);
-  b.innerHTML = active ? '<span class="pos-dot"></span>SCANNING' : '<span class="pos-dot"></span>READY';
-}
-
-function organizerScannerHideResult(){
-  const el = document.getElementById("organizerResult");
-  if(el) el.style.display = "none";
-}
-
-function organizerScannerShowResult(type, icon, title, name, message){
-  const el = document.getElementById("organizerResult");
-  if(!el) return;
-  el.className = "pos-result " + type;
-  document.getElementById("organizerResultIcon").textContent = icon || "";
-  document.getElementById("organizerResultTitle").textContent = title || "";
-  document.getElementById("organizerResultName").textContent = name || "";
-  document.getElementById("organizerResultMessage").innerHTML = message || "";
-  el.style.display = "block";
-}
-
-async function startOrganizerScanner(){
-  organizerScannerHideResult();
-  if(!eventId){
-    organizerScannerShowResult("error","⚠","Event Not Ready","","Event ID is missing from this dashboard.");
-    return;
-  }
-
-  if(typeof Html5Qrcode === "undefined"){
-    organizerScannerSetStatus("Loading scanner…","◌");
-    setTimeout(startOrganizerScanner,400);
-    return;
-  }
-
-  await stopOrganizerScanner(false);
-  organizerScannerProcessing = false;
-  organizerScannerRequestFinished = false;
-  organizerScanner = new Html5Qrcode("organizerReader");
-
-  document.getElementById("organizerStartButton").classList.add("pos-hidden");
-  document.getElementById("organizerStopButton").classList.remove("pos-hidden");
-  organizerScannerSetLive(true);
-  organizerScannerSetStatus("Requesting camera access…","◉");
-
-  const config = {fps:15, qrbox:{width:220,height:220}, aspectRatio:1.0, disableFlip:true};
-  try{
-    await organizerScanner.start({facingMode:{exact:"environment"}}, config, onOrganizerScanSuccess, function(){});
-    organizerScannerSetStatus("Camera active — scan attendee QR.","●");
-  }catch(firstError){
-    try{
-      await organizerScanner.start({facingMode:"environment"}, config, onOrganizerScanSuccess, function(){});
-      organizerScannerSetStatus("Camera active — scan attendee QR.","●");
-    }catch(error){
-      organizerScannerSetLive(false);
-      document.getElementById("organizerStartButton").classList.remove("pos-hidden");
-      document.getElementById("organizerStopButton").classList.add("pos-hidden");
-      organizerScannerShowResult("error","✕","Camera Unavailable","","Please allow camera access in your browser and try again.");
-    }
-  }
-}
-
-async function stopOrganizerScanner(updateUi){
-  if(organizerScanner){
-    try{ await organizerScanner.stop(); }catch(e){}
-    try{ organizerScanner.clear(); }catch(e){}
-    organizerScanner = null;
-  }
-  organizerScannerSetLive(false);
-  if(updateUi){
-    document.getElementById("organizerStartButton").classList.remove("pos-hidden");
-    document.getElementById("organizerStopButton").classList.add("pos-hidden");
-    organizerScannerSetStatus("Scanner stopped. Tap START CAMERA.","●");
-  }
-}
-
-async function onOrganizerScanSuccess(decodedText){
-  if(organizerScannerProcessing) return;
-  const scannedValue = String(decodedText || "").trim();
-  if(!/^[A-Z2-9]{6}$/i.test(scannedValue)){
-    organizerScannerShowResult("error","✕","Invalid QR Code","","Please scan a valid ParsDo attendee QR containing the 6-character check-in code.");
-    organizerScannerSetStatus("Invalid QR code.","×");
-    return;
-  }
-
-  organizerScannerProcessing = true;
-  const checkInCode = scannedValue.toUpperCase();
-  organizerScannerSetStatus("QR detected — verifying check-in code…","◉");
-
-  // Stop camera, but DO NOT clear the processing guard until the server responds.
-  if(organizerScanner){
-    try{ await organizerScanner.stop(); }catch(e){}
-    try{ organizerScanner.clear(); }catch(e){}
-    organizerScanner = null;
-  }
-  organizerScannerSetLive(false);
-  document.getElementById("organizerStartButton").classList.add("pos-hidden");
-  document.getElementById("organizerStopButton").classList.add("pos-hidden");
-
-  const callbackName = "parsdoOrganizerQr_" + Date.now() + "_" + Math.random().toString(36).slice(2,8);
-  const script = document.createElement("script");
-  let finished = false;
-  const timeoutId = setTimeout(function(){
-    if(finished) return;
-    finished = true;
-    try{ delete window[callbackName]; }catch(e){ window[callbackName]=undefined; }
-    if(script.parentNode) script.parentNode.removeChild(script);
-    organizerScannerProcessing = false;
-    organizerScannerShowResult("error","×","Request Timed Out","","ParsDo EventOS did not respond in time. Please try again.");
-    organizerScannerSetStatus("Check-in request timed out.","×");
-  },10000);
-
-  function finish(){
-    if(finished) return;
-    finished = true;
-    clearTimeout(timeoutId);
-    try{ delete window[callbackName]; }catch(e){ window[callbackName]=undefined; }
-    if(script.parentNode) script.parentNode.removeChild(script);
-    organizerScannerProcessing = false;
-  }
-
-  window[callbackName] = function(result){
-    try{
-      if(result && result.success){
-        organizerScannerShowResult("success","✓","Check-in Successful",result.name || "Participant",
-          result.participantId ? "Participant ID: " + String(result.participantId).replace(/&/g,"&amp;").replace(/</g,"&lt;") + "<br><br>Attendance has been recorded." : "Attendance has been recorded.");
-        organizerScannerSetStatus("Check-in completed. Tap SCAN NEXT ATTENDEE.","✓");
-      }else if(result && result.alreadyCheckedIn){
-        organizerScannerShowResult("warning","!","Already Checked In",result.name || "Participant",result.message || "This participant has already been checked in.");
-        organizerScannerSetStatus("Participant was already checked in.","!");
-      }else{
-        organizerScannerShowResult("error","×","Invalid Check-in Code","",result && result.message ? String(result.message) : "This check-in code could not be verified for this event.");
-        organizerScannerSetStatus("QR check-in failed.","×");
-      }
-    }catch(error){
-      organizerScannerShowResult("error","×","System Error","","Unable to process the check-in response.");
-      organizerScannerSetStatus("System error.","×");
-    }finally{
-      finish();
-    }
-  };
-
-  script.onerror = function(){
-    finish();
-    organizerScannerShowResult("error","×","Connection Error","","Unable to connect to ParsDo EventOS. Please check the network and try again.");
-    organizerScannerSetStatus("Connection failed.","×");
-  };
-
-  script.src = ORGANIZER_CHECKIN_BASE +
-    "?action=manualCheckIn" +
-    "&event=" + encodeURIComponent(eventId) +
-    "&code=" + encodeURIComponent(checkInCode) +
-    "&callback=" + encodeURIComponent(callbackName) +
-    "&_=" + Date.now();
-  document.body.appendChild(script);
-}
-
-function organizerScanNext(){
-  organizerScannerHideResult();
-  document.getElementById("organizerStartButton").classList.remove("pos-hidden");
-  organizerScannerSetStatus("Ready — tap START CAMERA.","●");
-}
-
-function organizerManualCheckIn(){
-  const input = document.getElementById("organizerManualCode");
-  const code = String(input && input.value || "").trim().toUpperCase();
-  if(!eventId){ organizerScannerShowResult("error","⚠","Event Not Ready","","Event ID is missing from this dashboard."); return; }
-  if(!/^[A-Z2-9]{6}$/.test(code)){
-    organizerScannerShowResult("warning","!","Invalid Code","","Please enter a valid 6-character check-in code.");
-    if(input) input.focus();
-    return;
-  }
-  // Reuse the same backend flow as QR scanning.
-  onOrganizerScanSuccess(code);
-}
-
-document.addEventListener("DOMContentLoaded", function(){
-  const input = document.getElementById("organizerManualCode");
-  if(!input) return;
-  input.addEventListener("input", function(){ this.value=this.value.toUpperCase().replace(/[^A-Z2-9]/g,"").slice(0,6); });
-  input.addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); organizerManualCheckIn(); } });
-});
 
 /* =========================================================
    START
