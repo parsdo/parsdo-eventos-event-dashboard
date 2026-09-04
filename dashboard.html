@@ -909,6 +909,33 @@ text-decoration:none;
 font-weight:850;
 }
 
+.dashboard-logout{
+  margin-top:21px;
+  display:flex;
+  justify-content:center;
+}
+
+.dashboard-logout .logout-button{
+  width:180px;
+  border:1px solid #dce6e5;
+  background:#edf3f2;
+  color:var(--ink);
+  padding:12px 20px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  transition:
+    transform .12s ease,
+    background .12s ease,
+    border-color .12s ease;
+}
+
+.dashboard-logout .logout-button:hover{
+  background:#e3eeec;
+  border-color:#c8dcda;
+}  
+
 /* RESPONSIVE */
 
 @media(max-width:760px){
@@ -979,27 +1006,6 @@ width:100%;
 
 .pagination-buttons button{
 flex:1;
-}
-
-.logout-button{
-  flex:0 0 auto;
-  border:1px solid #dce6e5;
-  background:#edf3f2;
-  color:var(--ink);
-  padding:12px 16px;
-  border-radius:11px;
-  font-size:12px;
-  font-weight:800;
-  cursor:pointer;
-  transition:
-    transform .12s ease,
-    background .12s ease,
-    border-color .12s ease;
-}
-
-.logout-button:hover{
-  background:#e3eeec;
-  border-color:#c8dcda;
 }
 
 }
@@ -1201,10 +1207,6 @@ onclick="showView('scanner')">
 ▣ QR Scanner
 
 </button>
-
-<button class="logout-button" onclick="logoutOrganizer()">
-  Logout
-</button>   
 
 </div>
 
@@ -1695,6 +1697,14 @@ class="email-result">
 
 </section>
 
+<div class="dashboard-logout">
+  <button
+    class="logout-button"
+    type="button"
+    onclick="logoutOrganizer()">
+    Logout
+  </button>
+</div>
 
 <div
 id="errorBox"
